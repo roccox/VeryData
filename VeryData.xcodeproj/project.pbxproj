@@ -1,0 +1,289 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
+		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
+		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
+		DDD2721F1536DF7100892FDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = DDD2721D1536DF7100892FDA /* InfoPlist.strings */; };
+		DDD272211536DF7100892FDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD272201536DF7100892FDA /* main.m */; };
+		DDD272251536DF7100892FDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD272241536DF7100892FDA /* AppDelegate.m */; };
+		DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD272261536DF7100892FDA /* MainStoryboard.storyboard */; };
+		DDD2722B1536DF7100892FDA /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722A1536DF7100892FDA /* MasterViewController.m */; };
+		DDD2722E1536DF7100892FDA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722D1536DF7100892FDA /* DetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		DDD272181536DF7100892FDA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		DDD2721C1536DF7100892FDA /* VeryData-Info.plist */ = {isa = PBXFileReference; path = "VeryData-Info.plist"; sourceTree = "<group>"; };
+		DDD2721E1536DF7100892FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		DDD272201536DF7100892FDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DDD272221536DF7100892FDA /* VeryData-Prefix.pch */ = {isa = PBXFileReference; path = "VeryData-Prefix.pch"; sourceTree = "<group>"; };
+		DDD272231536DF7100892FDA /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		DDD272241536DF7100892FDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DDD272271536DF7100892FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		DDD272291536DF7100892FDA /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		DDD2722A1536DF7100892FDA /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
+		DDD2722C1536DF7100892FDA /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
+		DDD2722D1536DF7100892FDA /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DDD2720D1536DF7100892FDA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */,
+				DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */,
+				DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DDD272051536DF7000892FDA = {
+			isa = PBXGroup;
+			children = (
+				DDD2721A1536DF7100892FDA /* VeryData */,
+				DDD272131536DF7100892FDA /* Frameworks */,
+				DDD272111536DF7100892FDA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DDD272111536DF7100892FDA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDD272101536DF7100892FDA /* VeryData.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DDD272131536DF7100892FDA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDD272141536DF7100892FDA /* UIKit.framework */,
+				DDD272161536DF7100892FDA /* Foundation.framework */,
+				DDD272181536DF7100892FDA /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DDD2721A1536DF7100892FDA /* VeryData */ = {
+			isa = PBXGroup;
+			children = (
+				DDD272231536DF7100892FDA /* AppDelegate.h */,
+				DDD272241536DF7100892FDA /* AppDelegate.m */,
+				DDD272261536DF7100892FDA /* MainStoryboard.storyboard */,
+				DDD272291536DF7100892FDA /* MasterViewController.h */,
+				DDD2722A1536DF7100892FDA /* MasterViewController.m */,
+				DDD2722C1536DF7100892FDA /* DetailViewController.h */,
+				DDD2722D1536DF7100892FDA /* DetailViewController.m */,
+				DDD2721B1536DF7100892FDA /* Supporting Files */,
+			);
+			path = VeryData;
+			sourceTree = "<group>";
+		};
+		DDD2721B1536DF7100892FDA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				DDD2721C1536DF7100892FDA /* VeryData-Info.plist */,
+				DDD2721D1536DF7100892FDA /* InfoPlist.strings */,
+				DDD272201536DF7100892FDA /* main.m */,
+				DDD272221536DF7100892FDA /* VeryData-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DDD2720F1536DF7100892FDA /* VeryData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDD272311536DF7100892FDA /* Build configuration list for PBXNativeTarget "VeryData" */;
+			buildPhases = (
+				DDD2720C1536DF7100892FDA /* Sources */,
+				DDD2720D1536DF7100892FDA /* Frameworks */,
+				DDD2720E1536DF7100892FDA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VeryData;
+			productName = VeryData;
+			productReference = DDD272101536DF7100892FDA /* VeryData.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DDD272071536DF7000892FDA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = DDD2720A1536DF7000892FDA /* Build configuration list for PBXProject "VeryData" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = DDD272051536DF7000892FDA;
+			productRefGroup = DDD272111536DF7100892FDA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DDD2720F1536DF7100892FDA /* VeryData */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DDD2720E1536DF7100892FDA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDD2721F1536DF7100892FDA /* InfoPlist.strings in Resources */,
+				DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DDD2720C1536DF7100892FDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDD272211536DF7100892FDA /* main.m in Sources */,
+				DDD272251536DF7100892FDA /* AppDelegate.m in Sources */,
+				DDD2722B1536DF7100892FDA /* MasterViewController.m in Sources */,
+				DDD2722E1536DF7100892FDA /* DetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DDD2721D1536DF7100892FDA /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDD2721E1536DF7100892FDA /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		DDD272261536DF7100892FDA /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DDD272271536DF7100892FDA /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DDD2722F1536DF7100892FDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		DDD272301536DF7100892FDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DDD272321536DF7100892FDA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeryData/VeryData-Prefix.pch";
+				INFOPLIST_FILE = "VeryData/VeryData-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		DDD272331536DF7100892FDA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "VeryData/VeryData-Prefix.pch";
+				INFOPLIST_FILE = "VeryData/VeryData-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DDD2720A1536DF7000892FDA /* Build configuration list for PBXProject "VeryData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDD2722F1536DF7100892FDA /* Debug */,
+				DDD272301536DF7100892FDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DDD272311536DF7100892FDA /* Build configuration list for PBXNativeTarget "VeryData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DDD272321536DF7100892FDA /* Debug */,
+				DDD272331536DF7100892FDA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DDD272071536DF7000892FDA /* Project object */;
+}
