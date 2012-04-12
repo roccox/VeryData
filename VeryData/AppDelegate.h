@@ -8,8 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+#import "DetailViewController.h"
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (strong, nonatomic) UINavigationController * curController;
+@property (strong, nonatomic) UINavigationController * orderController;
+@property (strong, nonatomic) UINavigationController * clothController;
+
+- (void) setNewDetailControllerWithTag: (NSString *) tag;
 
 @end

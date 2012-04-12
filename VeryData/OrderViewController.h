@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DetailViewController : UIViewController
+#import "DetailViewController.h"
 
-@property (strong, nonatomic) UIPopoverController *masterPopoverController;
+@interface OrderViewController : DetailViewController <UISplitViewControllerDelegate>{
 
--(void)settingItem: (NSString *)item;
+    NSString * _item;
+}
 
 @end

@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class OrderViewController;
 
 @interface MasterViewController : UITableViewController
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) OrderViewController *detailViewController;
+
 
 @end

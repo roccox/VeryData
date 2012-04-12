@@ -8,9 +8,13 @@
 
 #import "MasterViewController.h"
 
-#import "DetailViewController.h"
+#import "OrderViewController.h"
+
+#import "AppDelegate.h"
 
 @implementation MasterViewController
+
+
 
 @synthesize detailViewController = _detailViewController;
 
@@ -29,11 +33,12 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    self.detailViewController = (OrderViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionMiddle];
 }
 
@@ -70,6 +75,51 @@
     return YES;
 }
 
+
+#pragma mark -
+#pragma mark Table view delegate
+
+- (void)tableView:(UITableView *)aTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // the URL for the website
+	NSString* stringURL;
+	
+	// find out the section and row
+    int section = [indexPath indexAtPosition:0];
+	int row = [indexPath indexAtPosition:1];
+	
+	// URL
+    if (section==0) {
+		if (row==0) {
+			stringURL = @"ORDER_TODAY";
+		}
+		else if(row == 1){
+			stringURL = @"ORDER_TOMORROW";
+		}
+		else if(row == 2){
+			stringURL = @"ORDER_WEEK";
+		}
+		else if(row == 3){
+			stringURL = @"ORDER_MONTH";
+		}
+		else if(row == 4){
+			stringURL = @"ORDER_PERIOD";
+		}
+		
+	}
+	else {
+		if (row==0) {
+			stringURL = @"CLOTH_TOP";
+		}
+		else {
+			stringURL = @"CLOTH_ALL";
+		}
+	}
+	
+    AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
+        
+    [delegate setNewDetailControllerWithTag:stringURL];
+//    self.detailViewController.detailItem = stringURL;
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

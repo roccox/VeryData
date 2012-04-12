@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
+		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
 		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
@@ -15,25 +17,29 @@
 		DDD272251536DF7100892FDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD272241536DF7100892FDA /* AppDelegate.m */; };
 		DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD272261536DF7100892FDA /* MainStoryboard.storyboard */; };
 		DDD2722B1536DF7100892FDA /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722A1536DF7100892FDA /* MasterViewController.m */; };
-		DDD2722E1536DF7100892FDA /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722D1536DF7100892FDA /* DetailViewController.m */; };
+		DDD2722E1536DF7100892FDA /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722D1536DF7100892FDA /* OrderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
+		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
+		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		DD5D1037153726CF00B7F0EB /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		DDD272181536DF7100892FDA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		DDD2721C1536DF7100892FDA /* VeryData-Info.plist */ = {isa = PBXFileReference; path = "VeryData-Info.plist"; sourceTree = "<group>"; };
+		DDD2721C1536DF7100892FDA /* VeryData-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VeryData-Info.plist"; sourceTree = "<group>"; };
 		DDD2721E1536DF7100892FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DDD272201536DF7100892FDA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DDD272221536DF7100892FDA /* VeryData-Prefix.pch */ = {isa = PBXFileReference; path = "VeryData-Prefix.pch"; sourceTree = "<group>"; };
-		DDD272231536DF7100892FDA /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		DDD272221536DF7100892FDA /* VeryData-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VeryData-Prefix.pch"; sourceTree = "<group>"; };
+		DDD272231536DF7100892FDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DDD272241536DF7100892FDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DDD272271536DF7100892FDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		DDD272291536DF7100892FDA /* MasterViewController.h */ = {isa = PBXFileReference; path = MasterViewController.h; sourceTree = "<group>"; };
+		DDD272291536DF7100892FDA /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		DDD2722A1536DF7100892FDA /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		DDD2722C1536DF7100892FDA /* DetailViewController.h */ = {isa = PBXFileReference; path = DetailViewController.h; sourceTree = "<group>"; };
-		DDD2722D1536DF7100892FDA /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		DDD2722C1536DF7100892FDA /* OrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
+		DDD2722D1536DF7100892FDA /* OrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +91,12 @@
 				DDD272261536DF7100892FDA /* MainStoryboard.storyboard */,
 				DDD272291536DF7100892FDA /* MasterViewController.h */,
 				DDD2722A1536DF7100892FDA /* MasterViewController.m */,
-				DDD2722C1536DF7100892FDA /* DetailViewController.h */,
-				DDD2722D1536DF7100892FDA /* DetailViewController.m */,
+				DDD2722C1536DF7100892FDA /* OrderViewController.h */,
+				DDD2722D1536DF7100892FDA /* OrderViewController.m */,
+				DD5D1036153726CF00B7F0EB /* DetailViewController.h */,
+				DD5D1037153726CF00B7F0EB /* DetailViewController.m */,
+				DD5D102B1537100E00B7F0EB /* ClothViewController.h */,
+				DD5D102C1537100E00B7F0EB /* ClothViewController.m */,
 				DDD2721B1536DF7100892FDA /* Supporting Files */,
 			);
 			path = VeryData;
@@ -168,7 +178,9 @@
 				DDD272211536DF7100892FDA /* main.m in Sources */,
 				DDD272251536DF7100892FDA /* AppDelegate.m in Sources */,
 				DDD2722B1536DF7100892FDA /* MasterViewController.m in Sources */,
-				DDD2722E1536DF7100892FDA /* DetailViewController.m in Sources */,
+				DDD2722E1536DF7100892FDA /* OrderViewController.m in Sources */,
+				DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */,
+				DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +294,7 @@
 				DDD272331536DF7100892FDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -8,9 +8,70 @@
 
 #import "AppDelegate.h"
 
+#import "OrderViewController.h"
+#import "ClothViewController.h"
+
 @implementation AppDelegate
 
+@synthesize curController,orderController,clothController;
+
 @synthesize window = _window;
+
+- (void) setNewDetailControllerWithTag: (NSString *) tag
+{
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    UINavigationController * curController = [splitCtrl.viewControllers lastObject];
+    DetailViewController * curDetailCtroller = curController.topViewController;
+    
+    UINavigationController* detailRootController = orderController;
+    if([tag hasPrefix:@"ORDER"])        
+    {
+        detailRootController = orderController;
+    }
+    else if([tag hasPrefix:@"CLOTH"])
+    {
+        detailRootController = clothController;
+    }
+    DetailViewController* detailController = detailRootController.topViewController;
+
+       /*
+       stringURL = @"ORDER_TODAY";
+    stringURL = @"ORDER_TOMORROW";
+    stringURL = @"ORDER_WEEK";
+    stringURL = @"ORDER_MONTH";
+    stringURL = @"ORDER_PERIOD";
+        stringURL = @"CLOTH_TOP";
+        stringURL = @"CLOTH_ALL";
+*/
+
+    if(detailController != curDetailCtroller)
+    {
+        // swap button in detail controller
+        UINavigationItem * navItem = [curDetailCtroller.navigationItem leftBarButtonItem];
+        UIPopoverController * masterPopCtrl = curDetailCtroller.masterPopoverController;
+        
+        [curDetailCtroller.navigationItem setLeftBarButtonItem:nil animated:NO];
+        curDetailCtroller = detailController;
+        [curDetailCtroller.navigationItem setLeftBarButtonItem:navItem animated:NO];
+        
+        // update controllers in splitview
+        UINavigationController* leftController = [splitCtrl.viewControllers objectAtIndex:0];
+        splitCtrl.viewControllers = [NSArray arrayWithObjects:leftController,detailRootController, nil];
+        
+        // replace the passthrough views with current detail navigationbar
+        curDetailCtroller.masterPopoverController = masterPopCtrl;
+        
+        if([masterPopCtrl isPopoverVisible]){
+            masterPopCtrl.passthroughViews = [NSArray arrayWithObject:detailRootController.navigationBar];
+        }
+        
+        splitCtrl.delegate = (id)curDetailCtroller;
+    } 
+    
+    [curDetailCtroller settingItem:tag];
+    
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -18,6 +79,12 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
+
+    //Rock
+    orderController = navigationController;
+    clothController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"clothCtrl"];
+    curController = orderController;
+    
     return YES;
 }
 							
