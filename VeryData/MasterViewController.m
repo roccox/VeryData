@@ -102,7 +102,7 @@
 			stringURL = @"ORDER_MONTH";
 		}
 		else if(row == 4){
-			stringURL = @"ORDER_PERIOD";
+			stringURL = @"ORDER_PERIOD_SEL";
 		}
 		
 	}

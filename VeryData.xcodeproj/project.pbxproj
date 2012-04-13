@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
+		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
 		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
@@ -25,6 +26,8 @@
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		DD5D1037153726CF00B7F0EB /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		DD5D105D1537C5A800B7F0EB /* DateSelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSelController.h; sourceTree = "<group>"; };
+		DD5D105E1537C5A900B7F0EB /* DateSelController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSelController.m; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,6 +92,8 @@
 				DDD272231536DF7100892FDA /* AppDelegate.h */,
 				DDD272241536DF7100892FDA /* AppDelegate.m */,
 				DDD272261536DF7100892FDA /* MainStoryboard.storyboard */,
+				DD5D105D1537C5A800B7F0EB /* DateSelController.h */,
+				DD5D105E1537C5A900B7F0EB /* DateSelController.m */,
 				DDD272291536DF7100892FDA /* MasterViewController.h */,
 				DDD2722A1536DF7100892FDA /* MasterViewController.m */,
 				DDD2722C1536DF7100892FDA /* OrderViewController.h */,
@@ -181,6 +186,7 @@
 				DDD2722E1536DF7100892FDA /* OrderViewController.m in Sources */,
 				DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */,
 				DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */,
+				DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

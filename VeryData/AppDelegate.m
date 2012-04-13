@@ -15,6 +15,8 @@
 
 @synthesize curController,orderController,clothController;
 
+@synthesize dateSelController;
+
 @synthesize window = _window;
 
 - (void) setNewDetailControllerWithTag: (NSString *) tag
@@ -25,6 +27,13 @@
     DetailViewController * curDetailCtroller = curController.topViewController;
     
     UINavigationController* detailRootController = orderController;
+    
+    if([tag hasPrefix:@"ORDER_PERIOD_SEL"])
+    {
+        [self showDateSel];
+        return;
+    }
+    
     if([tag hasPrefix:@"ORDER"])        
     {
         detailRootController = orderController;
@@ -73,6 +82,34 @@
     
 }
 
+-(void)showDateSel
+{
+    self.dateSelController.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.dateSelController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+ 
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    [splitCtrl presentModalViewController:self.dateSelController animated:YES];
+
+}
+
+-(void)hideDateSel
+{
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    [splitCtrl dismissModalViewControllerAnimated:YES];
+}
+
+-(void)selectedDate
+{
+    
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    [splitCtrl dismissModalViewControllerAnimated:YES];    
+    
+    [self setNewDetailControllerWithTag:@"ORDER_PERIOD_OK"];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -84,6 +121,8 @@
     orderController = navigationController;
     clothController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"clothCtrl"];
     curController = orderController;
+    
+    dateSelController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"dateSelCtrl"];
     
     return YES;
 }
