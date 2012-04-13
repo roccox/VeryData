@@ -15,10 +15,15 @@
 
 @synthesize curController,orderController,clothController;
 
-@synthesize dateSelController;
+@synthesize dateSelController,sessionController,topSession;
 
 @synthesize window = _window;
 
+-(void)setTopSession:(NSString *)session
+{
+    topSession = session;
+    
+}
 - (void) setNewDetailControllerWithTag: (NSString *) tag
 {
     UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
@@ -30,7 +35,9 @@
     
     if([tag hasPrefix:@"ORDER_PERIOD_SEL"])
     {
-        [self showDateSel];
+//        [self showDateSel];
+        //Test only
+        [self showSessionCtrl];
         return;
     }
     
@@ -93,6 +100,29 @@
 
 }
 
+-(void)refreshSession
+{
+    [self showSessionCtrl];   
+}
+
+-(void)showSessionCtrl
+{
+    self.sessionController.modalPresentationStyle = UIModalPresentationFormSheet;
+    self.sessionController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    [splitCtrl presentModalViewController:self.sessionController animated:YES];
+}
+
+-(void)hideSessionCtrl
+{
+    UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
+    
+    [splitCtrl dismissModalViewControllerAnimated:YES];
+}
+
+
 -(void)hideDateSel
 {
     UISplitViewController * splitCtrl = (UISplitViewController *)self.window.rootViewController;
@@ -124,6 +154,7 @@
     
     dateSelController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"dateSelCtrl"];
     
+    sessionController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"sessionCtrl"];
     return YES;
 }
 							

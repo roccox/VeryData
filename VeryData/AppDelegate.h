@@ -10,7 +10,11 @@
 
 #import "DetailViewController.h"
 #import "DateSelController.h"
+#import "TopSessionController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    NSString * topSession;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 
@@ -20,9 +24,16 @@
 
 @property(strong,nonatomic) DateSelController * dateSelController;
 
+@property(strong,nonatomic) TopSessionController * sessionController;
+
+@property(strong,nonatomic) NSString * topSession;
+
 - (void) setNewDetailControllerWithTag: (NSString *) tag;
 
 -(void) showDateSel;
 -(void)hideDateSel;
 -(void)selectedDate;
+-(void) showSessionCtrl;
+-(void) hideSessionCtrl;
+
 @end
