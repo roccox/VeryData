@@ -53,7 +53,7 @@
 //        [self showDateSel];
         //Test only
         [TopData getTopData].delegate = self;
-        [[TopData getTopData]refreshItems];
+        [[TopData getTopData]refreshTrades];
 
 //        [self showSessionCtrl];
         return;

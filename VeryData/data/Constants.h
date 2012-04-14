@@ -2,15 +2,15 @@
 
 
 //#define APP_KEY     @"12228835" 
-#define APP_KEY     @"12561809"
+#define APP_KEY     @"12561906"
 //#define APP_SECRET  @"sandbox5cd6de2e534dbb88466a86f48"
 //#define BASEURL     @"http://gw.api.tbsandbox.com/router/rest"
 //#define LOGINURL    @"http://container.api.tbsandbox.com/container?appkey=12228835"
 
 //#define APP_SECRET  @"1737d0b5cd6de2e534dbb88466a86f48"
-#define APP_SECRET  @"05ae518ca82307a196844fe24c256768"
+#define APP_SECRET  @"d9979681ea556e6d188f96cb0a5341a4"
 #define BASEURL     @"http://gw.api.taobao.com/router/rest"
-#define LOGINURL    @"http://container.api.taobao.com/container?appkey=12561809"
+#define LOGINURL    @"http://container.api.taobao.com/container?appkey=12561906"
 
 /*
 #define PLAYBUTTONSOUND [(TaobaoClientAppDelegate *)[[UIApplication sharedApplication]delegate] loadButtonSound:1];

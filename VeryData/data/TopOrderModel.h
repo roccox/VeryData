@@ -11,7 +11,7 @@
 @interface TopOrderModel : NSObject
 
 @property (nonatomic) long oid;
-@property (nonatomic) long num;
+@property (nonatomic) int num;
 @property (nonatomic) long num_iid;
 @property (nonatomic,strong) NSString * title;
 @property (nonatomic,strong) NSString * sku_name;
@@ -26,5 +26,7 @@
 @property (nonatomic) double payment;
 
 @property (nonatomic) double post_fee;
+
+-(void)print;
 
 @end

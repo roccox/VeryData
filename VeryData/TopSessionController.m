@@ -48,7 +48,6 @@
         AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.topSession = sessionKey;
 
-        NSLog(@"sessionKey=%@",sessionKey);
         [appDelegate hideSessionCtrl];
     }
 }

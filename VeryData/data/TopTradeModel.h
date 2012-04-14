@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "TopOrderModel.h"
+
 @interface TopTradeModel : NSObject
 
 @property (nonatomic) long tid;
@@ -27,5 +29,7 @@
 @property (nonatomic,strong) NSDate * paymentTime;
 
 @property (nonatomic,strong) NSMutableArray * orders;
+
+-(void)print;
 
 @end

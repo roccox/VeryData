@@ -11,7 +11,7 @@
 static TopData *single = nil;
 
 //TODO
-static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c74943896";
+static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e474943896";
 
 @implementation TopData
 
@@ -73,7 +73,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 
     //New thread
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
-                                                 selector:@selector(getTradeInfo:)
+                                                 selector:@selector(getTradeInfo)
                                                    object:nil];
     [myThread start];
 }
@@ -106,6 +106,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 
 +(void)putSession:(NSString *) session
 {
+    NSLog(@"Session-%@",session);
     _session = session;
 }
 
@@ -114,7 +115,10 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 {
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
+    {
         [self.delegate notifyItemRefresh:YES withTag:tag];
+        _refreshing = NO;
+    }
     else 
         [self.delegate notifyItemRefresh:NO withTag:tag];
      
@@ -124,7 +128,10 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 {
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"] || [tag isEqualToString:@"SESSION_MISSING"]) 
+    {
         [self.delegate notifyTradeRefresh:YES withTag:tag];
+        _refreshing = NO;
+    }
     else 
         [self.delegate notifyTradeRefresh:NO withTag:tag];
      
@@ -161,7 +168,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     
 }
 
--(NSDate *) prepareTradeParam
+-(void) prepareTradeParam
 {
     if(_has_next)
     {
@@ -175,6 +182,10 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     startTime = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)];
     endTime = [[NSDate alloc]initWithTimeInterval:(2*60*60-1) sinceDate:startTime];
     NSLog(@"Time: %@",startTime);
+    
+    //Test Only
+    if(_get_count >=1)
+        _page_count = -1;
 }
 
 -(void)getTradeInfo
@@ -191,16 +202,24 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     //get startTime and endTime, 
     [self prepareTradeParam];
     
+    //check end
+    if(_page_count == -1)
+    {
+        [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+        return;
+    }
     //Get Items
+    
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    [params setObject:@"taobao.trades.sold.increment.get" forKey:@"method"];
     [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment" forKey:@"fields"];
-    [params setObject:[startTime description] forKey:@"start_modified"];
-    [params setObject:[endTime description] forKey:@"end_modified"];
+    [params setObject:[[startTime description] substringToIndex:19] forKey:@"start_modified"];
+    [params setObject:[[endTime description] substringToIndex:19] forKey:@"end_modified"];
     [params setObject:@"true" forKey:@"use_has_next"];
     [params setObject:page_no  forKey:@"page_no"];
 
+
     [params setObject:_session forKey:@"session"];
-    [params setObject:@"taobao.trades.sold.increment.get" forKey:@"method"];
     
     NSData *resultData=[Utility getResultData:params];
     NSXMLParser *xmlParser=[[NSXMLParser alloc] initWithData:resultData];
@@ -401,6 +420,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
             {
                 _get_count++;
                 //TODO: save to sqlite
+                [self.curTrade print];
 
                 [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 订单",_get_count] waitUntilDone:NO];
             }
