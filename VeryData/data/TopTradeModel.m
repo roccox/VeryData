@@ -18,7 +18,7 @@
 
 -(void)print
 {
-    NSLog(@"Trade: tid-%ld,status-%@,created-%@,modified-%@,buyer-%@,rec_city-%@,rec_name-%@ \n",self.tid,self.status,[self.createdTime description],[self.modifiedTime description],self.buyer_nick,self.receiver_city,self.receiver_name);
+    NSLog(@"Trade: tid-%qi,status-%@,created-%@,modified-%@,buyer-%@,rec_city-%@,rec_name-%@ \n",self.tid,self.status,[self.createdTime description],[self.modifiedTime description],self.buyer_nick,self.receiver_city,self.receiver_name);
     NSLog(@"Trade: discount-%f,adjust-%f,post-%f,total-%f,payment-%f,paytime-%@ \n",self.discount_fee,self.adjust_fee,self.post_fee,self.total_fee,self.payment,[self.paymentTime description]);
     
     for(TopOrderModel * order in orders)

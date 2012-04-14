@@ -12,7 +12,7 @@
 
 @interface TopTradeModel : NSObject
 
-@property (nonatomic) long tid;
+@property (nonatomic) long long tid;
 @property (nonatomic,strong) NSString * status;
 @property (nonatomic,strong) NSDate * createdTime;
 @property (nonatomic,strong) NSDate * modifiedTime;

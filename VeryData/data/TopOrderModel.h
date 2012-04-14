@@ -10,9 +10,9 @@
 
 @interface TopOrderModel : NSObject
 
-@property (nonatomic) long oid;
+@property (nonatomic) long long oid;
 @property (nonatomic) int num;
-@property (nonatomic) long num_iid;
+@property (nonatomic) long long num_iid;
 @property (nonatomic,strong) NSString * title;
 @property (nonatomic,strong) NSString * sku_name;
 @property (nonatomic,strong) NSString * pic_url;

@@ -15,7 +15,7 @@
 
 -(void)print
 {
-    NSLog(@"Item: id-%ld,title-%@,pic_url-%@ \n",self.num_iid,self.title,self.pic_url);
+    NSLog(@"Item: id-%qi,title-%@,pic_url-%@ \n",self.num_iid,self.title,self.pic_url);
     NSLog(@"Item: price-%f,title-%d,import_price-%f \n",self.price,self.volume,self.import_price);
 }
 

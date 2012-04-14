@@ -180,7 +180,7 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
         _page_count = 1;
     }
     startTime = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)];
-    endTime = [[NSDate alloc]initWithTimeInterval:(2*60*60-1) sinceDate:startTime];
+    endTime = [[NSDate alloc]initWithTimeInterval:(4*60*60-1) sinceDate:startTime];
     NSLog(@"Time: %@",startTime);
     
     //Test Only
@@ -237,7 +237,6 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
     if([self.currentElement isEqualToString:@"items_get_response"])
     {
         _parseState = TAOBAO_PARSE_ITEM;
-        [self.curTrade.orders removeAllObjects];
     }
     else if([self.currentElement isEqualToString:@"trades_sold_increment_get_response"])
     {
@@ -421,6 +420,8 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
                 _get_count++;
                 //TODO: save to sqlite
                 [self.curTrade print];
+
+                [self.curTrade.orders removeAllObjects];
 
                 [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 订单",_get_count] waitUntilDone:NO];
             }
