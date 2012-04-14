@@ -10,12 +10,12 @@
 
 @interface TopItemModel : NSObject
 
-@property (nonatomic) long id;
+@property (nonatomic) long num_iid;
 @property (nonatomic,strong) NSString * title;
 @property (nonatomic,strong) NSString * pic_url;
 @property (nonatomic) double price;
 @property (nonatomic) int volume;
 @property (nonatomic) double import_price;
 
-
+-(void)print;
 @end

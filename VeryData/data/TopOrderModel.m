@@ -10,7 +10,7 @@
 
 @implementation TopOrderModel
 
-@synthesize id,num_iid,title,sku_name,pic_url,price,status;
+@synthesize oid,num,num_iid,title,sku_name,pic_url,price,status;
 @synthesize discount_fee,adjust_fee,total_fee,payment,post_fee;
 
 

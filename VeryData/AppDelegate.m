@@ -11,6 +11,8 @@
 #import "OrderViewController.h"
 #import "ClothViewController.h"
 
+#import "TopData.h"
+
 @implementation AppDelegate
 
 @synthesize curController,orderController,clothController;
@@ -19,10 +21,23 @@
 
 @synthesize window = _window;
 
+#pragma test delegate for taobao
+-(void) notifyItemRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    NSLog(@"%@",tag);
+}
+-(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    NSLog(@"%@",tag);
+
+}
+
 -(void)setTopSession:(NSString *)session
 {
     topSession = session;
-    
+    [TopData putSession:topSession];
+    [TopData getTopData].delegate = self;
+    [[TopData getTopData]refreshTrades];
 }
 - (void) setNewDetailControllerWithTag: (NSString *) tag
 {
@@ -37,7 +52,10 @@
     {
 //        [self showDateSel];
         //Test only
-        [self showSessionCtrl];
+        [TopData getTopData].delegate = self;
+        [[TopData getTopData]refreshItems];
+
+//        [self showSessionCtrl];
         return;
     }
     

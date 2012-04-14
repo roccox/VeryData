@@ -11,7 +11,9 @@
 #import "DetailViewController.h"
 #import "DateSelController.h"
 #import "TopSessionController.h"
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+#import "TopData.h"
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,TaobaoDataDelegate>
 {
     NSString * topSession;
 }

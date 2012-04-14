@@ -16,7 +16,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 @implementation TopData
 
 @synthesize delegate = _delegate;
-@synthesize curItem,curTrade,currentElement;
+@synthesize curItem,curTrade,currentElement,curOrder;
 
 
 + (TopData *)getTopData {
@@ -31,7 +31,10 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 -(void)refreshItems    //异步方法
 {
     if(_refreshing)
+    {
         [self.delegate notifyItemRefresh:YES withTag:@"BUSY"];
+        return;
+    }
     
     _refreshing = YES;
     
@@ -40,7 +43,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     
     //New thread
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
-                                                 selector:@selector(getTopItem:)
+                                                 selector:@selector(getItemInfo:)
                                                    object:nil];
     [myThread start];
 }
@@ -48,16 +51,29 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 -(void)refreshTrades   //异步方法
 {
     if(_refreshing)
+    {
         [self.delegate notifyTradeRefresh:YES withTag:@"BUSY"];
+        return;
+    }
+    //check session
+    if(_session == nil)
+    {
+        [self.delegate notifyTradeRefresh:YES withTag:@"SESSION_MISSING"];
+        return;
+    }
+        
     
     _refreshing = YES;
-
+    
     _get_count = 0;
-    _total_count = 0;
+
+    _page_count = 1;
+    
+    _has_next = NO;
 
     //New thread
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
-                                                 selector:@selector(getTopTrade:)
+                                                 selector:@selector(getTradeInfo:)
                                                    object:nil];
     [myThread start];
 }
@@ -96,37 +112,45 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
 //inner
 -(void)notiyItemWithTag:(NSString *)tag
 {
+    
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
         [self.delegate notifyItemRefresh:YES withTag:tag];
     else 
         [self.delegate notifyItemRefresh:NO withTag:tag];
+     
 }
 
 -(void)notiyTradeWithTag:(NSString *)tag
 {
-    if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
+    
+    if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"] || [tag isEqualToString:@"SESSION_MISSING"]) 
         [self.delegate notifyTradeRefresh:YES withTag:tag];
     else 
         [self.delegate notifyTradeRefresh:NO withTag:tag];
+     
 }
 
 
 //inner
--(void)getItemInfo:(int)page_no
+-(void)getItemInfo:(NSString *)page_no
 {
     _parseState = TAOBAO_PARSE_START;
 
     if (self.curItem == nil) {
         self.curItem = [[TopItemModel alloc]init];
     }
+    
 
-    //Get Category List
-    NSString * _page_num = [[NSString alloc]initWithFormat:@"%d",page_no];
+    if(page_no == nil)
+        page_no = @"1";
+
+
+    //Get Items
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"num_iid,title,volume,pic_url,price" forKey:@"fields"];
     [params setObject:@"podees" forKey:@"nicks"];
     [params setObject:@"volume:desc" forKey:@"order_by"];
-    [params setObject:_page_num forKey:@"page_no"];
+    [params setObject:page_no  forKey:@"page_no"];
     [params setObject:@"volume:desc" forKey:@"order_by"];
     [params setObject:@"taobao.items.get" forKey:@"method"];
     
@@ -137,14 +161,52 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     
 }
 
--(void)getTradeInfo:(int)page_no
+-(NSDate *) prepareTradeParam
+{
+    if(_has_next)
+    {
+        _has_next = NO;
+        _page_count++;
+    }
+    else
+    {
+        _page_count = 1;
+    }
+    startTime = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)];
+    endTime = [[NSDate alloc]initWithTimeInterval:(2*60*60-1) sinceDate:startTime];
+    NSLog(@"Time: %@",startTime);
+}
+
+-(void)getTradeInfo
 {
     _parseState = TAOBAO_PARSE_START;
     
     if (self.curTrade == nil) {
         self.curTrade = [[TopTradeModel alloc]init];
+        self.curTrade.orders = [[NSMutableArray alloc]init];
     }
 
+    NSString * page_no = [[NSString alloc]initWithFormat:@"%d",_page_count];
+    
+    //get startTime and endTime, 
+    [self prepareTradeParam];
+    
+    //Get Items
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment" forKey:@"fields"];
+    [params setObject:[startTime description] forKey:@"start_modified"];
+    [params setObject:[endTime description] forKey:@"end_modified"];
+    [params setObject:@"true" forKey:@"use_has_next"];
+    [params setObject:page_no  forKey:@"page_no"];
+
+    [params setObject:_session forKey:@"session"];
+    [params setObject:@"taobao.trades.sold.increment.get" forKey:@"method"];
+    
+    NSData *resultData=[Utility getResultData:params];
+    NSXMLParser *xmlParser=[[NSXMLParser alloc] initWithData:resultData];
+    [xmlParser setDelegate:self];
+    [xmlParser parse];      
+    
 }
 
 
@@ -156,15 +218,23 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     if([self.currentElement isEqualToString:@"items_get_response"])
     {
         _parseState = TAOBAO_PARSE_ITEM;
+        [self.curTrade.orders removeAllObjects];
     }
     else if([self.currentElement isEqualToString:@"trades_sold_increment_get_response"])
     {
         _parseState = TAOBAO_PARSE_TRADE;
     }
-    else if([self.currentElement isEqualToString:@"orders"])
+    else if([self.currentElement isEqualToString:@"order"])
     {
         _parseState = TAOBAO_PARSE_TRADE_ORDER;
+        self.curOrder = [[TopOrderModel alloc]init];
     }
+}
+-(NSDate *) getDateFromString:(NSString*)string
+{
+    NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    return [formatter dateFromString:string];
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -174,7 +244,7 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
             //商品列表
             if(![self.currentElement compare:@"num_iid"])
             {
-                self.curItem.id = [string intValue];
+                self.curItem.num_iid = [string longLongValue];
             }
             else if(![self.currentElement compare:@"title"])
             {
@@ -197,66 +267,116 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
                 _total_count=[string intValue];
             }
             break;
-            /*
         case TAOBAO_PARSE_TRADE:
             //Trade信息
-            if(![self.currentElement compare:@"num_iid"])
+            if(![self.currentElement compare:@"has_next"])
             {
-                //search itemPro
-                ItemProductModel * pro;
-                for(int i=0;i<[self.itemAllProList count];i++)
-                {
-                    pro = [self.itemAllProList objectAtIndex:i];
-                    if([pro.num_iid isEqualToString: string])
-                        self.itemPro = pro;
-                }
-
+                _has_next = [string boolValue];
             }
-            else if(![self.currentElement compare:@"seller_cids"])
+            else if(![self.currentElement compare:@"tid"])
             {
-                self.itemPro.seller_cids=string;
+                self.curTrade.tid = [string longLongValue];
             }
-            else if(![self.currentElement compare:@"list_time"])
+            else if(![self.currentElement compare:@"status"])
             {
-                self.itemPro.list_time=string;
+                self.curTrade.status = string;
+            }
+            else if(![self.currentElement compare:@"buyer_nick"])
+            {
+                self.curTrade.buyer_nick = string;
+            }
+            else if(![self.currentElement compare:@"receiver_name"])
+            {
+                self.curTrade.receiver_name = string;
+            }
+            else if(![self.currentElement compare:@"receiver_city"])
+            {
+                self.curTrade.receiver_city = string;
+            }
+            else if(![self.currentElement compare:@"discount_fee"])
+            {
+                self.curTrade.discount_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"adjust_fee"])
+            {
+                self.curTrade.adjust_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"post_fee"])
+            {
+                self.curTrade.post_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"total_fee"])
+            {
+                self.curTrade.total_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"payment"])
+            {
+                self.curTrade.payment = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"pay_time"])
+            {
+                self.curTrade.paymentTime = [self getDateFromString:string];
+            }
+            else if(![self.currentElement compare:@"created"])
+            {
+                self.curTrade.createdTime = [self getDateFromString:string];
+            }
+            else if(![self.currentElement compare:@"modified"])
+            {
+                self.curTrade.modifiedTime = [self getDateFromString:string];
             }
             break;
         case TAOBAO_PARSE_TRADE_ORDER:
             //商品信息
             if(![self.currentElement compare:@"num"])
             {
-                self.itemPro.stock_num=string;
+                self.curOrder.num =[string intValue];
             }
-            else if(![self.currentElement compare:@"express_fee"])
+            else if(![self.currentElement compare:@"num_iid"])
             {
-                self.itemPro.item_express =string;
+                self.curOrder.num_iid =[string longLongValue];
             }
-            else if(![self.currentElement compare:@"desc"])//wap_desc
+            else if(![self.currentElement compare:@"title"])
             {
-                NSString * _pro = [SingleModel getSingleModal].itemPro.wap_desc;
-                if([_pro length] ==0)
-                    _pro=string;
-                else
-                {
-//                    _pro = @"t\n";
-//                    _pro = [_pro stringByAppendingString: @"t\n"];
-//                    _pro = [_pro stringByAppendingString:@"\n"];
-                    _pro = [_pro stringByAppendingFormat:@"%@",string];   
-                }
-                
-                [SingleModel getSingleModal].itemPro.wap_desc = _pro;
+                self.curOrder.title = string;
             }
-            else if(![self.currentElement compare:@"wap_detail_url"])
+            else if(![self.currentElement compare:@"sku_properties_name"])
             {
-                self.itemPro.wap_detail_url=string;
+                self.curOrder.sku_name = string;
             }
-            else if(![self.currentElement compare:@"stuff_status"])
+            else if(![self.currentElement compare:@"oid"])
             {
-                self.itemPro.item_type=string;
+                self.curOrder.oid = [string longLongValue];
             }
-            
+            else if(![self.currentElement compare:@"status"])
+            {
+                self.curOrder.status = string;
+            }
+            else if(![self.currentElement compare:@"pic_path"])
+            {
+                self.curOrder.pic_url = string;
+            }
+            else if(![self.currentElement compare:@"price"])
+            {
+                self.curOrder.price = [string intValue];
+            }
+            else if(![self.currentElement compare:@"adjust_fee"])
+            {
+                self.curOrder.adjust_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"discount_fee"])
+            {
+                self.curOrder.discount_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"total_fee"])
+            {
+                self.curOrder.total_fee = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"payment"])
+            {
+                self.curOrder.payment = [string doubleValue];
+            }
             break;
-            */
         default:
             break;
     }
@@ -270,16 +390,30 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
             {
                 _get_count++;
                 //TODO: save item to sqlite
-
+                [self.curItem print];
+                
                 [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
             }
             break;
-            /*
-        case TAOBAO_PARSE_PRO_INFO:
+            
+        case TAOBAO_PARSE_TRADE:
+            if([elementName isEqualToString:@"trade"])
+            {
+                _get_count++;
+                //TODO: save to sqlite
+
+                [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 订单",_get_count] waitUntilDone:NO];
+            }
+            
             break;
-        case TAOBAO_PARSE_DETAIL_INFO:
+        case TAOBAO_PARSE_TRADE_ORDER:
+            if([elementName isEqualToString:@"order"])
+            {
+                [self.curTrade.orders addObject:curOrder];
+                _parseState = TAOBAO_PARSE_TRADE;
+            }
             break;
-             */
+             
         default:
             break;
     }
@@ -292,33 +426,16 @@ static NSString   * _session = @"6102409a2d55dee1e15e3ab47c3b28dae3c048e2894371c
     switch (_parseState) {
         case TAOBAO_PARSE_ITEM:
             if(_get_count < _total_count)
-                [self getItemInfo:(_get_count/40 + 1)];
+                [self getItemInfo:[[NSString alloc]initWithFormat:@"%d", (_get_count/40 + 1)] ];
             else    
             {
                 //End
                 [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
             }
             break;
-            /*
-        case TAOBAO_PARSE_PRO_INFO:
-            _item_getinfo_no++;
-            if(_item_getinfo_no * 20 >= [self.itemAllProList count])
-            {
-                _item_getinfo_no = 0;
-                [self tidyData];
-                NSLog(@"finishedRefreshData - start");
-                [self.delegate finishedRefreshData];
-            }
-            else
-                [self getProInfo:_item_getinfo_no];
+        case TAOBAO_PARSE_TRADE:
+            [self getTradeInfo];    //recur here
             break;
-        case TAOBAO_PARSE_DETAIL_INFO:
-            [self.delegate finishedDetailData];
-            break;
-        case TAOBAO_PARSE_COMMENT:
-            [self.delegate finishedCommentData];
-            break;
-             */
         default:
             break;
     }

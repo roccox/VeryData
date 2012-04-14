@@ -34,6 +34,7 @@ typedef enum{
     __unsafe_unretained id _delegate;
     TopItemModel * curItem;                 //当前商品
     TopTradeModel * curTrade;                  //当前交易
+    TopOrderModel * curOrder;               //当前订单
 
     TaobaoPraseState _parseState;      //XML
     TaobaoTradeMode _tradeMode;         //Trade
@@ -42,11 +43,17 @@ typedef enum{
     int             _total_count;       
     int             _get_count;
     
+    int             _page_count;
+    NSDate *        startTime;
+    NSDate *        endTime;
+    BOOL            _has_next;
+    
 }
 
 @property(nonatomic,unsafe_unretained)id<TaobaoDataDelegate> delegate;
 @property(nonatomic,retain)TopItemModel * curItem;
 @property(nonatomic,retain)TopTradeModel * curTrade;
+@property(nonatomic,strong)TopOrderModel * curOrder;
 
 @property(nonatomic,strong)NSString * currentElement;
 
@@ -67,6 +74,10 @@ typedef enum{
 -(BOOL)updateItemPrice:(double)price;
 -(BOOL)updateTradeFee:(double)fee;
 
+
+//inner
+-(void)getItemInfo:(NSString *)page_no;
+-(void)getTradeInfo;
 @end
 
 @protocol TaobaoDataDelegate
