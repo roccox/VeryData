@@ -7,7 +7,7 @@
 //
 
 #import "TopData.h"
-
+#import "AppDelegate.h"
 static TopData *single = nil;
 
 //TODO
@@ -50,6 +50,17 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
 
 -(void)refreshTrades   //异步方法
 {
+    //check session
+    AppConstant * constant = [AppConstant shareObject];
+    if ([constant.session length] < 10 ||
+        [constant.session_time timeIntervalSinceNow] < -(10*24*60*60) ) 
+    {
+        //need to get session
+        AppDelegate * del = [UIApplication sharedApplication].delegate;
+        [del refreshSession];
+        return;
+    }
+        
     if(_refreshing)
     {
         [self.delegate notifyTradeRefresh:YES withTag:@"BUSY"];
@@ -101,10 +112,14 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
 
 
 //更新
-+(void)putSession:(NSString *) session
+-(void)putSession:(NSString *) session
 {
     NSLog(@"Session-%@",session);
-    _session = session;
+    AppConstant * constant = [AppConstant shareObject];
+    constant.session = session;
+    constant.session_time = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
+    //start to refresh trade
+    [self refreshTrades];
 }
 
 //inner
@@ -482,7 +497,7 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
             [AppConstant shareObject].last_fetch = endTime;
             NSLog(@"End is- %@",endTime);
             NSLog(@"last_fetch is- %@",[AppConstant shareObject].last_fetch);
-            [[AppConstant shareObject] save];
+            [[AppConstant shareObject] saveFetchTime];
             [self performSelector:@selector(getTradeInfo)];
             break;
         default:

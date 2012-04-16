@@ -12,7 +12,12 @@
 @interface AppConstant : NSObject
 
 @property(nonatomic,strong) NSDate * last_fetch;
+@property(nonatomic,strong) NSString * session;
+@property(nonatomic,strong) NSDate * session_time;
+
 -(void)print;
 -(BOOL)save;
+-(BOOL)saveFetchTime;
+-(BOOL)saveSession;
 +(AppConstant *)shareObject;
 @end

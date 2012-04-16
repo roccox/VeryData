@@ -61,7 +61,7 @@ typedef enum{
 + (TopData *)getTopData;
 
 //刷新
-+(void)putSession:(NSString *) session;      //
+-(void)putSession:(NSString *) session;      //
 -(void)refreshItems;    //异步方法
 -(void)refreshTrades;   //异步方法
 

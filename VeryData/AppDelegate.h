@@ -37,5 +37,6 @@
 -(void)selectedDate;
 -(void) showSessionCtrl;
 -(void) hideSessionCtrl;
+-(void) refreshSession;
 
 @end

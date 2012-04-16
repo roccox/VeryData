@@ -35,7 +35,7 @@
 -(void)setTopSession:(NSString *)session
 {
     topSession = session;
-    [TopData putSession:topSession];
+    [[TopData getTopData] putSession:topSession];
     [TopData getTopData].delegate = self;
     [[TopData getTopData]refreshTrades];
 }
