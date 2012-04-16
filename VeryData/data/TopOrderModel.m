@@ -74,6 +74,9 @@
     }
     
     [db close];
+
+    if(!result)
+        NSLog(@"Order Save Error!");
     
 	return result;
 }

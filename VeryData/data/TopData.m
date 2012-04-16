@@ -167,6 +167,7 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
 
 -(void) prepareTradeParam
 {
+    static BOOL _fetch_will_end_next = NO;
     if(_has_next)
     {
         _has_next = NO;
@@ -174,19 +175,31 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
     }
     else
     {
+        if(_fetch_will_end_next)
+        {
+            _fetch_will_end_next = NO;
+            _page_count = -1;   //Do not fetch data
+            return;
+        }
+        
         _page_count = 1;
+        startTime = [AppConstant shareObject].last_fetch;
+        
+        endTime = [[NSDate alloc]initWithTimeInterval:(4*60*60) sinceDate:startTime];
+        NSDate * now = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
+        
+        if([now timeIntervalSince1970]< [endTime timeIntervalSince1970])    //
+        {
+            endTime = now;
+            _fetch_will_end_next = YES;
+        }
+        else {
+            _fetch_will_end_next = NO;
+        }
     }
-    //TODO need +8
-    startTime = [NSDate dateWithTimeIntervalSinceNow: -(16 * 60 * 60)];
-
-    endTime = [[NSDate alloc]initWithTimeInterval:(8*60*60-1) sinceDate:startTime];
-    NSLog(@"Time: %@",startTime);
-    NSLog(@"Time: %@",endTime);
-    NSLog(@"Time: %@",[[NSDate alloc]init]);
     
-    //Test Only
-    if(_get_count >=1)
-        _page_count = -1;
+    NSLog(@"Start-: %@",startTime);
+    NSLog(@"End  -: %@",endTime);
 }
 
 -(void)getTradeInfo
@@ -344,6 +357,9 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
             {
                 self.curTrade.modifiedTime = [self getDateFromString:string];
             }
+            else {
+                NSLog(@"msg---%@",string);
+            }
             break;
         case TAOBAO_PARSE_TRADE_ORDER:
             //商品信息
@@ -463,7 +479,11 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
             }
             break;
         case TAOBAO_PARSE_TRADE:
-            [self getTradeInfo];    //recur here
+            [AppConstant shareObject].last_fetch = endTime;
+            NSLog(@"End is- %@",endTime);
+            NSLog(@"last_fetch is- %@",[AppConstant shareObject].last_fetch);
+            [[AppConstant shareObject] save];
+            [self performSelector:@selector(getTradeInfo)];
             break;
         default:
             break;

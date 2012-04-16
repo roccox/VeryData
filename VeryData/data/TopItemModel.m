@@ -55,6 +55,9 @@
     
     [db close];
     
+    if(!result)
+        NSLog(@"Item Save Error!");
+    
 	return result;
 }
 

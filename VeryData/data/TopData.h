@@ -12,6 +12,7 @@
 #import "TopTradeModel.h"
 
 #import "Utility.h"
+#import "AppConstant.h"
 
 typedef enum{
     TAOBAO_PARSE_START,

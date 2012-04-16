@@ -86,6 +86,9 @@
     
     [db close];
     
+    if(!result)
+        NSLog(@"Trade Save Error!");
+
     for (TopOrderModel * order in self.orders) {
         [order save];
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD30156A153BC5E800290164 /* AppConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301569153BC5E800290164 /* AppConstant.m */; };
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
@@ -25,7 +26,6 @@
 		DD5D10A0153B89CF00B7F0EB /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1096153B89CF00B7F0EB /* FMDatabasePool.m */; };
 		DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */; };
 		DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D109B153B89CF00B7F0EB /* FMResultSet.m */; };
-		DD5D10A4153B89CF00B7F0EB /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = DD5D109C153B89CF00B7F0EB /* README.markdown */; };
 		DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DD5D10A5153B935F00B7F0EB /* verydata.sqlite */; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
@@ -39,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD301568153BC5E800290164 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
+		DD301569153BC5E800290164 /* AppConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstant.m; sourceTree = "<group>"; };
 		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -73,7 +75,6 @@
 		DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
 		DD5D109A153B89CF00B7F0EB /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		DD5D109B153B89CF00B7F0EB /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		DD5D109C153B89CF00B7F0EB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
 		DD5D10A5153B935F00B7F0EB /* verydata.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = verydata.sqlite; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -126,6 +127,8 @@
 				DD5D106F1537DAB300B7F0EB /* TopOrderModel.m */,
 				DD5D106B1537DA9C00B7F0EB /* TopTradeModel.h */,
 				DD5D106C1537DA9C00B7F0EB /* TopTradeModel.m */,
+				DD301568153BC5E800290164 /* AppConstant.h */,
+				DD301569153BC5E800290164 /* AppConstant.m */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -134,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				DD5D1090153B89CF00B7F0EB /* fmdb */,
-				DD5D109C153B89CF00B7F0EB /* README.markdown */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -274,7 +276,6 @@
 			files = (
 				DDD2721F1536DF7100892FDA /* InfoPlist.strings in Resources */,
 				DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */,
-				DD5D10A4153B89CF00B7F0EB /* README.markdown in Resources */,
 				DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -305,6 +306,7 @@
 				DD5D10A0153B89CF00B7F0EB /* FMDatabasePool.m in Sources */,
 				DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */,
 				DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */,
+				DD30156A153BC5E800290164 /* AppConstant.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
