@@ -92,24 +92,99 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
 //获取
 -(NSMutableArray *)getItems
 {
+    FMDatabase * db = [DataBase shareDB];
+	
+    [db open];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Items"];
     
+    NSMutableArray * array = [[NSMutableArray alloc]init];
+    TopItemModel * item;
+    
+    while ([rs next]) {
+        item = [[TopItemModel alloc]init];
+        item.num_iid = [rs longLongIntForColumn:@"iid"];
+        item.title = [rs stringForColumn:@"title"];
+        item.pic_url = [rs stringForColumn:@"pic_url"];
+        item.price = [rs doubleForColumn:@"price"];
+        item.volume = [rs intForColumn:@"volume"];
+        item.import_price = [rs doubleForColumn:@"import_price"];
+            
+        [array addObject: item];
+        //test only
+        [item print];
+    }            
+        
+    [db close];
+    return array;
 }
 
--(NSMutableArray *)getTradesInDay:(int)index
+
+-(NSMutableArray *)getTradesFrom:(NSDate *)start to:(NSDate *)end
 {
+    FMDatabase * db = [DataBase shareDB];
+	
+    [db open];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where modified >= ? and modified <=?",start,end];
     
-}
-
--(NSMutableArray *)getTradesInWeek:(int)index
-{
+    NSMutableArray * array = [[NSMutableArray alloc]init];
+    TopTradeModel * trade;
+    NSMutableArray * orders;
+    TopOrderModel * order;
     
-}
+    while ([rs next]) {
+        trade = [[TopTradeModel alloc]init];
+        
+        trade.tid = [rs longLongIntForColumn:@"tid"];
+        trade.status = [rs stringForColumn:@"status"];
+        trade.createdTime = [rs dateForColumn:@"created"];
+        trade.modifiedTime = [rs dateForColumn:@"modified"];
+        trade.buyer_nick = [rs stringForColumn:@"buyer"];
 
--(NSMutableArray *)getTradesFromDay:(int)start toDay:(int)end
-{
+        trade.receiver_city = [rs stringForColumn:@"receiver_city"];
+        trade.receiver_name = [rs stringForColumn:@"receiver_name"];
+        trade.discount_fee = [rs doubleForColumn:@"discount_fee"];
+        trade.adjust_fee = [rs doubleForColumn:@"adjust_fee"];
+        trade.post_fee = [rs doubleForColumn:@"post_fee"];
+
+        trade.total_fee = [rs doubleForColumn:@"total_fee"];
+        trade.payment = [rs doubleForColumn:@"payment"];
+        trade.paymentTime = [rs dateForColumn:@"payment_time"];
+        trade.service_fee = [rs doubleForColumn:@"service_fee"];
+        
+        [array addObject: trade];
+        
+        //search orders
+        orders = [[NSMutableArray alloc]init];
+        FMResultSet *rs2 = [db executeQuery:@"SELECT * FROM Orders where tid = ?",[NSNumber numberWithLongLong: trade.tid]];
+        while ([rs2 next]) {
+            order = [[TopOrderModel alloc]init];
+            
+            order.oid = [rs2 longLongIntForColumn:@"oid"];
+            order.num = [rs2 intForColumn:@"num"];
+            order.num_iid = [rs2 longLongIntForColumn:@"iid"];
+            order.title = [rs2 stringForColumn:@"title"];
+            order.sku_name = [rs2 stringForColumn:@"sku"];
+            
+            order.pic_url = [rs2 stringForColumn:@"pic_url"];
+            order.price = [rs2 doubleForColumn:@"price"];
+            order.status = [rs2 stringForColumn:@"status"];
+            order.discount_fee = [rs2 doubleForColumn:@"discount_fee"];
+            order.adjust_fee = [rs2 doubleForColumn:@"adjust_fee"];
+            
+            order.total_fee = [rs2 doubleForColumn:@"total_fee"];
+            order.payment = [rs2 doubleForColumn:@"payment"];
+            order.tid = [rs2 longLongIntForColumn:@"tid"];
+            
+            [orders addObject: order];
+        }
+        //test only
+        trade.orders = orders;
+        [trade print];
+    }            
     
+    [db close];
+    return array;
 }
-
 
 //更新
 -(void)putSession:(NSString *) session

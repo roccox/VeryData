@@ -50,12 +50,13 @@
     
     if([tag hasPrefix:@"ORDER_PERIOD_SEL"])
     {
-//        [self showDateSel];
-        //Test only
-        [TopData getTopData].delegate = self;
-        [[TopData getTopData]refreshTrades];
-
-//        [self showSessionCtrl];
+//        [TopData getTopData].delegate = self;
+//        [[TopData getTopData]refreshTrades];
+        NSDate * start = [[NSDate alloc]initWithTimeIntervalSinceNow:-(28*60*60) ];
+        NSDate * end = [[NSDate alloc]initWithTimeIntervalSinceNow:-(24*60*60) ];
+        
+        [[TopData getTopData]getItems];
+        [[TopData getTopData]getTradesFrom:start to:end];
         return;
     }
     

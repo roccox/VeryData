@@ -14,6 +14,8 @@
 #import "Utility.h"
 #import "AppConstant.h"
 
+#import "DataBase.h"
+
 typedef enum{
     TAOBAO_PARSE_START,
     TAOBAO_PARSE_ITEM,
@@ -68,9 +70,7 @@ typedef enum{
 //获取
 -(NSMutableArray *)getItems;
 
--(NSMutableArray *)getTradesInDay:(int)index;
--(NSMutableArray *)getTradesInWeek:(int)index;
--(NSMutableArray *)getTradesFromDay:(int)start toDay:(int)end;
+-(NSMutableArray *)getTradesFrom:(NSDate *)start to:(NSDate *)end;
 
 
 //inner
