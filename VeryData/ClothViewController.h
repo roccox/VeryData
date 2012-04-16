@@ -7,13 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TopData.h"
 
 #import "DetailViewController.h"
 
 @interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+    
     NSString * _tag;
 }
 
+@property (nonatomic,strong) IBOutlet UITableView * tableView;
+
+@property (nonatomic,strong) NSMutableArray * dataList;
 
 
 @end

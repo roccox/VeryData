@@ -298,41 +298,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="S5S-9P-QsR" kind="relationship" relationship="rootViewController" id="TJe-rL-obW"/>
+                        <segue destination="Grr-8R-LZt" kind="relationship" relationship="rootViewController" id="Efy-Yg-4HR"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-623" y="1598"/>
-        </scene>
-        <!--Table View Controller-->
-        <scene sceneID="yRI-m3-FYj">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="htM-Td-xDi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController id="S5S-9P-QsR" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="SXq-ry-CLg">
-                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="iHK-Hw-sLM">
-                                <rect key="frame" x="0.0" y="22" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="S5S-9P-QsR" id="SmI-p9-i3r"/>
-                            <outlet property="delegate" destination="S5S-9P-QsR" id="VRo-7K-zHl"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="3aS-gN-Rez"/>
-                </tableViewController>
-            </objects>
-            <point key="canvasLocation" x="293" y="1591"/>
+            <point key="canvasLocation" x="-515" y="1638"/>
         </scene>
         <!--Date Sel Controller-->
         <scene sceneID="WqH-6T-EKx">
@@ -442,6 +412,43 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1585" y="519"/>
         </scene>
+        <!--Cloth View Controller-->
+        <scene sceneID="uAt-Tg-htf">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfA-PJ-rSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="Grr-8R-LZt" customClass="ClothViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="S04-Cf-huz">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QRT-13-Pka">
+                                <rect key="frame" x="0.0" y="42" width="768" height="918"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Grr-8R-LZt" id="mNP-MT-FIe"/>
+                                    <outlet property="delegate" destination="Grr-8R-LZt" id="WMB-3i-qfZ"/>
+                                </connections>
+                            </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CEg-zt-Kok">
+                                <rect key="frame" x="0.0" y="0.0" width="704" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Item" id="aIs-9u-kFK"/>
+                                    <barButtonItem title="Item" id="nal-r5-zDe"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="UZp-bk-n9W"/>
+                    <connections>
+                        <outlet property="tableView" destination="QRT-13-Pka" id="zXb-K3-ep8"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="349" y="1607"/>
+        </scene>
         <!--Top Session Controller-->
         <scene sceneID="Neu-Sj-jBb">
             <objects>
@@ -467,6 +474,42 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="1573" y="1687"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ClothViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClothViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DateSelController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateSelController.h"/>
+            <relationships>
+                <relationship kind="action" name="hideDateSel:"/>
+                <relationship kind="action" name="selectedDate:"/>
+                <relationship kind="outlet" name="endDate" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="startDate" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="OrderViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoView" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="TopSessionController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopSessionController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

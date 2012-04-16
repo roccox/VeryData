@@ -12,6 +12,8 @@
 		DD301578153C542E00290164 /* TradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301577153C542E00290164 /* TradeCell.m */; };
 		DD30157B153C5D2400290164 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30157A153C5D2400290164 /* OrderCell.m */; };
 		DD30157D153C5D3700290164 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD30157C153C5D3700290164 /* OrderCell.xib */; };
+		DD30157F153C637300290164 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD30157E153C637200290164 /* ItemCell.xib */; };
+		DD301582153C638E00290164 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301581153C638D00290164 /* ItemCell.m */; };
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
@@ -51,6 +53,9 @@
 		DD301579153C5D2400290164 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
 		DD30157A153C5D2400290164 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
 		DD30157C153C5D3700290164 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
+		DD30157E153C637200290164 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
+		DD301580153C638D00290164 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		DD301581153C638D00290164 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -129,6 +134,9 @@
 				DD301579153C5D2400290164 /* OrderCell.h */,
 				DD30157A153C5D2400290164 /* OrderCell.m */,
 				DD30157C153C5D3700290164 /* OrderCell.xib */,
+				DD30157E153C637200290164 /* ItemCell.xib */,
+				DD301580153C638D00290164 /* ItemCell.h */,
+				DD301581153C638D00290164 /* ItemCell.m */,
 			);
 			name = cell;
 			path = VeryData/cell;
@@ -304,6 +312,7 @@
 				DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */,
 				DD301575153C53F500290164 /* TradeCell.xib in Resources */,
 				DD30157D153C5D3700290164 /* OrderCell.xib in Resources */,
+				DD30157F153C637300290164 /* ItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +345,7 @@
 				DD30156A153BC5E800290164 /* AppConstant.m in Sources */,
 				DD301578153C542E00290164 /* TradeCell.m in Sources */,
 				DD30157B153C5D2400290164 /* OrderCell.m in Sources */,
+				DD301582153C638E00290164 /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

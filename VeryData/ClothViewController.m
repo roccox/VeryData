@@ -7,13 +7,14 @@
 //
 
 #import "ClothViewController.h"
+#import "ItemCell.h"
 
 @interface ClothViewController ()
 - (void)configureView;
 @end
 
 @implementation ClothViewController
-
+@synthesize dataList,tableView;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -23,7 +24,20 @@
 {
     if (_tag != tag) {
         _tag = tag;
+
+        //get data
+        TopData * topData = [TopData getTopData];
+        NSMutableArray * items = [topData getItems];
+        if(self.dataList == nil)
+            self.dataList = [[NSMutableArray alloc]init];
+        else {
+            [self.dataList removeAllObjects];
+        }
         
+        for (TopItemModel * item in items) {
+            [self.dataList addObject:item];
+            }
+
         // Update the view.
         [self configureView];
     }
@@ -37,7 +51,7 @@
 {
     // Update the user interface for the detail item.
     
-
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +59,47 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
+
+
+#pragma mark - table view
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [self.dataList count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString * itemID = @"itemCellID";
+    TopItemModel *  item = [self.dataList objectAtIndex:indexPath.row];
+    
+    NSString * str;
+    {
+        ItemCell * cell = (ItemCell *)[self.tableView dequeueReusableCellWithIdentifier:itemID];
+        
+        if(!cell)
+        {
+            NSArray *objs=[[NSBundle mainBundle] loadNibNamed:@"ItemCell" owner:self options:nil];
+            for(id obj in objs)
+            {
+                if([obj isKindOfClass:[ItemCell class]])
+                {
+                    cell=(ItemCell *)obj;
+                }
+            }
+        }
+        
+        //start to 
+        //        cell.image = ;
+        cell.title.text = [[NSString alloc]initWithFormat:@"%@",item.title];
+        cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: item.price]];
+        cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: item.import_price]];
+        cell.volume.text = [[NSString alloc]initWithFormat:@"最近卖出:%@",[NSNumber numberWithInt: item.volume]];
+        
+        return cell;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	return 100.f;
+}
+
 
 #pragma mark - View lifecycle
 
