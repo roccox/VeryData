@@ -10,8 +10,8 @@
 
 #import "DetailViewController.h"
 
-@interface ClothViewController : DetailViewController <UISplitViewControllerDelegate>{
-    NSString * _item;
+@interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+    NSString * _tag;
 }
 
 

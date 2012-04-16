@@ -103,8 +103,11 @@
         
         splitCtrl.delegate = (id)curDetailCtroller;
     } 
+    //test only
+    NSDate * from = [[NSDate alloc]initWithTimeIntervalSinceNow:-(16*60*60)];
+    NSDate * to = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
     
-    [curDetailCtroller settingItem:tag];
+    [curDetailCtroller settingPeriodFrom:from to:to withTag:tag];
     
 }
 

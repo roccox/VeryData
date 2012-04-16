@@ -12,6 +12,6 @@
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 
--(void)settingItem: (NSString *)item;
+-(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag;
 
 @end

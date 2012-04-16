@@ -13,7 +13,7 @@
 @synthesize masterPopoverController;
 
 #pragma mark - Managing the detail item
--(void)settingItem: (NSString *)item
+-(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag
 {
 
 }

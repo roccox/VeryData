@@ -74,8 +74,6 @@ typedef enum{
 
 
 //inner
--(void)getItemInfo:(NSString *)page_no;
--(void)getTradeInfo;
 @end
 
 @protocol TaobaoDataDelegate

@@ -19,10 +19,10 @@
 
 #pragma mark - Managing the detail item
 
--(void)settingItem: (NSString *)item
+-(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag
 {
-    if (_item != item) {
-        _item = item;
+    if (_tag != tag) {
+        _tag = tag;
         
         // Update the view.
         [self configureView];

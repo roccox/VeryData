@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DD30156A153BC5E800290164 /* AppConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301569153BC5E800290164 /* AppConstant.m */; };
+		DD301575153C53F500290164 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD301574153C53F500290164 /* TradeCell.xib */; };
+		DD301578153C542E00290164 /* TradeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301577153C542E00290164 /* TradeCell.m */; };
+		DD30157B153C5D2400290164 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD30157A153C5D2400290164 /* OrderCell.m */; };
+		DD30157D153C5D3700290164 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD30157C153C5D3700290164 /* OrderCell.xib */; };
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
@@ -41,6 +45,12 @@
 /* Begin PBXFileReference section */
 		DD301568153BC5E800290164 /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		DD301569153BC5E800290164 /* AppConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstant.m; sourceTree = "<group>"; };
+		DD301574153C53F500290164 /* TradeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeCell.xib; sourceTree = "<group>"; };
+		DD301576153C542E00290164 /* TradeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeCell.h; sourceTree = "<group>"; };
+		DD301577153C542E00290164 /* TradeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeCell.m; sourceTree = "<group>"; };
+		DD301579153C5D2400290164 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		DD30157A153C5D2400290164 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		DD30157C153C5D3700290164 /* OrderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderCell.xib; sourceTree = "<group>"; };
 		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -110,6 +120,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DD301573153C53F500290164 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				DD301574153C53F500290164 /* TradeCell.xib */,
+				DD301576153C542E00290164 /* TradeCell.h */,
+				DD301577153C542E00290164 /* TradeCell.m */,
+				DD301579153C5D2400290164 /* OrderCell.h */,
+				DD30157A153C5D2400290164 /* OrderCell.m */,
+				DD30157C153C5D3700290164 /* OrderCell.xib */,
+			);
+			name = cell;
+			path = VeryData/cell;
+			sourceTree = SOURCE_ROOT;
+		};
 		DD5D10601537DA1700B7F0EB /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +160,7 @@
 		DD5D108E153B89CE00B7F0EB /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DD301573153C53F500290164 /* cell */,
 				DD5D1090153B89CF00B7F0EB /* fmdb */,
 			);
 			path = lib;
@@ -277,6 +302,8 @@
 				DDD2721F1536DF7100892FDA /* InfoPlist.strings in Resources */,
 				DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */,
 				DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */,
+				DD301575153C53F500290164 /* TradeCell.xib in Resources */,
+				DD30157D153C5D3700290164 /* OrderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +334,8 @@
 				DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */,
 				DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */,
 				DD30156A153BC5E800290164 /* AppConstant.m in Sources */,
+				DD301578153C542E00290164 /* TradeCell.m in Sources */,
+				DD30157B153C5D2400290164 /* OrderCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

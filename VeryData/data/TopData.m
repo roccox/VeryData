@@ -13,6 +13,12 @@ static TopData *single = nil;
 //TODO
 static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e474943896";
 
+@interface TopData ()
+-(void)getItemInfo:(NSString *)page_no;
+-(void)getTradeInfo;
+
+@end
+
 @implementation TopData
 
 @synthesize delegate = _delegate;
@@ -110,8 +116,6 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
         item.import_price = [rs doubleForColumn:@"import_price"];
             
         [array addObject: item];
-        //test only
-        [item print];
     }            
         
     [db close];
