@@ -18,6 +18,15 @@
 		DD5D10771538599A00B7F0EB /* TopSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D10761538599900B7F0EB /* TopSessionController.m */; };
 		DD5D10811538660000B7F0EB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5D10801538660000B7F0EB /* SystemConfiguration.framework */; };
 		DD5D10841538662900B7F0EB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5D10831538662900B7F0EB /* QuartzCore.framework */; };
+		DD5D1087153AFC4A00B7F0EB /* DataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1086153AFC4900B7F0EB /* DataBase.m */; };
+		DD5D1089153AFCD500B7F0EB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = DD5D1088153AFCD500B7F0EB /* libsqlite3.0.dylib */; };
+		DD5D109E153B89CF00B7F0EB /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1092153B89CF00B7F0EB /* FMDatabase.m */; };
+		DD5D109F153B89CF00B7F0EB /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1094153B89CF00B7F0EB /* FMDatabaseAdditions.m */; };
+		DD5D10A0153B89CF00B7F0EB /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1096153B89CF00B7F0EB /* FMDatabasePool.m */; };
+		DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */; };
+		DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D109B153B89CF00B7F0EB /* FMResultSet.m */; };
+		DD5D10A4153B89CF00B7F0EB /* README.markdown in Resources */ = {isa = PBXBuildFile; fileRef = DD5D109C153B89CF00B7F0EB /* README.markdown */; };
+		DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DD5D10A5153B935F00B7F0EB /* verydata.sqlite */; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
 		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
@@ -51,6 +60,21 @@
 		DD5D10761538599900B7F0EB /* TopSessionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSessionController.m; sourceTree = "<group>"; };
 		DD5D10801538660000B7F0EB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		DD5D10831538662900B7F0EB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		DD5D1085153AFC4800B7F0EB /* DataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataBase.h; sourceTree = "<group>"; };
+		DD5D1086153AFC4900B7F0EB /* DataBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataBase.m; sourceTree = "<group>"; };
+		DD5D1088153AFCD500B7F0EB /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		DD5D1091153B89CF00B7F0EB /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		DD5D1092153B89CF00B7F0EB /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		DD5D1093153B89CF00B7F0EB /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		DD5D1094153B89CF00B7F0EB /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		DD5D1095153B89CF00B7F0EB /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		DD5D1096153B89CF00B7F0EB /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		DD5D1097153B89CF00B7F0EB /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		DD5D109A153B89CF00B7F0EB /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		DD5D109B153B89CF00B7F0EB /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		DD5D109C153B89CF00B7F0EB /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		DD5D10A5153B935F00B7F0EB /* verydata.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = verydata.sqlite; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -73,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5D1089153AFCD500B7F0EB /* libsqlite3.0.dylib in Frameworks */,
 				DD5D10841538662900B7F0EB /* QuartzCore.framework in Frameworks */,
 				DD5D10811538660000B7F0EB /* SystemConfiguration.framework in Frameworks */,
 				DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */,
@@ -87,11 +112,14 @@
 		DD5D10601537DA1700B7F0EB /* data */ = {
 			isa = PBXGroup;
 			children = (
+				DD5D10A5153B935F00B7F0EB /* verydata.sqlite */,
 				DD5D10611537DA1800B7F0EB /* Constants.h */,
 				DD5D10621537DA1800B7F0EB /* TopData.h */,
 				DD5D10631537DA1800B7F0EB /* TopData.m */,
 				DD5D10641537DA1800B7F0EB /* Utility.h */,
 				DD5D10651537DA1800B7F0EB /* Utility.m */,
+				DD5D1085153AFC4800B7F0EB /* DataBase.h */,
+				DD5D1086153AFC4900B7F0EB /* DataBase.m */,
 				DD5D10681537DA8100B7F0EB /* TopItemModel.h */,
 				DD5D10691537DA8100B7F0EB /* TopItemModel.m */,
 				DD5D106E1537DAB300B7F0EB /* TopOrderModel.h */,
@@ -102,11 +130,35 @@
 			path = data;
 			sourceTree = "<group>";
 		};
+		DD5D108E153B89CE00B7F0EB /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				DD5D1090153B89CF00B7F0EB /* fmdb */,
+				DD5D109C153B89CF00B7F0EB /* README.markdown */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		DD5D1090153B89CF00B7F0EB /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				DD5D1091153B89CF00B7F0EB /* FMDatabase.h */,
+				DD5D1092153B89CF00B7F0EB /* FMDatabase.m */,
+				DD5D1093153B89CF00B7F0EB /* FMDatabaseAdditions.h */,
+				DD5D1094153B89CF00B7F0EB /* FMDatabaseAdditions.m */,
+				DD5D1095153B89CF00B7F0EB /* FMDatabasePool.h */,
+				DD5D1096153B89CF00B7F0EB /* FMDatabasePool.m */,
+				DD5D1097153B89CF00B7F0EB /* FMDatabaseQueue.h */,
+				DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */,
+				DD5D109A153B89CF00B7F0EB /* FMResultSet.h */,
+				DD5D109B153B89CF00B7F0EB /* FMResultSet.m */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
 		DDD272051536DF7000892FDA = {
 			isa = PBXGroup;
 			children = (
-				DD5D10831538662900B7F0EB /* QuartzCore.framework */,
-				DD5D10801538660000B7F0EB /* SystemConfiguration.framework */,
 				DDD2721A1536DF7100892FDA /* VeryData */,
 				DDD272131536DF7100892FDA /* Frameworks */,
 				DDD272111536DF7100892FDA /* Products */,
@@ -124,6 +176,9 @@
 		DDD272131536DF7100892FDA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DD5D1088153AFCD500B7F0EB /* libsqlite3.0.dylib */,
+				DD5D10831538662900B7F0EB /* QuartzCore.framework */,
+				DD5D10801538660000B7F0EB /* SystemConfiguration.framework */,
 				DDD272141536DF7100892FDA /* UIKit.framework */,
 				DDD272161536DF7100892FDA /* Foundation.framework */,
 				DDD272181536DF7100892FDA /* CoreGraphics.framework */,
@@ -134,6 +189,7 @@
 		DDD2721A1536DF7100892FDA /* VeryData */ = {
 			isa = PBXGroup;
 			children = (
+				DD5D108E153B89CE00B7F0EB /* lib */,
 				DDD272231536DF7100892FDA /* AppDelegate.h */,
 				DDD272241536DF7100892FDA /* AppDelegate.m */,
 				DD5D10751538599800B7F0EB /* TopSessionController.h */,
@@ -218,6 +274,8 @@
 			files = (
 				DDD2721F1536DF7100892FDA /* InfoPlist.strings in Resources */,
 				DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */,
+				DD5D10A4153B89CF00B7F0EB /* README.markdown in Resources */,
+				DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +299,12 @@
 				DD5D106D1537DA9C00B7F0EB /* TopTradeModel.m in Sources */,
 				DD5D10701537DAB300B7F0EB /* TopOrderModel.m in Sources */,
 				DD5D10771538599A00B7F0EB /* TopSessionController.m in Sources */,
+				DD5D1087153AFC4A00B7F0EB /* DataBase.m in Sources */,
+				DD5D109E153B89CF00B7F0EB /* FMDatabase.m in Sources */,
+				DD5D109F153B89CF00B7F0EB /* FMDatabaseAdditions.m in Sources */,
+				DD5D10A0153B89CF00B7F0EB /* FMDatabasePool.m in Sources */,
+				DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */,
+				DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

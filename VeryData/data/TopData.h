@@ -65,14 +65,11 @@ typedef enum{
 -(void)refreshTrades;   //异步方法
 
 //获取
--(TopItemModel *)getTopItem:(int)index;
+-(NSMutableArray *)getItems;
 
--(void)setTopTradeMode:(TaobaoTradeMode) mode;
--(TopTradeModel *)getTopTrade:(int)index;
-
-//更新
--(BOOL)updateItemPrice:(double)price;
--(BOOL)updateTradeFee:(double)fee;
+-(NSMutableArray *)getTradesInDay:(int)index;
+-(NSMutableArray *)getTradesInWeek:(int)index;
+-(NSMutableArray *)getTradesFromDay:(int)start toDay:(int)end;
 
 
 //inner

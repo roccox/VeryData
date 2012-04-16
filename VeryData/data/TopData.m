@@ -79,31 +79,28 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
 }
 
 //获取
--(TopItemModel *)getTopItem:(int)index;
-{
-}
-
--(void)setTopTradeMode:(TaobaoTradeMode) mode
-{
-    _tradeMode = mode;
-}
-
--(TopTradeModel *)getTopTrade:(int)index
+-(NSMutableArray *)getItems
 {
     
 }
+
+-(NSMutableArray *)getTradesInDay:(int)index
+{
+    
+}
+
+-(NSMutableArray *)getTradesInWeek:(int)index
+{
+    
+}
+
+-(NSMutableArray *)getTradesFromDay:(int)start toDay:(int)end
+{
+    
+}
+
 
 //更新
--(BOOL)updateItemPrice:(double)price
-{
-    
-}
-
--(BOOL)updateTradeFee:(double)fee
-{
-    
-}
-
 +(void)putSession:(NSString *) session
 {
     NSLog(@"Session-%@",session);
@@ -179,9 +176,13 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
     {
         _page_count = 1;
     }
-    startTime = [NSDate dateWithTimeIntervalSinceNow: -(24 * 60 * 60)];
-    endTime = [[NSDate alloc]initWithTimeInterval:(4*60*60-1) sinceDate:startTime];
+    //TODO need +8
+    startTime = [NSDate dateWithTimeIntervalSinceNow: -(16 * 60 * 60)];
+
+    endTime = [[NSDate alloc]initWithTimeInterval:(8*60*60-1) sinceDate:startTime];
     NSLog(@"Time: %@",startTime);
+    NSLog(@"Time: %@",endTime);
+    NSLog(@"Time: %@",[[NSDate alloc]init]);
     
     //Test Only
     if(_get_count >=1)
@@ -408,6 +409,8 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
             {
                 _get_count++;
                 //TODO: save item to sqlite
+                [self.curItem save];
+                
                 [self.curItem print];
                 
                 [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
@@ -419,6 +422,11 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
             {
                 _get_count++;
                 //TODO: save to sqlite
+                for (TopOrderModel * order in self.curTrade.orders) {
+                    order.tid = self.curTrade.tid;
+                }
+                [self.curTrade save];
+                
                 [self.curTrade print];
 
                 [self.curTrade.orders removeAllObjects];

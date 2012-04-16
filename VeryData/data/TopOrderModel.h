@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataBase.h"
 
 @interface TopOrderModel : NSObject
 
@@ -25,8 +26,9 @@
 @property (nonatomic) double total_fee;
 @property (nonatomic) double payment;
 
-@property (nonatomic) double post_fee;
-
+@property (nonatomic) long long tid;
 -(void)print;
+
+-(BOOL)save;
 
 @end

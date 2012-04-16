@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TopOrderModel.h"
+#import "DataBase.h"
 
 @interface TopTradeModel : NSObject
 
@@ -28,8 +29,11 @@
 @property (nonatomic) double payment;
 @property (nonatomic,strong) NSDate * paymentTime;
 
+@property (nonatomic) double service_fee;
+
 @property (nonatomic,strong) NSMutableArray * orders;
 
 -(void)print;
+-(BOOL)save;
 
 @end

@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataBase.h"
+
 
 @interface TopItemModel : NSObject
 
@@ -18,4 +20,6 @@
 @property (nonatomic) double import_price;
 
 -(void)print;
+-(BOOL)save;
+
 @end
