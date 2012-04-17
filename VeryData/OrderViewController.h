@@ -10,8 +10,9 @@
 
 #import "DetailViewController.h"
 #import "TopData.h"
+#import "EditController.h"
 
-@interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource>{
+@interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate>{
 
     NSString * _tag;
 }
@@ -22,5 +23,9 @@
 @property (nonatomic,strong) NSDate * endTime;
 
 @property (nonatomic,strong) NSMutableArray * dataList;
+
+@property (nonatomic,strong) TopTradeModel * trade;
+
+-(void)showEditPopover:(int) val;
 
 @end

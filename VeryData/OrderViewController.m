@@ -17,7 +17,7 @@
 @implementation OrderViewController
 
 @synthesize tableView,infoView,dataList;
-@synthesize startTime,endTime;
+@synthesize startTime,endTime,trade;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -149,6 +149,43 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 150.f;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id obj = [self.dataList objectAtIndex:indexPath.row];
+    if([obj isKindOfClass: [TopTradeModel class] ]) //if trade
+    {        
+        self.trade = [dataList objectAtIndex:indexPath.row];
+    
+        [self showEditPopover:self.trade.service_fee];
+    }
+}
+
+-(void)showEditPopover:(int) val
+{
+    EditController * popoverContent = [[EditController alloc]init];
+    popoverContent.val = val;
+    UIPopoverController * popoverController=[[UIPopoverController alloc]initWithContentViewController:popoverContent]; 
+    popoverController.delegate = self;
+    
+    
+    popoverContent.popController = popoverController;
+    popoverContent.superController =self;
+    
+    //popover显示的大小 
+    popoverController.popoverContentSize=CGSizeMake(320, 320); 
+    
+    //显示popover，告诉它是为一个矩形框设置popover 
+    [popoverController presentPopoverFromRect:CGRectMake(0, 0, 704, 0) inView:self.view 
+                     permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES]; 
+}
+
+-(void)finishedEditPopover:(int)val
+{
+    self.trade.service_fee = val;
+    [self.trade save];
+    [self.tableView reloadData];
 }
 
 #pragma mark - View lifecycle
