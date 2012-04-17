@@ -18,6 +18,10 @@
 
 }
 
+-(void)finishedEditPopover:(int)val
+{
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

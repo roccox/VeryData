@@ -14,7 +14,7 @@
 @end
 
 @implementation ClothViewController
-@synthesize dataList,tableView;
+@synthesize dataList,tableView,item,popController;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -99,6 +99,40 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 100.f;
 }
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.item = [dataList objectAtIndex:indexPath.row];
+
+    [self showEditPopover:self.item.import_price];
+}
+
+-(void)showEditPopover:(int) val
+{
+    EditController * popoverContent = [[EditController alloc]init];
+    popoverContent.val = val;
+    UIPopoverController * popoverController=[[UIPopoverController alloc]initWithContentViewController:popoverContent]; 
+    popoverController.delegate = self;
+
+    
+    popoverContent.popController = popoverController;
+    popoverContent.superController =self;
+    
+    //popover显示的大小 
+    popoverController.popoverContentSize=CGSizeMake(320, 320); 
+
+    //显示popover，告诉它是为一个矩形框设置popover 
+    [popoverController presentPopoverFromRect:CGRectMake(0, 0, 704, 0) inView:self.view 
+                     permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES]; 
+}
+
+-(void)finishedEditPopover:(int)val
+{
+    self.item.import_price = val;
+    [self.item save];
+    [self.tableView reloadData];
+}
+
 
 
 #pragma mark - View lifecycle
