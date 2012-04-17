@@ -11,7 +11,7 @@
 static TopData *single = nil;
 
 //TODO
-static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e474943896";
+static NSString   * _session = @"";
 
 @interface TopData ()
 -(void)getItemInfo:(NSString *)page_no;
@@ -128,7 +128,7 @@ static NSString   * _session = @"61011047f772194bb5ac8828007eb88bd0ca4f165e8d9e4
     FMDatabase * db = [DataBase shareDB];
 	
     [db open];
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where modified >= ? and modified <=?",start,end];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where payment_time >= ? and payment_time <=?",start,end];
     
     NSMutableArray * array = [[NSMutableArray alloc]init];
     TopTradeModel * trade;

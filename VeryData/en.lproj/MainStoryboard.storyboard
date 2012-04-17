@@ -232,6 +232,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="oYK-MU-zUg"/>
                     <connections>
+                        <outlet property="infoView" destination="nqG-nX-M2d" id="jZz-qJ-5y6"/>
                         <outlet property="tableView" destination="yfz-17-rOG" id="Uwb-0v-2LI"/>
                     </connections>
                 </viewController>
