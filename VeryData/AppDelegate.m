@@ -48,37 +48,53 @@
     
     UINavigationController* detailRootController = orderController;
     
-    if([tag hasPrefix:@"ORDER_PERIOD_SEL"])
-    {
-//        [TopData getTopData].delegate = self;
-//        [[TopData getTopData]refreshTrades];
-        NSDate * start = [[NSDate alloc]initWithTimeIntervalSinceNow:-(28*60*60) ];
-        NSDate * end = [[NSDate alloc]initWithTimeIntervalSinceNow:-(24*60*60) ];
-        
-        [[TopData getTopData]getItems];
-        [[TopData getTopData]getTradesFrom:start to:end];
-        return;
-    }
+    NSDate * from = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
+    NSDate * to = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
+
+    NSLog(@"%@",from);
+    NSLog(@"%@",to);
+
+    NSLog(@"-------------------");
+
+    NSDateComponents *components = [[NSDateComponents alloc] init];
     
-    if([tag hasPrefix:@"ORDER"])        
+    if([tag hasPrefix:@"ORDER"])        //单日或单周
     {
         detailRootController = orderController;
+        if( [tag isEqualToString:@"ORDER_DAY"])
+        {
+            from = [DateHelper getBeginOfDay:from];
+            to  = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
+        }
+        else if( [tag isEqualToString:@"ORDER_WEEK"])
+        {
+            from = [DateHelper getFirstTimeOfWeek:from];
+            to = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:from];
+        }
     }
-    else if([tag hasPrefix:@"CLOTH"])
+    else if([tag hasPrefix:@"TRADE"])   //月度或年度
+    {
+        detailRootController = clothController;
+        if( [tag isEqualToString:@"TRADE_MONTH"])
+        {
+            from = [DateHelper getFirstTimeOfMonth:from];
+            int dayCount = [DateHelper getDayCountOfMonth:from];
+            to = [[NSDate alloc]initWithTimeInterval:(dayCount*24*60*60) sinceDate:from];
+            
+        }
+        else if( [tag isEqualToString:@"TRADE_YEAR"])
+        {
+            
+        }
+    }
+    else if([tag hasPrefix:@"CLOTH"])   //商品
     {
         detailRootController = clothController;
     }
     DetailViewController* detailController = detailRootController.topViewController;
 
-       /*
-       stringURL = @"ORDER_TODAY";
-    stringURL = @"ORDER_TOMORROW";
-    stringURL = @"ORDER_WEEK";
-    stringURL = @"ORDER_MONTH";
-    stringURL = @"ORDER_PERIOD";
-        stringURL = @"CLOTH_TOP";
-        stringURL = @"CLOTH_ALL";
-*/
+    NSLog(@"%@",from);
+    NSLog(@"%@",to);
 
     if(detailController != curDetailCtroller)
     {
@@ -104,8 +120,6 @@
         splitCtrl.delegate = (id)curDetailCtroller;
     } 
     //test only
-    NSDate * from = [[NSDate alloc]initWithTimeIntervalSinceNow:-(16*60*60)];
-    NSDate * to = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
     
     [curDetailCtroller settingPeriodFrom:from to:to withTag:tag];
     

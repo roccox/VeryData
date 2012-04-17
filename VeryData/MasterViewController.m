@@ -90,27 +90,22 @@
 	// URL
     if (section==0) {
 		if (row==0) {
-			stringURL = @"ORDER_TODAY";
+			stringURL = @"ORDER_DAY";
 		}
 		else if(row == 1){
-			stringURL = @"ORDER_TOMORROW";
-		}
-		else if(row == 2){
 			stringURL = @"ORDER_WEEK";
 		}
-		else if(row == 3){
-			stringURL = @"ORDER_MONTH";
-		}
-		else if(row == 4){
-			stringURL = @"ORDER_PERIOD_SEL";
-		}
-		
 	}
-	else {
+	else if (section==1){
 		if (row==0) {
-			stringURL = @"CLOTH_TOP";
+			stringURL = @"TRADE_MONTH";
 		}
 		else {
+			stringURL = @"TRADE_YEAR";
+		}
+	}
+	else if (section==2){
+		if (row==0) {
 			stringURL = @"CLOTH_ALL";
 		}
 	}

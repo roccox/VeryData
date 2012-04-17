@@ -12,6 +12,7 @@
 #import "DateSelController.h"
 #import "TopSessionController.h"
 #import "TopData.h"
+#import "DateHelper.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,TaobaoDataDelegate>
 {

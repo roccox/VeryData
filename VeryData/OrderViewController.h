@@ -17,7 +17,7 @@
 }
 
 @property (nonatomic,strong) IBOutlet UITableView * tableView;
-@property (nonatomic,strong) IBOutlet UITextField * infoView;
+@property (nonatomic,strong) IBOutlet UIWebView * infoView;
 @property (nonatomic,strong) NSDate * startTime;
 @property (nonatomic,strong) NSDate * endTime;
 

@@ -14,6 +14,7 @@
 		DD30157D153C5D3700290164 /* OrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD30157C153C5D3700290164 /* OrderCell.xib */; };
 		DD30157F153C637300290164 /* ItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD30157E153C637200290164 /* ItemCell.xib */; };
 		DD301582153C638E00290164 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301581153C638D00290164 /* ItemCell.m */; };
+		DD301586153D0C2C00290164 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301585153D0C2A00290164 /* DateHelper.m */; };
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
@@ -56,6 +57,8 @@
 		DD30157E153C637200290164 /* ItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemCell.xib; sourceTree = "<group>"; };
 		DD301580153C638D00290164 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
 		DD301581153C638D00290164 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
+		DD301584153D0C2800290164 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		DD301585153D0C2A00290164 /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
 		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -142,6 +145,13 @@
 			path = VeryData/cell;
 			sourceTree = SOURCE_ROOT;
 		};
+		DD301583153CF9D700290164 /* res */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
 		DD5D10601537DA1700B7F0EB /* data */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,9 +237,12 @@
 				DD5D108E153B89CE00B7F0EB /* lib */,
 				DDD272231536DF7100892FDA /* AppDelegate.h */,
 				DDD272241536DF7100892FDA /* AppDelegate.m */,
+				DD301584153D0C2800290164 /* DateHelper.h */,
+				DD301585153D0C2A00290164 /* DateHelper.m */,
 				DD5D10751538599800B7F0EB /* TopSessionController.h */,
 				DD5D10761538599900B7F0EB /* TopSessionController.m */,
 				DDD272261536DF7100892FDA /* MainStoryboard.storyboard */,
+				DD301583153CF9D700290164 /* res */,
 				DD5D105D1537C5A800B7F0EB /* DateSelController.h */,
 				DD5D105E1537C5A900B7F0EB /* DateSelController.m */,
 				DDD272291536DF7100892FDA /* MasterViewController.h */,
@@ -346,6 +359,7 @@
 				DD301578153C542E00290164 /* TradeCell.m in Sources */,
 				DD30157B153C5D2400290164 /* OrderCell.m in Sources */,
 				DD301582153C638E00290164 /* ItemCell.m in Sources */,
+				DD301586153D0C2C00290164 /* DateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
