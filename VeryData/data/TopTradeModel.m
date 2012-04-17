@@ -27,6 +27,34 @@
     }
     
 }
+-(double) getSales
+{
+    if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+       [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+       [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
+       [self.status isEqualToString:@"TRADE_FINISHED"]
+       )
+        return  (self.payment - self.post_fee - self.service_fee);
+    else {
+        return 0;
+    }
+}
+-(double) getProfit
+{
+    double profit = 0;
+    if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+       [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+       [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
+       [self.status isEqualToString:@"TRADE_FINISHED"]){
+        for (TopOrderModel * order in self.orders) {
+            profit += order.import_price * order.num;
+        }
+        profit = [self getSales] - profit;
+        return profit;   
+    }
+    else
+        return 0;
+}
 
 -(BOOL)save
 {

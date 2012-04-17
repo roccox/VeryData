@@ -40,7 +40,7 @@ static AppConstant * single = nil;
     }
     else            //update
     {
-        result = [db executeUpdate: @"UPDATE Constant SET last_fetch = ? session = ? session_time = ? where id = 0",
+        result = [db executeUpdate: @"UPDATE Constant SET last_fetch = ?, session = ?, session_time = ? where id = 0",
                   self.last_fetch,
                   self.session,
                   self.session_time

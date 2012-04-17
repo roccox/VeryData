@@ -16,7 +16,7 @@
 
 @implementation OrderViewController
 
-@synthesize tableView,infoView,dataList;
+@synthesize tableView,infoView,dataList,tradeList;
 @synthesize startTime,endTime,trade;
 
 @synthesize masterPopoverController = _masterPopoverController;
@@ -32,14 +32,14 @@
         
         //get data
         TopData * topData = [TopData getTopData];
-        NSMutableArray * trades = [topData getTradesFrom:startTime to:endTime];
+        tradeList = [topData getTradesFrom:startTime to:endTime];
         if(self.dataList == nil)
             self.dataList = [[NSMutableArray alloc]init];
         else {
             [self.dataList removeAllObjects];
         }
         
-        for (TopTradeModel * trade in trades) {
+        for (TopTradeModel * trade in tradeList) {
             [self.dataList addObject:trade];
             for(TopOrderModel * order in trade.orders){
                 [self.dataList addObject:order];
@@ -59,13 +59,99 @@
 {
     // Update the user interface for the detail item.
     [self.tableView reloadData];
+    //calculate report
+    double sale = 0;
+    double profit = 0;
+    double rate = 0;
     
+    //generate report
+    NSString * report = @"<HTML> \
+                            <BODY> \
+                                <Table> \
+                                <TR> \
+                                <TD>日期</TD><TD>销售额</TD><TD>利润额</TD><TD>利润率</TD> \
+                                </TR>";
+
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        for(TopTradeModel * trade in tradeList)
+        {
+            sale += [trade getSales];
+            profit += [trade getProfit];
+            if(sale == 0)
+                rate = 0;
+            else {
+                rate = profit/sale;
+            }
+        }
+        NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+                             <TD>%@</TD><TD>%@</TD><TD>%@</TD><TD>%@</TD> \
+                             </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+        report = [report stringByAppendingString:str];
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        NSDate * dateS = [[NSDate alloc]initWithTimeInterval:0 sinceDate:startTime];
+        NSDate * dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
+        for(int i=0;i<7;i++)
+        {
+            profit = 0;
+            sale = 0;
+            rate = 0;
+            for(TopTradeModel * trade in tradeList)
+            {
+                NSLog(@"pay-%@",trade.paymentTime);
+                if(([trade.paymentTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
+                   ([trade.paymentTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
+                    continue;
+                
+                sale += [trade getSales];
+                profit += [trade getProfit];
+                if(sale == 0)
+                    rate = 0;
+                else {
+                    rate = profit/sale;
+                }
+            }
+            NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+                              <TD>%@</TD><TD>%@</TD><TD>%@</TD><TD>%@</TD> \
+                              </TR>",[[dateS description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+            report = [report stringByAppendingString:str];
+        
+            //add date
+            dateS = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
+            dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateE];
+
+        }
+    }
+    report = [report stringByAppendingString:@"</Table> \
+              </BODY>\
+              </HTML>"];
+    [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(IBAction)updateData:(id)sender
+{
+    TopData * topData = [TopData getTopData];
+    [topData refreshTrades];
+}
+
+#pragma - taobao
+-(void) notifyItemRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    
+}
+
+-(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    if(isFinished)
+        [self configureView];
 }
 
 #pragma mark - table view
@@ -185,7 +271,7 @@
 {
     self.trade.service_fee = val;
     [self.trade save];
-    [self.tableView reloadData];
+    [self configureView];
 }
 
 #pragma mark - View lifecycle

@@ -10,13 +10,13 @@
 
 @implementation TopOrderModel
 
-@synthesize oid,num,num_iid,title,sku_name,pic_url,price,status;
+@synthesize oid,num,num_iid,title,sku_name,pic_url,price,import_price, status;
 @synthesize discount_fee,adjust_fee,total_fee,payment,tid;
 
 -(void)print
 {
     NSLog(@"Order: oid-%qi,num-%d,num_iid-%qi,title-%@,sku-%@ \n",self.oid,self.num,self.num_iid,self.title,self.sku_name);
-    NSLog(@"Order: pic-%@,price-%f,status-%@,discount-%f,adjust-%f,total-%f,payment-%f,tid-%qi \n",self.pic_url,self.price,self.status,self.discount_fee,self.adjust_fee,self.total_fee,self.payment,self.tid);
+    NSLog(@"Order: pic-%@,price-%f,import_price-%f,status-%@,discount-%f,adjust-%f,total-%f,payment-%f,tid-%qi \n",self.pic_url,self.price,self.import_price,self.status,self.discount_fee,self.adjust_fee,self.total_fee,self.payment,self.tid);
   
 }
 

@@ -19,6 +19,8 @@
 @property (nonatomic,strong) NSString * pic_url;
 @property (nonatomic) double price;
 
+@property (nonatomic) double import_price;
+
 @property (nonatomic,strong) NSString * status;
 
 @property (nonatomic) double discount_fee;

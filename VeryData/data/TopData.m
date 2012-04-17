@@ -62,10 +62,12 @@ static NSString   * _session = @"";
         [constant.session_time timeIntervalSinceNow] < -(10*24*60*60) ) 
     {
         //need to get session
+        _refreshing = NO;
         AppDelegate * del = [UIApplication sharedApplication].delegate;
         [del refreshSession];
         return;
     }
+    _session = constant.session;
         
     if(_refreshing)
     {
@@ -159,7 +161,7 @@ static NSString   * _session = @"";
         
         //search orders
         orders = [[NSMutableArray alloc]init];
-        FMResultSet *rs2 = [db executeQuery:@"SELECT * FROM Orders where tid = ?",[NSNumber numberWithLongLong: trade.tid]];
+        FMResultSet *rs2 = [db executeQuery:@"select a.*, b.import_price from orders as a , items as b where a.tid = ? and b.iid = a.iid",[NSNumber numberWithLongLong: trade.tid]];
         while ([rs2 next]) {
             order = [[TopOrderModel alloc]init];
             
@@ -171,6 +173,7 @@ static NSString   * _session = @"";
             
             order.pic_url = [rs2 stringForColumn:@"pic_url"];
             order.price = [rs2 doubleForColumn:@"price"];
+            order.import_price = [rs2 doubleForColumn:@"import_price"];
             order.status = [rs2 stringForColumn:@"status"];
             order.discount_fee = [rs2 doubleForColumn:@"discount_fee"];
             order.adjust_fee = [rs2 doubleForColumn:@"adjust_fee"];
@@ -197,7 +200,9 @@ static NSString   * _session = @"";
     AppConstant * constant = [AppConstant shareObject];
     constant.session = session;
     constant.session_time = [[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)];
+    [constant save];
     //start to refresh trade
+    _session = session;
     [self refreshTrades];
 }
 
@@ -314,6 +319,7 @@ static NSString   * _session = @"";
     if(_page_count == -1)
     {
         [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+        _refreshing = NO;
         return;
     }
     //Get Items

@@ -35,5 +35,6 @@
 
 -(void)print;
 -(BOOL)save;
-
+-(double) getSales;
+-(double) getProfit;
 @end
