@@ -26,6 +26,6 @@
 
 @property (nonatomic,strong) TopItemModel * item;
 
--(void)showEditPopover:(int) val;
+-(void)showEditPopover:(int) val withNote:(NSString * )note;
 
 @end

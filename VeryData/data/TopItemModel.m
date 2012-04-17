@@ -10,13 +10,13 @@
 
 @implementation TopItemModel
 
-@synthesize num_iid,title,pic_url,price,volume,import_price;
+@synthesize num_iid,title,pic_url,price,volume,import_price,note;
 
 
 -(void)print
 {
     NSLog(@"Item: id-%qi,title-%@,pic_url-%@ \n",self.num_iid,self.title,self.pic_url);
-    NSLog(@"Item: price-%f,volume-%d,import_price-%f \n",self.price,self.volume,self.import_price);
+    NSLog(@"Item: price-%f,volume-%d,import_price-%f,note-%@ \n",self.price,self.volume,self.import_price,self.note);
 }
 
 -(BOOL)save
@@ -32,23 +32,25 @@
 
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Items (iid, title, pic_url, price, volume, import_price) VALUES (?,?,?,?,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Items (iid, title, pic_url, price, volume, import_price,note) VALUES (?,?,?,?,?,? ,?)",
                         [NSNumber numberWithLongLong: self.num_iid], 
                         self.title, 
                         self.pic_url,
                         [NSNumber numberWithDouble: self.price],
                         [NSNumber numberWithInt: self.volume],
-                        [NSNumber numberWithDouble: self.import_price]
+                        [NSNumber numberWithDouble: self.import_price],
+                        self.note
                   ];    
     }
     else            //update
     {
-        result = [db executeUpdate: @"UPDATE Items SET title = ?, pic_url = ?, price = ?, volume = ?, import_price = ? WHERE iid = ?",
+        result = [db executeUpdate: @"UPDATE Items SET title = ?, pic_url = ?, price = ?, volume = ?, import_price = ?, note=? WHERE iid = ?",
                   self.title, 
                   self.pic_url,
                   [NSNumber numberWithDouble: self.price],
                   [NSNumber numberWithInt: self.volume],
                   [NSNumber numberWithDouble: self.import_price],
+                  self.note,
                   [NSNumber numberWithLongLong: self.num_iid]
                   ]; 
     }

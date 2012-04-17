@@ -27,7 +27,7 @@
 
 @property (nonatomic,strong) TopTradeModel * trade;
 
--(void)showEditPopover:(int) val;
+-(void)showEditPopover:(int) val withNote:(NSString *) note;
 
 -(IBAction)updateData:(id)sender;
 @end

@@ -17,6 +17,8 @@
 @property(nonatomic) BOOL valid;
 @property(nonatomic,strong)IBOutlet UIPickerView * picker;
 @property(nonatomic,strong)IBOutlet UIButton * button;
+@property(nonatomic,strong)IBOutlet UITextField * textView;
+@property(nonatomic,strong) NSString * note;
 
 @property(nonatomic,strong) DetailViewController * superController;
 @property(nonatomic,strong) UIPopoverController * popController;

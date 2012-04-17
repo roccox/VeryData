@@ -33,6 +33,8 @@
 
 @property (nonatomic,strong) NSMutableArray * orders;
 
+@property (nonatomic,strong) NSString * note;
+
 -(void)print;
 -(BOOL)save;
 -(double) getSales;

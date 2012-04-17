@@ -14,6 +14,7 @@
 
 @implementation EditController
 @synthesize picker,val,valid,button,superController,popController;
+@synthesize textView,note;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +33,8 @@
     [picker selectRow:(val/10%10) inComponent:1 animated:YES];
     [picker selectRow:(val%10) inComponent:2 animated:YES];
     self.valid = NO;
+    
+    self.textView.text = self.note;
 }
 
 - (void)viewDidUnload
@@ -61,12 +64,6 @@
     return [[NSString alloc]initWithFormat:@"%d",row];
 }
 
--(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    if(!self.button.enabled)
-        self.button.enabled = YES;
-}
-
 -(IBAction)buttonOK:(id)sender
 {
     self.val = [picker selectedRowInComponent:0]*100 +
@@ -77,7 +74,7 @@
     //close
     
     [self.popController dismissPopoverAnimated:YES];
-    [self.superController finishedEditPopover:self.val];
+    [self.superController finishedEditPopover:self.val withNote:self.textView.text];
 }
 
 @end

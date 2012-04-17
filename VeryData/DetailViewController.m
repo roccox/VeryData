@@ -18,7 +18,7 @@
 
 }
 
--(void)finishedEditPopover:(int)val
+-(void)finishedEditPopover:(int)val withNote: (NSString *) note
 {
     
 }

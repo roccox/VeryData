@@ -18,6 +18,7 @@
 @property (nonatomic) double price;
 @property (nonatomic) int volume;
 @property (nonatomic) double import_price;
+@property (nonatomic,strong) NSString * note;
 
 -(void)print;
 -(BOOL)save;

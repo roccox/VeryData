@@ -14,5 +14,5 @@
 
 -(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag;
 
--(void)finishedEditPopover:(int)val;
+-(void)finishedEditPopover:(int)val withNote: (NSString *) note;
 @end

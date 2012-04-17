@@ -104,13 +104,15 @@
 {
     self.item = [dataList objectAtIndex:indexPath.row];
 
-    [self showEditPopover:self.item.import_price];
+    [self showEditPopover:self.item.import_price withNote:self.item.note];
 }
 
--(void)showEditPopover:(int) val
+-(void)showEditPopover:(int) val withNote:(NSString * )note
 {
     EditController * popoverContent = [[EditController alloc]init];
     popoverContent.val = val;
+    popoverContent.note = note;
+    
     UIPopoverController * popoverController=[[UIPopoverController alloc]initWithContentViewController:popoverContent]; 
     popoverController.delegate = self;
 
@@ -119,16 +121,17 @@
     popoverContent.superController =self;
     
     //popover显示的大小 
-    popoverController.popoverContentSize=CGSizeMake(320, 320); 
+    popoverController.popoverContentSize=CGSizeMake(320, 300); 
 
     //显示popover，告诉它是为一个矩形框设置popover 
     [popoverController presentPopoverFromRect:CGRectMake(0, 0, 704, 0) inView:self.view 
                      permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES]; 
 }
 
--(void)finishedEditPopover:(int)val
+-(void)finishedEditPopover:(int)val withNote: (NSString *) note
 {
     self.item.import_price = val;
+    self.item.note = note;
     [self.item save];
     [self.tableView reloadData];
 }

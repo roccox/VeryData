@@ -13,13 +13,13 @@
 @synthesize tid,status,createdTime,modifiedTime;
 @synthesize buyer_nick,receiver_city,receiver_name;
 @synthesize discount_fee,adjust_fee,post_fee,total_fee,payment,paymentTime;
-@synthesize service_fee, orders;
+@synthesize service_fee, orders, note;
 
 
 -(void)print
 {
     NSLog(@"Trade: tid-%qi,status-%@,created-%@,modified-%@,buyer-%@,rec_city-%@,rec_name-%@ \n",self.tid,self.status,[self.createdTime description],[self.modifiedTime description],self.buyer_nick,self.receiver_city,self.receiver_name);
-    NSLog(@"Trade: discount-%f,adjust-%f,post-%f,total-%f,payment-%f,paytime-%@ \n",self.discount_fee,self.adjust_fee,self.post_fee,self.total_fee,self.payment,[self.paymentTime description]);
+    NSLog(@"Trade: discount-%f,adjust-%f,post-%f,total-%f,payment-%f,paytime-%@,note-%@ \n",self.discount_fee,self.adjust_fee,self.post_fee,self.total_fee,self.payment,[self.paymentTime description],self.note);
     
     for(TopOrderModel * order in orders)
     {
@@ -69,7 +69,7 @@
     
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time,service_fee) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time,service_fee,note) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?,?)",
                   [NSNumber numberWithLongLong: self.tid], 
                   self.status,
                   self.createdTime,
@@ -86,12 +86,13 @@
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
                   self.paymentTime,
-                  [NSNumber numberWithDouble: self.service_fee]
+                  [NSNumber numberWithDouble: self.service_fee],
+                  self.note
                   ];    
     }
     else            //update
     {        
-        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=?,service_fee=?  WHERE tid = ?",
+        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=?,service_fee=?,note=? WHERE tid = ?",
                   self.status,
                   self.createdTime,
                   self.modifiedTime,
@@ -108,6 +109,7 @@
                   [NSNumber numberWithDouble: self.payment],
                   self.paymentTime,
                   [NSNumber numberWithDouble: self.service_fee],
+                  self.note,
                   [NSNumber numberWithLongLong: self.tid]
                   ];  
     }
