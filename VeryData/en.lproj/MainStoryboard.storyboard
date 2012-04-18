@@ -496,6 +496,75 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1573" y="1687"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nCB-c2-Ccx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diS-n6-4Jk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="statCtrl" id="9km-mv-985" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="RL7-Et-l8O">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="DRy-EM-dmy" kind="relationship" relationship="rootViewController" id="6ms-jZ-Qmc"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-403" y="2702"/>
+        </scene>
+        <!--Stat View Controller-->
+        <scene sceneID="jnH-Yy-C1i">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXe-iP-saW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="DRy-EM-dmy" customClass="StatViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i6q-Ih-v3P">
+                        <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="uSz-Fa-d6Z">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                <items>
+                                    <barButtonItem title="&lt;&lt;" id="vUC-8R-yoi">
+                                        <connections>
+                                            <action selector="goPrevious:" destination="DRy-EM-dmy" id="ajC-L5-jKb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Search" id="HBf-28-lhY">
+                                        <connections>
+                                            <action selector="goSomeDay:" destination="DRy-EM-dmy" id="vt3-C1-c2O"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title=">>" id="USf-m0-YAo">
+                                        <connections>
+                                            <action selector="goNext:" destination="DRy-EM-dmy" id="vu5-aM-ymY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" id="XPA-LK-Lik">
+                                <rect key="frame" x="0.0" y="44" width="768" height="960"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WMK-b4-9bB">
+                                <rect key="frame" x="200" y="8" width="300" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aO2-ne-VbX"/>
+                    <connections>
+                        <outlet property="infoView" destination="XPA-LK-Lik" id="Z4x-4J-4sg"/>
+                        <outlet property="nextBtn" destination="USf-m0-YAo" id="KAB-w2-gSg"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="414" y="2683"/>
+        </scene>
     </scenes>
     <classes>
         <class className="ClothViewController" superclassName="DetailViewController">
@@ -535,6 +604,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="StatViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
         <class className="TopSessionController" superclassName="UIViewController">

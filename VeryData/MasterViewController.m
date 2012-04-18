@@ -98,10 +98,10 @@
 	}
 	else if (section==1){
 		if (row==0) {
-			stringURL = @"TRADE_MONTH";
+			stringURL = @"STAT_MONTH";
 		}
 		else {
-			stringURL = @"TRADE_YEAR";
+			stringURL = @"STAT_YEAR";
 		}
 	}
 	else if (section==2){

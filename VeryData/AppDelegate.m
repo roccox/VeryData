@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize curController,orderController,clothController;
+@synthesize curController,orderController,clothController,statController;
 
 @synthesize dateSelController,sessionController,topSession;
 
@@ -70,17 +70,17 @@
             to = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:from];
         }
     }
-    else if([tag hasPrefix:@"TRADE"])   //月度或年度
+    else if([tag hasPrefix:@"STAT"])   //月度或年度
     {
-        detailRootController = clothController;
-        if( [tag isEqualToString:@"TRADE_MONTH"])
+        detailRootController = statController;
+        if( [tag isEqualToString:@"STAT_MONTH"])
         {
             from = [DateHelper getFirstTimeOfMonth:from];
             int dayCount = [DateHelper getDayCountOfMonth:from];
             to = [[NSDate alloc]initWithTimeInterval:(dayCount*24*60*60) sinceDate:from];
             
         }
-        else if( [tag isEqualToString:@"TRADE_YEAR"])
+        else if( [tag isEqualToString:@"STAT_YEAR"])
         {
             
         }
@@ -189,6 +189,9 @@
     dateSelController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"dateSelCtrl"];
     
     sessionController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"sessionCtrl"];
+
+    statController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"statCtrl"];
+    
     return YES;
 }
 							

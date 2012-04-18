@@ -43,6 +43,7 @@
 		DD995DEE153EB4B200F9FDE1 /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DE7153EB4B200F9FDE1 /* SDWebImagePrefetcher.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD995DEF153EB4B200F9FDE1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DE9153EB4B200F9FDE1 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD995DF1153EB54500F9FDE1 /* hold.png in Resources */ = {isa = PBXBuildFile; fileRef = DD995DF0153EB54500F9FDE1 /* hold.png */; };
+		DD995DF5153ECE4000F9FDE1 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
 		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
@@ -123,6 +124,8 @@
 		DD995DE8153EB4B200F9FDE1 /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		DD995DE9153EB4B200F9FDE1 /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		DD995DF0153EB54500F9FDE1 /* hold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hold.png; sourceTree = "<group>"; };
+		DD995DF3153ECE3D00F9FDE1 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
+		DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -311,6 +314,8 @@
 				DD5D1037153726CF00B7F0EB /* DetailViewController.m */,
 				DD5D102B1537100E00B7F0EB /* ClothViewController.h */,
 				DD5D102C1537100E00B7F0EB /* ClothViewController.m */,
+				DD995DF3153ECE3D00F9FDE1 /* StatViewController.h */,
+				DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */,
 				DDD2721B1536DF7100892FDA /* Supporting Files */,
 			);
 			path = VeryData;
@@ -426,6 +431,7 @@
 				DD995DED153EB4B200F9FDE1 /* SDWebImageManager.m in Sources */,
 				DD995DEE153EB4B200F9FDE1 /* SDWebImagePrefetcher.m in Sources */,
 				DD995DEF153EB4B200F9FDE1 /* UIImageView+WebCache.m in Sources */,
+				DD995DF5153ECE4000F9FDE1 /* StatViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "DateSelController.h"
 #import "TopSessionController.h"
+#import "StatViewController.h"
 #import "TopData.h"
 #import "DateHelper.h"
 
@@ -24,6 +25,7 @@
 @property (strong, nonatomic) UINavigationController * curController;
 @property (strong, nonatomic) UINavigationController * orderController;
 @property (strong, nonatomic) UINavigationController * clothController;
+@property (strong, nonatomic) UINavigationController * statController;
 
 @property(strong,nonatomic) DateSelController * dateSelController;
 
