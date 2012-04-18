@@ -158,6 +158,7 @@ static NSString   * _session = @"";
         trade.payment = [rs doubleForColumn:@"payment"];
         trade.paymentTime = [rs dateForColumn:@"payment_time"];
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
+        trade.note = [rs stringForColumn:@"note"];
         
         [array addObject: trade];
         
