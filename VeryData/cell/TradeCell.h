@@ -10,13 +10,13 @@
 
 @interface TradeCell : UITableViewCell
 
-@property (nonatomic,strong) IBOutlet UIImageView * image;
+
 @property (nonatomic,strong) IBOutlet UILabel * createdTime;
 @property (nonatomic,strong) IBOutlet UILabel * paymentTime;
 @property (nonatomic,strong) IBOutlet UILabel * status;
 @property (nonatomic,strong) IBOutlet UILabel * buyer;
-@property (nonatomic,strong) IBOutlet UILabel * rec_name;
-@property (nonatomic,strong) IBOutlet UILabel * rec_city;
+@property (nonatomic,strong) IBOutlet UILabel * rec;
+@property (nonatomic,strong) IBOutlet UILabel * note;
 @property (nonatomic,strong) IBOutlet UILabel * post_fee;
 @property (nonatomic,strong) IBOutlet UILabel * payment;
 @property (nonatomic,strong) IBOutlet UILabel * service_fee;

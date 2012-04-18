@@ -202,13 +202,27 @@
 
         //start to 
         _trade = (TopTradeModel *)obj;
-//        cell.image = ;
-        cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买时间:%@",_trade.createdTime];
-        cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款时间:%@",_trade.paymentTime];
-        cell.status.text = [[NSString alloc]initWithFormat:@"订单状态:%@",_trade.status];
+        cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买:%@",[[_trade.createdTime description] substringToIndex:19]];
+        cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款:%@",[[_trade.paymentTime description] substringToIndex:19]];
+        if([_trade.status isEqualToString:@"WAIT_BUYER_PAY"])
+            cell.status.text = @"等待买家付款";
+        else if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
+            cell.status.text = @"等待卖家发货";
+        else if([_trade.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"])
+            cell.status.text = @"等待买家确认收货";
+        else if([_trade.status isEqualToString:@"TRADE_FINISHED"])
+            cell.status.text = @"交易成功";
+        else if([_trade.status isEqualToString:@"TRADE_CLOSED"])
+            cell.status.text = @"交易关闭";
+        else if([_trade.status isEqualToString:@"TRADE_CLOSED_BY_TAOBAO"])
+            cell.status.text = @"交易被淘宝关闭";
+        else
+            cell.status.text = _trade.status;
+        
+        
         cell.buyer.text = [[NSString alloc]initWithFormat:@"买家:%@",_trade.buyer_nick];
-        cell.rec_name.text = [[NSString alloc]initWithFormat:@"姓名:%@",_trade.receiver_name];
-        cell.rec_city.text = [[NSString alloc]initWithFormat:@"城市:%@",_trade.receiver_city];
+        cell.rec.text = [[NSString alloc]initWithFormat:@"姓名:%@/%@",_trade.receiver_name,_trade.receiver_city];
+        cell.note.text = [[NSString alloc]initWithFormat:@"备注:%@",_trade.note];
         cell.post_fee.text = [[NSString alloc]initWithFormat:@"邮费:%@",[NSNumber numberWithDouble: _trade.post_fee]];
         cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: _trade.payment]];
         cell.service_fee.text = [[NSString alloc]initWithFormat:@"特别:%@",[NSNumber numberWithDouble: _trade.service_fee]];
@@ -251,7 +265,7 @@
 	
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 150.f;
+	return 100.f;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

@@ -9,7 +9,7 @@
 #import "TradeCell.h"
 
 @implementation TradeCell
-@synthesize image,createdTime,paymentTime,status,buyer,rec_name,rec_city,post_fee,payment,service_fee;
+@synthesize createdTime,paymentTime,status,buyer,rec,note,post_fee,payment,service_fee;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
