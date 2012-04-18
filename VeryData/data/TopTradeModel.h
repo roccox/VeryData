@@ -37,6 +37,7 @@
 
 -(void)print;
 -(BOOL)save;
+-(BOOL)saveServiceFee;
 -(double) getSales;
 -(double) getProfit;
 @end

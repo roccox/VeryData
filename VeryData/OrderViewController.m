@@ -148,6 +148,7 @@
 -(IBAction)updateData:(id)sender
 {
     TopData * topData = [TopData getTopData];
+    topData.delegate = self;
     [topData refreshTrades];
 }
 
@@ -287,7 +288,7 @@
 {
     self.trade.service_fee = val;
     self.trade.note = note;
-    [self.trade save];
+    [self.trade saveServiceFee];
     [self configureView];
 }
 

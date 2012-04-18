@@ -12,20 +12,28 @@
 
 #import "DetailViewController.h"
 
-@interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate>{
+@interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
     
     NSString * _tag;
 
 }
+
+@property (nonatomic,strong) IBOutlet UITextField * searchField;
 
 @property (nonatomic,strong) UIPopoverController * popController;
 
 @property (nonatomic,strong) IBOutlet UITableView * tableView;
 
 @property (nonatomic,strong) NSMutableArray * dataList;
+@property (nonatomic,strong) NSMutableArray * itemList;
 
 @property (nonatomic,strong) TopItemModel * item;
 
 -(void)showEditPopover:(int) val withNote:(NSString * )note;
+
+-(IBAction)showAllItems:(id)sender;
+-(IBAction)showZeroItems:(id)sender;
+-(IBAction)showSearchedItems:(id)sender;
+-(IBAction)refreshData:(id)sender;
 
 @end

@@ -22,5 +22,6 @@
 
 -(void)print;
 -(BOOL)save;
+-(BOOL)saveImportPrice;
 
 @end

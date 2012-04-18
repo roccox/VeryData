@@ -16,7 +16,8 @@ static NSString   * _session = @"";
 @interface TopData ()
 -(void)getItemInfo:(NSString *)page_no;
 -(void)getTradeInfo;
-
+-(void)notifyItemWithTag:(NSString *)tag;
+-(void)notifyTradeWithTag:(NSString *)tag;
 @end
 
 @implementation TopData
@@ -207,7 +208,7 @@ static NSString   * _session = @"";
 }
 
 //inner
--(void)notiyItemWithTag:(NSString *)tag
+-(void)notifyItemWithTag:(NSString *)tag
 {
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
@@ -220,7 +221,7 @@ static NSString   * _session = @"";
      
 }
 
--(void)notiyTradeWithTag:(NSString *)tag
+-(void)notifyTradeWithTag:(NSString *)tag
 {
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"] || [tag isEqualToString:@"SESSION_MISSING"]) 
@@ -318,7 +319,7 @@ static NSString   * _session = @"";
     //check end
     if(_page_count == -1)
     {
-        [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(notifyTradeWithTag:) withObject:@"OK" waitUntilDone:NO];
         _refreshing = NO;
         return;
     }
@@ -529,7 +530,7 @@ static NSString   * _session = @"";
                 
                 [self.curItem print];
                 
-                [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
             }
             break;
             
@@ -547,7 +548,7 @@ static NSString   * _session = @"";
 
                 [self.curTrade.orders removeAllObjects];
 
-                [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 订单",_get_count] waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(notifyTradeWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 订单",_get_count] waitUntilDone:NO];
             }
             
             break;
@@ -575,7 +576,7 @@ static NSString   * _session = @"";
             else    
             {
                 //End
-                [self performSelectorOnMainThread:@selector(notiyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
             }
             break;
         case TAOBAO_PARSE_TRADE:

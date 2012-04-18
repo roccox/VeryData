@@ -15,6 +15,7 @@
 
 @implementation ClothViewController
 @synthesize dataList,tableView,item,popController;
+@synthesize searchField, itemList;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -27,15 +28,22 @@
 
         //get data
         TopData * topData = [TopData getTopData];
-        NSMutableArray * items = [topData getItems];
+        if(self.itemList == nil)
+            self.itemList = [[NSMutableArray alloc]init];
+        else {
+            [self.itemList removeAllObjects];
+        }
+
+        self.itemList = [topData getItems];
+        
         if(self.dataList == nil)
             self.dataList = [[NSMutableArray alloc]init];
         else {
             [self.dataList removeAllObjects];
         }
         
-        for (TopItemModel * item in items) {
-            [self.dataList addObject:item];
+        for (TopItemModel * _item in self.itemList) {
+            [self.dataList addObject:_item];
             }
 
         // Update the view.
@@ -60,6 +68,77 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(IBAction)showAllItems:(id)sender
+{
+    [self.dataList removeAllObjects];
+    for (TopItemModel * _item in self.itemList) {
+        [self.dataList addObject: _item];
+    }
+    [self configureView];
+}
+
+-(IBAction)showZeroItems:(id)sender
+{
+    [self.dataList removeAllObjects];
+    for (TopItemModel * _item in self.itemList) {
+        NSLog(@"%f",_item.import_price);
+        if(_item.import_price < 0.01 && _item.import_price > -0.01)
+            [self.dataList addObject: _item];
+    }
+    [self configureView];
+}
+
+-(IBAction)showSearchedItems:(id)sender
+{
+    [self.dataList removeAllObjects];
+    for (TopItemModel * _item in self.itemList) {
+        NSRange range = [_item.title rangeOfString:self.searchField.text];
+        if(range.length > 0)
+            [self.dataList addObject: _item];
+    }
+    [self configureView];
+}
+
+-(IBAction)refreshData:(id)sender
+{
+    TopData * topData = [TopData getTopData];
+    topData.delegate = self;
+    [topData refreshItems];
+}
+
+#pragma - taobao
+-(void) notifyItemRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    if(isFinished)
+    {
+        //get data again
+        //get data
+        TopData * topData = [TopData getTopData];
+        if(self.itemList == nil)
+            self.itemList = [[NSMutableArray alloc]init];
+        else {
+            [self.itemList removeAllObjects];
+        }
+        
+        self.itemList = [topData getItems];
+        
+        if(self.dataList == nil)
+            self.dataList = [[NSMutableArray alloc]init];
+        else {
+            [self.dataList removeAllObjects];
+        }
+        
+        for (TopItemModel * _item in self.itemList) {
+            [self.dataList addObject:_item];
+        }
+        //relaod
+        [self configureView];
+    }
+}
+
+-(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+}
 
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -132,7 +211,7 @@
 {
     self.item.import_price = val;
     self.item.note = note;
-    [self.item save];
+    [self.item saveImportPrice];
     [self.tableView reloadData];
 }
 

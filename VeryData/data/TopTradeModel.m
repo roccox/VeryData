@@ -69,7 +69,7 @@
     
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time,service_fee,note) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?)",
                   [NSNumber numberWithLongLong: self.tid], 
                   self.status,
                   self.createdTime,
@@ -85,14 +85,12 @@
 
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
-                  self.paymentTime,
-                  [NSNumber numberWithDouble: self.service_fee],
-                  self.note
+                  self.paymentTime
                   ];    
     }
     else            //update
     {        
-        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=?,service_fee=?,note=? WHERE tid = ?",
+        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=? WHERE tid = ?",
                   self.status,
                   self.createdTime,
                   self.modifiedTime,
@@ -108,9 +106,7 @@
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
                   self.paymentTime,
-                  [NSNumber numberWithDouble: self.service_fee],
-                  self.note,
-                  [NSNumber numberWithLongLong: self.tid]
+                  [NSNumber numberWithDouble: self.service_fee]
                   ];  
     }
     
@@ -126,4 +122,35 @@
 	return result;
 }
 
+-(BOOL)saveServiceFee
+{
+    BOOL result = NO;
+    //check exist
+    FMDatabase * db = [DataBase shareDB];
+	int count = 0;
+	
+    [db open];
+    count = [db intForQuery:@"SELECT COUNT(*) FROM Trades where tid = ?",[NSNumber numberWithLongLong:self.tid]];
+    
+    
+    if(count == 0)  //new
+    {
+        NSLog(@"Save Service Fee error - no record");
+    }
+    else            //update
+    {        
+        result = [db executeUpdate: @"UPDATE Trades SET service_fee=?,note=? WHERE tid = ?",
+                  [NSNumber numberWithDouble: self.service_fee],
+                  self.note,
+                  [NSNumber numberWithLongLong: self.tid]
+                  ];  
+    }
+    
+    [db close];
+    
+    if(!result)
+        NSLog(@"Trade Service Fee Save Error!");
+    
+	return result;
+}
 @end
