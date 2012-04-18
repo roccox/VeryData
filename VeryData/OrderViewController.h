@@ -20,6 +20,7 @@
 @interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
 
     NSString * _tag;
+    BOOL    isFirstLoad;
 }
 
 @property (nonatomic,strong) IBOutlet UITableView * tableView;

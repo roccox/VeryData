@@ -61,20 +61,26 @@
 {
     if([_tag isEqualToString:@"ORDER_DAY"])
     {
-        CGRect frame = CGRectMake(0,0, 703,72);
-        self.infoView.frame = frame;
+        if(!isFirstLoad)
+        {
+            CGRect frame = CGRectMake(0,44, 703,72);
+            self.infoView.frame = frame;
         
-        frame = CGRectMake(0,72,703,689);
-        self.tableView.frame = frame;
+            frame = CGRectMake(0,116,703,615);
+            self.tableView.frame = frame;
+        }
+        else {
+            isFirstLoad = NO;
+        }
     }
     else if([_tag isEqualToString:@"ORDER_WEEK"])
     {
-        CGRect frame = CGRectMake(0,0, 703,232);
+        CGRect frame = CGRectMake(0,44, 703,232);
         self.infoView.frame = frame;
 
-        frame = CGRectMake(0,232,703,529);
+        frame = CGRectMake(0,276,703,455);
         self.tableView.frame = frame;
-}
+    }
     
     
     if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
@@ -84,8 +90,6 @@
         self.nextBtn.enabled = YES;
     }
 
-    // Update the user interface for the detail item.
-    [self.tableView reloadData];
     //calculate report
     double sale = 0;
     double profit = 0;
@@ -105,11 +109,11 @@
         {
             sale += [_trade getSales];
             profit += [_trade getProfit];
-            if(sale == 0)
-                rate = 0;
-            else {
-                rate = profit/sale;
-            }
+        }
+        if(sale == 0)
+            rate = 0;
+        else {
+            rate = profit/sale;
         }
         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                           <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
@@ -134,11 +138,11 @@
                 
                 sale += [_trade getSales];
                 profit += [_trade getProfit];
-                if(sale == 0)
-                    rate = 0;
-                else {
-                    rate = profit/sale;
-                }
+            }
+            if(sale == 0)
+                rate = 0;
+            else {
+                rate = profit/sale;
             }
             NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                               <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
@@ -155,6 +159,9 @@
               </BODY>\
               </HTML>"];
     [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
+    // Update the user interface for the detail item.
+    [self.tableView reloadData];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -421,11 +428,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    isFirstLoad = YES;
 	// Do any additional setup after loading the view, typically from a nib.
     self.startTime = [DateHelper getBeginOfDay:[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)]];
     self.endTime = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.startTime];
     
     [self settingPeriodFrom:self.startTime to:self.endTime withTag:@"ORDER_DAY"];
+
 }
 
 - (void)viewDidUnload
