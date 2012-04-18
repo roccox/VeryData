@@ -22,6 +22,11 @@
 {
     
 }
+-(NSString *) formatDouble:(double) val
+{
+    NSString * str = [[NSString alloc]initWithFormat:@"%8.2f",val];
+    return str;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

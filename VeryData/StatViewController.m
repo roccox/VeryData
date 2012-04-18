@@ -113,7 +113,7 @@
         }
         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                               <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
-                              </TR>",[[from description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+                              </TR>",[[self.startTime description] substringToIndex:10],[self formatDouble:sale],[self formatDouble:profit],[self formatDouble:rate]];
         report = [report stringByAppendingString:str];
             
         //add date
@@ -134,7 +134,7 @@
     }
     NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                       <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
-                      </TR>",@"总计",[NSNumber numberWithDouble:totalSale] ,[NSNumber numberWithDouble:totalProfit],[NSNumber numberWithDouble:totalRate]];
+                      </TR>",@"总计",[self formatDouble:totalSale] ,[self formatDouble:totalProfit],[self formatDouble:totalRate]];
     report = [report stringByAppendingFormat:str];
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\

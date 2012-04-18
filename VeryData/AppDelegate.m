@@ -36,8 +36,6 @@
 {
     topSession = session;
     [[TopData getTopData] putSession:topSession];
-    [TopData getTopData].delegate = self;
-    [[TopData getTopData]refreshTrades];
 }
 - (void) setNewDetailControllerWithTag: (NSString *) tag
 {
