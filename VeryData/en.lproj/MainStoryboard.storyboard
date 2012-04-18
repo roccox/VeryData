@@ -277,7 +277,7 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="-515" y="1638"/>
+            <point key="canvasLocation" x="-431" y="1546"/>
         </scene>
         <!--Date Sel Controller-->
         <scene sceneID="WqH-6T-EKx">
@@ -396,52 +396,70 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QRT-13-Pka">
-                                <rect key="frame" x="0.0" y="42" width="768" height="918"/>
+                            <view contentMode="scaleToFill" id="uWZ-7k-vj1">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CEg-zt-Kok">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="无进价商品" id="aIs-9u-kFK">
+                                                <connections>
+                                                    <action selector="showZeroItems:" destination="Grr-8R-LZt" id="ZEY-zP-hda"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ZAv-MV-uYH"/>
+                                            <barButtonItem title="全部商品" id="nal-r5-zDe">
+                                                <connections>
+                                                    <action selector="showAllItems:" destination="Grr-8R-LZt" id="Xhs-4G-McK"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="7O7-mk-0JA"/>
+                                            <barButtonItem style="plain" id="vMR-4I-d5Y">
+                                                <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入需要商品的关键字" minimumFontSize="17" id="54P-ub-0uN">
+                                                    <rect key="frame" x="368" y="7" width="175" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </barButtonItem>
+                                            <barButtonItem title="查找" id="9l5-yD-eQx">
+                                                <connections>
+                                                    <action selector="showSearchedItems:" destination="Grr-8R-LZt" id="1cY-sS-Pvr"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="KDY-Ne-aGL"/>
+                                            <barButtonItem title="更新商品" id="lK0-C2-4ih">
+                                                <connections>
+                                                    <action selector="refreshData:" destination="Grr-8R-LZt" id="RhW-VS-OcF"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="QRT-13-Pka">
+                                <rect key="frame" x="0.0" y="44" width="768" height="916"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="80" id="0vN-s6-0B0">
+                                        <rect key="frame" x="0.0" y="22" width="768" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Grr-8R-LZt" id="mNP-MT-FIe"/>
                                     <outlet property="delegate" destination="Grr-8R-LZt" id="WMB-3i-qfZ"/>
                                 </connections>
                             </tableView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="CEg-zt-Kok">
-                                <rect key="frame" x="0.0" y="-2" width="768" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="无进价商品" id="aIs-9u-kFK">
-                                        <connections>
-                                            <action selector="showZeroItems:" destination="Grr-8R-LZt" id="ZEY-zP-hda"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ZAv-MV-uYH"/>
-                                    <barButtonItem title="全部商品" id="nal-r5-zDe">
-                                        <connections>
-                                            <action selector="showAllItems:" destination="Grr-8R-LZt" id="Xhs-4G-McK"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="217" style="plain" systemItem="fixedSpace" id="7O7-mk-0JA"/>
-                                    <barButtonItem style="plain" id="vMR-4I-d5Y">
-                                        <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入需要商品的关键字" minimumFontSize="17" id="54P-ub-0uN">
-                                            <rect key="frame" x="434" y="7" width="175" height="31"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </barButtonItem>
-                                    <barButtonItem title="查找" id="9l5-yD-eQx">
-                                        <connections>
-                                            <action selector="showSearchedItems:" destination="Grr-8R-LZt" id="1cY-sS-Pvr"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="KDY-Ne-aGL"/>
-                                    <barButtonItem title="更新商品" id="lK0-C2-4ih">
-                                        <connections>
-                                            <action selector="refreshData:" destination="Grr-8R-LZt" id="RhW-VS-OcF"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -452,7 +470,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="349" y="1607"/>
+            <point key="canvasLocation" x="409" y="1531"/>
         </scene>
         <!--Top Session Controller-->
         <scene sceneID="Neu-Sj-jBb">

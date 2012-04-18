@@ -304,7 +304,7 @@
 		DDD272071536DF7000892FDA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 			};
 			buildConfigurationList = DDD2720A1536DF7000892FDA /* Build configuration list for PBXProject "VeryData" */;
 			compatibilityVersion = "Xcode 3.2";
