@@ -59,6 +59,24 @@
 
 - (void)configureView
 {
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        CGRect frame = CGRectMake(0,0, 703,72);
+        self.infoView.frame = frame;
+        
+        frame = CGRectMake(0,72,703,689);
+        self.tableView.frame = frame;
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        CGRect frame = CGRectMake(0,0, 703,232);
+        self.infoView.frame = frame;
+
+        frame = CGRectMake(0,232,703,529);
+        self.tableView.frame = frame;
+}
+    
+    
     if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
         self.nextBtn.enabled = NO;
     }
@@ -76,10 +94,10 @@
     //generate report
     NSString * report = @"<HTML> \
                             <BODY> \
-                                <Table> \
-                                <TR> \
-                                <TD>日期</TD><TD>销售额</TD><TD>利润额</TD><TD>利润率</TD> \
-                                </TR>";
+                            <Table border = 1  bgcolor=#fffff0> \
+                            <TR > \
+                                <TD width=124 align=center>日期</TD><TD width=124 align=right>销售额</TD><TD width=124 align=right>利润额</TD><TD width=124 align=right>利润率</TD> \
+                            </TR>";
 
     if([_tag isEqualToString:@"ORDER_DAY"])
     {
@@ -94,8 +112,8 @@
             }
         }
         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
-                             <TD>%@</TD><TD>%@</TD><TD>%@</TD><TD>%@</TD> \
-                             </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+                          <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
+                          </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
         report = [report stringByAppendingString:str];
     }
     else if([_tag isEqualToString:@"ORDER_WEEK"])
@@ -123,8 +141,8 @@
                 }
             }
             NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
-                              <TD>%@</TD><TD>%@</TD><TD>%@</TD><TD>%@</TD> \
-                              </TR>",[[dateS description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+                              <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
+                              </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
             report = [report stringByAppendingString:str];
         
             //add date
