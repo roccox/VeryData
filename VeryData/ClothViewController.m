@@ -96,6 +96,7 @@
         if(range.length > 0)
             [self.dataList addObject: _item];
     }
+    [self.searchField resignFirstResponder];
     [self configureView];
 }
 
@@ -147,7 +148,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * itemID = @"itemCellID";
-    TopItemModel *  item = [self.dataList objectAtIndex:indexPath.row];
+    TopItemModel *  _item = [self.dataList objectAtIndex:indexPath.row];
     
     NSString * str;
     {
@@ -166,11 +167,11 @@
         }
         
         //start to 
-        //        cell.image = ;
-        cell.title.text = [[NSString alloc]initWithFormat:@"%@",item.title];
-        cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: item.price]];
-        cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: item.import_price]];
-        cell.volume.text = [[NSString alloc]initWithFormat:@"最近卖出:%@",[NSNumber numberWithInt: item.volume]];
+        [cell.image setImageWithURL:[NSURL URLWithString:_item.pic_url] placeholderImage:[UIImage imageNamed:@"hold.png"]];
+        cell.title.text = [[NSString alloc]initWithFormat:@"%@",_item.title];
+        cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: _item.price]];
+        cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: _item.import_price]];
+        cell.volume.text = [[NSString alloc]initWithFormat:@"最近卖出:%@",[NSNumber numberWithInt: _item.volume]];
         
         return cell;
     }
@@ -264,7 +265,7 @@
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
-    barButtonItem.title = @"设置2";//NSLocalizedString(@"Master", @"Master");
+    barButtonItem.title = @"设置";//NSLocalizedString(@"Master", @"Master");
     [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
     self.masterPopoverController = popoverController;
 }

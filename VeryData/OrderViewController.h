@@ -13,6 +13,10 @@
 #import "EditController.h"
 #import "DateHelper.h"
 
+#import "SDWebImageManagerDelegate.h"
+#import "SDWebImageDownloaderDelegate.h"
+#import "UIImageView+WebCache.h"
+
 @interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
 
     NSString * _tag;

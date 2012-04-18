@@ -248,7 +248,9 @@
         
         //start to 
         order = (TopOrderModel *)obj;
-        //        cell.image = ;
+
+        [cell.image setImageWithURL:[NSURL URLWithString:order.pic_url] placeholderImage:[UIImage imageNamed:@"hold.png"]];
+
         cell.title.text = [[NSString alloc]initWithFormat:@"%@",order.title];
         cell.sku.text = [[NSString alloc]initWithFormat:@"%@",order.sku_name];
         cell.price.text = [[NSString alloc]initWithFormat:@"单价:%@",[NSNumber numberWithDouble: order.price]];

@@ -12,6 +12,10 @@
 
 #import "DetailViewController.h"
 
+#import "SDWebImageManagerDelegate.h"
+#import "SDWebImageDownloaderDelegate.h"
+#import "UIImageView+WebCache.h"
+
 @interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
     
     NSString * _tag;
