@@ -162,14 +162,15 @@
 {
     if(isFinished)
     {
-        [self configureView];
+        NSString * str = _tag;
         self.infoLabel.text = @"";
+        _tag = @"";
+        [self settingPeriodFrom:self.startTime to:self.endTime withTag:str];
     }
     else {
         self.infoLabel.text = tag;
     }
     
-    [self settingPeriodFrom:self.startTime to:self.endTime withTag:_tag];
 }
 
 #pragma mark - table view
