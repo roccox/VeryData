@@ -19,6 +19,8 @@
 @synthesize tableView,infoView,dataList,tradeList;
 @synthesize startTime,endTime,trade;
 
+@synthesize nextBtn,infoLabel;
+
 @synthesize masterPopoverController = _masterPopoverController;
 
 #pragma mark - Managing the detail item
@@ -27,8 +29,8 @@
 {
     if (_tag != tag) {
         _tag = tag;
-        startTime = start;
-        endTime = end;
+        self.startTime = start;
+        self.endTime = end;
         
         //get data
         TopData * topData = [TopData getTopData];
@@ -39,9 +41,9 @@
             [self.dataList removeAllObjects];
         }
         
-        for (TopTradeModel * trade in tradeList) {
-            [self.dataList addObject:trade];
-            for(TopOrderModel * order in trade.orders){
+        for (TopTradeModel * _trade in tradeList) {
+            [self.dataList addObject:_trade];
+            for(TopOrderModel * order in _trade.orders){
                 [self.dataList addObject:order];
             }
         }
@@ -57,6 +59,13 @@
 
 - (void)configureView
 {
+    if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
+        self.nextBtn.enabled = NO;
+    }
+    else {
+        self.nextBtn.enabled = YES;
+    }
+
     // Update the user interface for the detail item.
     [self.tableView reloadData];
     //calculate report
@@ -74,10 +83,10 @@
 
     if([_tag isEqualToString:@"ORDER_DAY"])
     {
-        for(TopTradeModel * trade in tradeList)
+        for(TopTradeModel * _trade in tradeList)
         {
-            sale += [trade getSales];
-            profit += [trade getProfit];
+            sale += [_trade getSales];
+            profit += [_trade getProfit];
             if(sale == 0)
                 rate = 0;
             else {
@@ -98,15 +107,15 @@
             profit = 0;
             sale = 0;
             rate = 0;
-            for(TopTradeModel * trade in tradeList)
+            for(TopTradeModel * _trade in tradeList)
             {
-                NSLog(@"pay-%@",trade.paymentTime);
-                if(([trade.paymentTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
-                   ([trade.paymentTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
+                NSLog(@"pay-%@",_trade.paymentTime);
+                if(([_trade.paymentTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
+                   ([_trade.paymentTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
                     continue;
                 
-                sale += [trade getSales];
-                profit += [trade getProfit];
+                sale += [_trade getSales];
+                profit += [_trade getProfit];
                 if(sale == 0)
                     rate = 0;
                 else {
@@ -151,7 +160,13 @@
 -(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
 {
     if(isFinished)
+    {
         [self configureView];
+        self.infoLabel.text = @"";
+    }
+    else {
+        self.infoLabel.text = tag;
+    }
 }
 
 #pragma mark - table view
@@ -163,10 +178,9 @@
     static NSString * tradeID = @"tradeCellID";
     static NSString * orderID = @"orderCellID";
     id obj = [self.dataList objectAtIndex:indexPath.row];
-    TopTradeModel * trade;
+    TopTradeModel * _trade;
     TopOrderModel * order;
     
-    NSString * str;
     if([obj isKindOfClass: [TopTradeModel class] ]) //if trade
     {
         TradeCell * cell = (TradeCell *)[self.tableView dequeueReusableCellWithIdentifier:tradeID];
@@ -184,17 +198,17 @@
         }
 
         //start to 
-        trade = (TopTradeModel *)obj;
+        _trade = (TopTradeModel *)obj;
 //        cell.image = ;
-        cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买时间:%@",trade.createdTime];
-        cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款时间:%@",trade.paymentTime];
-        cell.status.text = [[NSString alloc]initWithFormat:@"订单状态:%@",trade.status];
-        cell.buyer.text = [[NSString alloc]initWithFormat:@"买家:%@",trade.buyer_nick];
-        cell.rec_name.text = [[NSString alloc]initWithFormat:@"姓名:%@",trade.receiver_name];
-        cell.rec_city.text = [[NSString alloc]initWithFormat:@"城市:%@",trade.receiver_city];
-        cell.post_fee.text = [[NSString alloc]initWithFormat:@"邮费:%@",[NSNumber numberWithDouble: trade.post_fee]];
-        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: trade.payment]];
-        cell.service_fee.text = [[NSString alloc]initWithFormat:@"特别:%@",[NSNumber numberWithDouble: trade.service_fee]];
+        cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买时间:%@",_trade.createdTime];
+        cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款时间:%@",_trade.paymentTime];
+        cell.status.text = [[NSString alloc]initWithFormat:@"订单状态:%@",_trade.status];
+        cell.buyer.text = [[NSString alloc]initWithFormat:@"买家:%@",_trade.buyer_nick];
+        cell.rec_name.text = [[NSString alloc]initWithFormat:@"姓名:%@",_trade.receiver_name];
+        cell.rec_city.text = [[NSString alloc]initWithFormat:@"城市:%@",_trade.receiver_city];
+        cell.post_fee.text = [[NSString alloc]initWithFormat:@"邮费:%@",[NSNumber numberWithDouble: _trade.post_fee]];
+        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: _trade.payment]];
+        cell.service_fee.text = [[NSString alloc]initWithFormat:@"特别:%@",[NSNumber numberWithDouble: _trade.service_fee]];
         
         return cell;
     }
@@ -277,14 +291,89 @@
     [self configureView];
 }
 
+-(IBAction)goNext:(id)sender
+{
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        self.startTime = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.endTime];
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        self.startTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.endTime];
+    }
+    
+    //get data
+    TopData * topData = [TopData getTopData];
+    tradeList = [topData getTradesFrom:startTime to:endTime];
+    if(self.dataList == nil)
+        self.dataList = [[NSMutableArray alloc]init];
+    else {
+        [self.dataList removeAllObjects];
+    }
+    
+    for (TopTradeModel * _trade in tradeList) {
+        [self.dataList addObject:_trade];
+        for(TopOrderModel * order in _trade.orders){
+            [self.dataList addObject:order];
+        }
+    }
+    
+    [self configureView];
+}
+
+-(IBAction)goPrevious:(id)sender
+{
+    if(!self.nextBtn.enabled)
+        self.nextBtn.enabled = YES;
+    
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        self.startTime = [[NSDate alloc]initWithTimeInterval:-(24*60*60) sinceDate:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:-(24*60*60) sinceDate:self.endTime];
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        self.startTime = [[NSDate alloc]initWithTimeInterval:-(7*24*60*60) sinceDate:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:-(7*24*60*60) sinceDate:self.endTime];
+    }
+    
+    //get data
+    TopData * topData = [TopData getTopData];
+    tradeList = [topData getTradesFrom:startTime to:endTime];
+    if(self.dataList == nil)
+        self.dataList = [[NSMutableArray alloc]init];
+    else {
+        [self.dataList removeAllObjects];
+    }
+    
+    for (TopTradeModel * _trade in tradeList) {
+        [self.dataList addObject:_trade];
+        for(TopOrderModel * order in _trade.orders){
+            [self.dataList addObject:order];
+        }
+    }
+    
+    [self configureView];
+}
+
+-(IBAction)goSomeDay:(id)sender
+{
+    
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _tag = @"ORDER_DAY";
+    self.startTime = [DateHelper getBeginOfDay:[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)]];
+    self.endTime = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.startTime];
+
     [self configureView];
-    
 }
 
 - (void)viewDidUnload

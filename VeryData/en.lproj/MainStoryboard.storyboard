@@ -194,10 +194,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="703" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <items>
-                                    <barButtonItem title="&lt;&lt;" id="odh-M3-FfL"/>
-                                    <barButtonItem title="Search" id="YRo-nM-8pq"/>
-                                    <barButtonItem title=">>" id="AV0-QW-JPy"/>
-                                    <barButtonItem width="465" style="plain" systemItem="fixedSpace" id="hqV-7R-HKd"/>
+                                    <barButtonItem title="&lt;&lt;" id="odh-M3-FfL">
+                                        <connections>
+                                            <action selector="goPrevious:" destination="PHm-iQ-DKB" id="nol-lW-qww"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Search" id="YRo-nM-8pq">
+                                        <connections>
+                                            <action selector="goSomeDay:" destination="PHm-iQ-DKB" id="5aT-ro-D1d"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title=">>" id="AV0-QW-JPy">
+                                        <connections>
+                                            <action selector="goNext:" destination="PHm-iQ-DKB" id="Th0-Zl-vto"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="459" style="plain" systemItem="fixedSpace" id="hqV-7R-HKd"/>
                                     <barButtonItem title="Update" id="qfa-4M-9jP">
                                         <connections>
                                             <action selector="updateData:" destination="PHm-iQ-DKB" id="1U9-Yd-Fph"/>
@@ -230,13 +242,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9eQ-0r-f4f">
+                                <rect key="frame" x="200" y="8" width="300" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" id="oYK-MU-zUg"/>
                     <connections>
+                        <outlet property="infoLabel" destination="9eQ-0r-f4f" id="h6L-mk-cMV"/>
                         <outlet property="infoView" destination="nqG-nX-M2d" id="jZz-qJ-5y6"/>
+                        <outlet property="nextBtn" destination="AV0-QW-JPy" id="Ugi-sA-SP2"/>
                         <outlet property="tableView" destination="yfz-17-rOG" id="Uwb-0v-2LI"/>
                     </connections>
                 </viewController>
@@ -453,8 +474,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="OrderViewController" superclassName="DetailViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
             <relationships>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
                 <relationship kind="action" name="updateData:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

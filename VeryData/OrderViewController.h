@@ -11,6 +11,7 @@
 #import "DetailViewController.h"
 #import "TopData.h"
 #import "EditController.h"
+#import "DateHelper.h"
 
 @interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
 
@@ -19,6 +20,7 @@
 
 @property (nonatomic,strong) IBOutlet UITableView * tableView;
 @property (nonatomic,strong) IBOutlet UIWebView * infoView;
+@property (nonatomic,strong) IBOutlet UILabel * infoLabel;
 @property (nonatomic,strong) NSDate * startTime;
 @property (nonatomic,strong) NSDate * endTime;
 
@@ -27,7 +29,12 @@
 
 @property (nonatomic,strong) TopTradeModel * trade;
 
+@property (nonatomic,strong) IBOutlet UIBarButtonItem * nextBtn;
+
 -(void)showEditPopover:(int) val withNote:(NSString *) note;
 
 -(IBAction)updateData:(id)sender;
+-(IBAction)goNext:(id)sender;
+-(IBAction)goPrevious:(id)sender;
+-(IBAction)goSomeDay:(id)sender;
 @end
