@@ -168,6 +168,8 @@
     else {
         self.infoLabel.text = tag;
     }
+    
+    [self settingPeriodFrom:self.startTime to:self.endTime withTag:_tag];
 }
 
 #pragma mark - table view
