@@ -188,7 +188,6 @@ static NSString   * _session = @"";
         }
         //test only
         trade.orders = orders;
-        [trade print];
     }            
     
     [db close];

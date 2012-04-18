@@ -36,6 +36,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.infoView.scrollView.contentSize = CGSizeMake(703, 1536);
+    isFirstLoad = YES;
+    if(report.length >10)
+        [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
 }
 
 - (void)viewDidUnload
@@ -73,58 +77,59 @@
 - (void)configureView
 {
     //Get Data
-    
+    TopData * topData = [TopData getTopData];
     //calculate report
     double sale = 0;
     double profit = 0;
     double rate = 0;
+    double totalSale = 0;
+    double totalProfit = 0;
+    double totalRate = 0;
     
     //generate report
-    NSString * report = @"<HTML> \
+    report = @"<HTML> \
     <BODY> \
     <Table border = 1  bgcolor=#fffff0> \
     <TR > \
     <TD width=124 align=center>日期</TD><TD width=124 align=right>销售额</TD><TD width=124 align=right>利润额</TD><TD width=124 align=right>利润率</TD> \
     </TR>";
-    
-    {
-        NSDate * dateS = [[NSDate alloc]initWithTimeInterval:0 sinceDate:startTime];
-        NSDate * dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
-        for(int i=0;i<7;i++)
+    NSDate * from = self.startTime;
+    NSDate * to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
+    for (; ; ) {
+
+        self.tradeList = [topData getTradesFrom:from to:to];
+        profit = 0;
+        sale = 0;
+        rate = 0;
+        for(TopTradeModel * _trade in self.tradeList)
         {
-            profit = 0;
-            sale = 0;
-            rate = 0;
-            for(TopTradeModel * _trade in tradeList)
-            {
-                NSLog(@"pay-%@",_trade.paymentTime);
-                if(([_trade.paymentTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
-                   ([_trade.paymentTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
-                    continue;
-                
-                sale += [_trade getSales];
-                profit += [_trade getProfit];
-            }
-            if(sale == 0)
-                rate = 0;
-            else {
-                rate = profit/sale;
-            }
-            NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
-                              <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
-                              </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
-            report = [report stringByAppendingString:str];
-            
-            //add date
-            dateS = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
-            dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateE];
-            
+            sale += [_trade getSales];
+            profit += [_trade getProfit];
         }
+        if(sale == 0)
+            rate = 0;
+        else {
+            rate = profit/sale;
+        }
+        NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+                              <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
+                              </TR>",[[from description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+        report = [report stringByAppendingString:str];
+            
+        //add date
+        from = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
+        to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:to];
+        
+        if([to timeIntervalSince1970]> [self.endTime timeIntervalSince1970])
+            break;
     }
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
               </HTML>"];
-    [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
+    if(!isFirstLoad)
+        [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
+    else
+        isFirstLoad = NO;
 }
 
 - (void)didReceiveMemoryWarning

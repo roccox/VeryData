@@ -8,20 +8,15 @@
 
 #import "DetailViewController.h"
 
-
-#import "DetailViewController.h"
 #import "TopData.h"
-#import "EditController.h"
 #import "DateHelper.h"
 
-#import "SDWebImageManagerDelegate.h"
-#import "SDWebImageDownloaderDelegate.h"
-#import "UIImageView+WebCache.h"
 
 @interface StatViewController : DetailViewController <UISplitViewControllerDelegate>{
     
     NSString * _tag;
     BOOL    isFirstLoad;
+    NSString * report;
 }
 
 @property (nonatomic,strong) IBOutlet UIWebView * infoView;
