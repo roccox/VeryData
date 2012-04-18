@@ -36,7 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.infoView.scrollView.contentSize = CGSizeMake(703, 1536);
+    self.infoView.scrollView.contentSize = CGSizeMake(703, 1280);
     isFirstLoad = YES;
     if(report.length >10)
         [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
@@ -120,9 +120,22 @@
         from = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
         to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:to];
         
+        totalSale += sale;
+        totalProfit += profit;
+        
         if([to timeIntervalSince1970]> [self.endTime timeIntervalSince1970])
             break;
     }
+    //Add Total
+    if(totalSale == 0)
+        totalRate = 0;
+    else {
+        totalRate = totalProfit/totalSale;
+    }
+    NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+                      <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
+                      </TR>",@"总计",[NSNumber numberWithDouble:totalSale] ,[NSNumber numberWithDouble:totalProfit],[NSNumber numberWithDouble:totalRate]];
+    report = [report stringByAppendingFormat:str];
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
               </HTML>"];

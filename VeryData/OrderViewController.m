@@ -75,10 +75,10 @@
     }
     else if([_tag isEqualToString:@"ORDER_WEEK"])
     {
-        CGRect frame = CGRectMake(0,44, 703,232);
+        CGRect frame = CGRectMake(0,44, 703,252);
         self.infoView.frame = frame;
 
-        frame = CGRectMake(0,276,703,455);
+        frame = CGRectMake(0,296,703,435);
         self.tableView.frame = frame;
     }
     
@@ -122,6 +122,10 @@
     }
     else if([_tag isEqualToString:@"ORDER_WEEK"])
     {
+        double totalSale = 0;
+        double totalProfit = 0;
+        double totalRate = 0;
+        
         NSDate * dateS = [[NSDate alloc]initWithTimeInterval:0 sinceDate:startTime];
         NSDate * dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
         for(int i=0;i<7;i++)
@@ -152,8 +156,21 @@
             //add date
             dateS = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
             dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateE];
-
+            
+            totalSale += sale;
+            totalProfit += profit;
         }
+        //Add Total
+        if(totalSale == 0)
+            totalRate = 0;
+        else {
+            totalRate = totalProfit/totalSale;
+        }
+        NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+                          <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
+                          </TR>",@"总计",[NSNumber numberWithDouble:totalSale] ,[NSNumber numberWithDouble:totalProfit],[NSNumber numberWithDouble:totalRate]];
+        report = [report stringByAppendingFormat:str];
+
     }
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
