@@ -12,13 +12,15 @@
 
 @interface StatViewController ()
 - (void)configureView;
+- (void)calculate;
+-(void)calFinished;
 @end
 
 @implementation StatViewController
 
 
 @synthesize infoView,tradeList;
-@synthesize startTime,endTime,trade,nextBtn;
+@synthesize startTime,endTime,trade,nextBtn,infoLabel;
 
 
 @synthesize masterPopoverController = _masterPopoverController;
@@ -36,6 +38,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.infoLabel.text = @"正在计算数据,请不要动......";
     self.infoView.scrollView.contentSize = CGSizeMake(703, 1280);
     isFirstLoad = YES;
     if(report.length >10)
@@ -46,6 +49,7 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -76,6 +80,27 @@
 
 - (void)configureView
 {
+    if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
+        self.nextBtn.enabled = NO;
+    }
+    else {
+        self.nextBtn.enabled = YES;
+    }
+    
+    self.infoLabel.text = @"正在计算数据,请不要动......";
+    NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(calculate) object:nil];
+    [thread start];
+}
+
+-(void)calFinished
+{
+    
+    self.infoLabel.text = @"计算结束......";
+    [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
+
+}
+-(void)calculate
+{
     //Get Data
     TopData * topData = [TopData getTopData];
     //calculate report
@@ -96,7 +121,7 @@
     NSDate * from = self.startTime;
     NSDate * to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
     for (; ; ) {
-
+        
         self.tradeList = [topData getTradesFrom:from to:to];
         profit = 0;
         sale = 0;
@@ -112,10 +137,10 @@
             rate = profit/sale;
         }
         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
-                              <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
-                              </TR>",[[self.startTime description] substringToIndex:10],[self formatDouble:sale],[self formatDouble:profit],[self formatDouble:rate]];
+                          <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
+                          </TR>",[[from description] substringToIndex:10],[self formatDouble:sale],[self formatDouble:profit],[self formatDouble:rate]];
         report = [report stringByAppendingString:str];
-            
+        
         //add date
         from = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
         to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:to];
@@ -139,10 +164,58 @@
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
               </HTML>"];
-    if(!isFirstLoad)
-        [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
-    else
+    
+    if(isFirstLoad)
         isFirstLoad = NO;
+
+    [self performSelectorOnMainThread:@selector(calFinished) withObject:nil waitUntilDone:NO];
+}
+
+-(IBAction)goNext:(id)sender
+{
+    int count = 0;
+    if([_tag isEqualToString:@"STAT_MONTH"])
+    {
+        NSDate * refDate = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.endTime];
+        self.startTime = [DateHelper getFirstTimeOfMonth:refDate];
+        count = [DateHelper getDayCountOfMonth:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:(count*24*60*60) sinceDate:self.startTime];
+    }
+    else if([_tag isEqualToString:@"STAT_YEAR"])    //TODO
+    {
+        /*
+        self.startTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.endTime];
+         */
+    }
+        
+    [self configureView];
+}
+
+-(IBAction)goPrevious:(id)sender
+{
+    int count = 0;
+    if([_tag isEqualToString:@"STAT_MONTH"])
+    {
+        NSDate * refDate = [[NSDate alloc]initWithTimeInterval:-(24*60*60) sinceDate:self.startTime];
+        self.startTime = [DateHelper getFirstTimeOfMonth:refDate];
+        count = [DateHelper getDayCountOfMonth:self.startTime];
+        self.endTime = [[NSDate alloc]initWithTimeInterval:(count*24*60*60) sinceDate:self.startTime];
+    }
+    else if([_tag isEqualToString:@"STAT_YEAR"])    //TODO
+    {
+        /*
+         self.startTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.startTime];
+         self.endTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.endTime];
+         */
+    }
+    
+    [self configureView];
+}
+
+-(IBAction)goSomeDay:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -151,21 +224,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-
--(IBAction)goNext:(id)sender
-{
-
-}
-
--(IBAction)goPrevious:(id)sender
-{
-
-}
-
--(IBAction)goSomeDay:(id)sender
-{
-    
-}
 
 #pragma mark - View lifecycle
 

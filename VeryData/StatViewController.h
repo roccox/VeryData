@@ -21,6 +21,7 @@
 
 @property (nonatomic,strong) IBOutlet UIWebView * infoView;
 @property (nonatomic,strong) IBOutlet UIBarButtonItem * nextBtn;
+@property (nonatomic,strong) IBOutlet UILabel * infoLabel;
 @property (nonatomic,strong) NSDate * startTime;
 @property (nonatomic,strong) NSDate * endTime;
 

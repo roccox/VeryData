@@ -539,7 +539,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <action selector="goSomeDay:" destination="DRy-EM-dmy" id="vt3-C1-c2O"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title=">>" id="USf-m0-YAo">
+                                    <barButtonItem enabled="NO" title=">>" id="USf-m0-YAo">
                                         <connections>
                                             <action selector="goNext:" destination="DRy-EM-dmy" id="vu5-aM-ymY"/>
                                         </connections>
@@ -558,6 +558,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <navigationItem key="navigationItem" id="aO2-ne-VbX"/>
                     <connections>
+                        <outlet property="infoLabel" destination="WMK-b4-9bB" id="Z2t-ga-vmv"/>
                         <outlet property="infoView" destination="XPA-LK-Lik" id="O6u-0x-Lwk"/>
                         <outlet property="nextBtn" destination="USf-m0-YAo" id="KAB-w2-gSg"/>
                     </connections>
@@ -612,6 +613,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="goNext:"/>
                 <relationship kind="action" name="goPrevious:"/>
                 <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
                 <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
             </relationships>
