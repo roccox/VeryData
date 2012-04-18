@@ -27,6 +27,7 @@
 @property (nonatomic) double adjust_fee;
 @property (nonatomic) double total_fee;
 @property (nonatomic) double payment;
+@property (nonatomic,strong) NSString * refund;
 
 @property (nonatomic) long long tid;
 -(void)print;

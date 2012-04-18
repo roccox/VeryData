@@ -153,6 +153,7 @@ static NSString   * _session = @"";
         trade.adjust_fee = [rs doubleForColumn:@"adjust_fee"];
         trade.post_fee = [rs doubleForColumn:@"post_fee"];
 
+
         trade.total_fee = [rs doubleForColumn:@"total_fee"];
         trade.payment = [rs doubleForColumn:@"payment"];
         trade.paymentTime = [rs dateForColumn:@"payment_time"];
@@ -327,7 +328,7 @@ static NSString   * _session = @"";
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"taobao.trades.sold.increment.get" forKey:@"method"];
-    [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment" forKey:@"fields"];
+    [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment,order.refund_status" forKey:@"fields"];
     [params setObject:[[startTime description] substringToIndex:19] forKey:@"start_modified"];
     [params setObject:[[endTime description] substringToIndex:19] forKey:@"end_modified"];
     [params setObject:@"true" forKey:@"use_has_next"];
@@ -367,7 +368,9 @@ static NSString   * _session = @"";
 {
     NSDateFormatter * formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formatter dateFromString:string];
+    NSDate * date = [formatter dateFromString:string];
+    date =  [[NSDate alloc]initWithTimeInterval:(8*60*60) sinceDate:date];
+    return date;
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
@@ -511,6 +514,10 @@ static NSString   * _session = @"";
             else if(![self.currentElement compare:@"payment"])
             {
                 self.curOrder.payment = [string doubleValue];
+            }
+            else if(![self.currentElement compare:@"refund_status"])
+            {
+                self.curOrder.refund = string;
             }
             break;
         default:

@@ -10,7 +10,7 @@
 
 @implementation OrderCell
 
-@synthesize image,title,sku,price,num,payment,discount_fee,adjust_fee;
+@synthesize image,title,sku,price,num,payment,discount_fee,adjust_fee,status;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

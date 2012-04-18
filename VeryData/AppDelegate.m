@@ -55,8 +55,6 @@
     NSLog(@"%@",to);
 
     NSLog(@"-------------------");
-
-    NSDateComponents *components = [[NSDateComponents alloc] init];
     
     if([tag hasPrefix:@"ORDER"])        //单日或单周
     {

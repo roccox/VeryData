@@ -145,9 +145,9 @@
 				DD301579153C5D2400290164 /* OrderCell.h */,
 				DD30157A153C5D2400290164 /* OrderCell.m */,
 				DD30157C153C5D3700290164 /* OrderCell.xib */,
-				DD30157E153C637200290164 /* ItemCell.xib */,
 				DD301580153C638D00290164 /* ItemCell.h */,
 				DD301581153C638D00290164 /* ItemCell.m */,
+				DD30157E153C637200290164 /* ItemCell.xib */,
 			);
 			name = cell;
 			path = VeryData/cell;

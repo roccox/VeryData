@@ -19,5 +19,6 @@
 @property (nonatomic,strong) IBOutlet UILabel * payment;
 @property (nonatomic,strong) IBOutlet UILabel * discount_fee;
 @property (nonatomic,strong) IBOutlet UILabel * adjust_fee;
+@property (nonatomic,strong) IBOutlet UILabel * status;
 
 @end

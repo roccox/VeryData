@@ -31,7 +31,7 @@
         _tag = tag;
         self.startTime = start;
         self.endTime = end;
-        
+
         //get data
         TopData * topData = [TopData getTopData];
         tradeList = [topData getTradesFrom:startTime to:endTime];
@@ -255,6 +255,21 @@
         cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: order.payment]];
         cell.discount_fee.text = [[NSString alloc]initWithFormat:@"优惠:%@",[NSNumber numberWithDouble: order.discount_fee]];
         cell.adjust_fee.text = [[NSString alloc]initWithFormat:@"调整:%@",[NSNumber numberWithDouble: order.adjust_fee]];
+
+        if([order.refund isEqualToString:@"WAIT_SELLER_AGREE"])
+            cell.status.text = @"买家已经申请退款";
+        else if([order.refund isEqualToString:@"WAIT_BUYER_RETURN_GOODS"])
+            cell.status.text = @"卖家已经同意退款";
+        else if([order.refund isEqualToString:@"WAIT_SELLER_CONFIRM_GOODS"])
+            cell.status.text = @"买家已经退货";
+        else if([order.refund isEqualToString:@"SELLER_REFUSE_BUYER"])
+            cell.status.text = @"卖家拒绝退款";
+        else if([order.refund isEqualToString:@"CLOSED"])
+            cell.status.text = @"退款关闭";
+        else if([order.refund isEqualToString:@"SUCCESS"])
+            cell.status.text = @"退款成功";
+        else
+            cell.status.text = @"";
         
         return cell;
     }
@@ -386,11 +401,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    _tag = @"ORDER_DAY";
     self.startTime = [DateHelper getBeginOfDay:[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)]];
     self.endTime = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:self.startTime];
-
-    [self configureView];
+    
+    [self settingPeriodFrom:self.startTime to:self.endTime withTag:@"ORDER_DAY"];
 }
 
 - (void)viewDidUnload

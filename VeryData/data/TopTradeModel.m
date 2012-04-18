@@ -106,7 +106,7 @@
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
                   self.paymentTime,
-                  [NSNumber numberWithDouble: self.service_fee]
+                  [NSNumber numberWithLongLong: self.tid]
                   ];  
     }
     
