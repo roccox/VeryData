@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) UINavigationController * curController;
+
 @property (strong, nonatomic) UINavigationController * orderController;
 @property (strong, nonatomic) UINavigationController * clothController;
 @property (strong, nonatomic) UINavigationController * statController;

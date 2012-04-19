@@ -15,7 +15,7 @@
 
 @implementation AppDelegate
 
-@synthesize curController,orderController,clothController,statController;
+@synthesize orderController,clothController,statController;
 
 @synthesize dateSelController,sessionController,topSession;
 
@@ -185,7 +185,6 @@
     //Rock
     orderController = navigationController;
     clothController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"clothCtrl"];
-    curController = orderController;
     
     dateSelController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"dateSelCtrl"];
     

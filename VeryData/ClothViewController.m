@@ -153,7 +153,6 @@
     static NSString * itemID = @"itemCellID";
     TopItemModel *  _item = [self.dataList objectAtIndex:indexPath.row];
     
-    NSString * str;
     {
         ItemCell * cell = (ItemCell *)[self.tableView dequeueReusableCellWithIdentifier:itemID];
         

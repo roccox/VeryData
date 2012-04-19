@@ -28,7 +28,7 @@
                              initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSDate *beginningOfWeek = nil;
-    BOOL ok = [gregorian rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek
+    [gregorian rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek
                             interval:NULL forDate: date];
     
     beginningOfWeek = [[NSDate alloc]initWithTimeInterval:(8*60*60) sinceDate:beginningOfWeek];

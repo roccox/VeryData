@@ -18,6 +18,5 @@
 -(void)print;
 -(BOOL)save;
 -(BOOL)saveFetchTime;
--(BOOL)saveSession;
 +(AppConstant *)shareObject;
 @end

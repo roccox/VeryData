@@ -87,7 +87,6 @@ static AppConstant * single = nil;
         single = [[AppConstant alloc] init];
     
         //get data
-        BOOL result = NO;
         FMDatabase * db = [DataBase shareDB];
         [db open];
         int count = 0;
