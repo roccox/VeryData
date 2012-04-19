@@ -201,7 +201,7 @@
     popoverContent.superController =self;
     
     //popover显示的大小 
-    popoverController.popoverContentSize=CGSizeMake(320, 300); 
+    popoverController.popoverContentSize=CGSizeMake(280, 340); 
 
     //显示popover，告诉它是为一个矩形框设置popover 
     [popoverController presentPopoverFromRect:CGRectMake(0, 0, 704, 0) inView:self.view 

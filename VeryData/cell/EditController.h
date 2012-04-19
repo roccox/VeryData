@@ -18,9 +18,11 @@
 @property(nonatomic,strong)IBOutlet UIPickerView * picker;
 @property(nonatomic,strong)IBOutlet UIButton * button;
 @property(nonatomic,strong)IBOutlet UITextField * textView;
+@property(nonatomic,strong)IBOutlet UISwitch * refundSwitch;
 @property(nonatomic,strong) NSString * note;
 
 @property(nonatomic,strong) DetailViewController * superController;
 @property(nonatomic,strong) UIPopoverController * popController;
 -(IBAction)buttonOK:(id)sender;
+-(IBAction)fundSwitch:(id)sender;
 @end

@@ -50,6 +50,8 @@
             profit += order.import_price * order.num;
         }
         profit = [self getSales] - profit;
+        profit -= self.service_fee;
+        
         return profit;   
     }
     else
