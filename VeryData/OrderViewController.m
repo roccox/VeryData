@@ -21,6 +21,7 @@
 
 @synthesize nextBtn,infoLabel;
 
+
 @synthesize masterPopoverController = _masterPopoverController;
 
 #pragma mark - Managing the detail item
@@ -228,6 +229,77 @@
         self.infoLabel.text = tag;
     }
     
+}
+
+-(IBAction)allTrades:(id)sender
+{
+    [self.dataList removeAllObjects];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        [self.dataList addObject:_trade];
+        for(TopOrderModel * order in _trade.orders){
+            [self.dataList addObject:order];
+        }
+    }
+
+    [self.tableView reloadData];
+}
+
+-(IBAction)notPayTrades:(id)sender
+{
+    [self.dataList removeAllObjects];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        if([_trade.status isEqualToString:@"WAIT_BUYER_PAY"])
+        {
+            [self.dataList addObject:_trade];
+            
+            for(TopOrderModel * order in _trade.orders){
+                [self.dataList addObject:order];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];    
+}
+
+-(IBAction)payTrades:(id)sender
+{
+    [self.dataList removeAllObjects];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+           [_trade.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+           [_trade.status isEqualToString:@"TRADE_FINISHED"])
+        {
+            [self.dataList addObject:_trade];
+            
+            for(TopOrderModel * order in _trade.orders){
+                [self.dataList addObject:order];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];    
+}
+
+-(IBAction)closedTrades:(id)sender
+{
+    [self.dataList removeAllObjects];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        if([_trade.status isEqualToString:@"TRADE_CLOSED_BY_TAOBAO"] ||
+           [_trade.status isEqualToString:@"TRADE_CLOSED"])
+        {
+            [self.dataList addObject:_trade];
+            
+            for(TopOrderModel * order in _trade.orders){
+                [self.dataList addObject:order];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];    
 }
 
 #pragma mark - table view

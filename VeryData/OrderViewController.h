@@ -26,6 +26,8 @@
 @property (nonatomic,strong) IBOutlet UITableView * tableView;
 @property (nonatomic,strong) IBOutlet UIWebView * infoView;
 @property (nonatomic,strong) IBOutlet UILabel * infoLabel;
+
+
 @property (nonatomic,strong) NSDate * startTime;
 @property (nonatomic,strong) NSDate * endTime;
 
@@ -42,4 +44,9 @@
 -(IBAction)goNext:(id)sender;
 -(IBAction)goPrevious:(id)sender;
 -(IBAction)goSomeDay:(id)sender;
+
+-(IBAction)allTrades:(id)sender;
+-(IBAction)notPayTrades:(id)sender;
+-(IBAction)payTrades:(id)sender;
+-(IBAction)closedTrades:(id)sender;
 @end
