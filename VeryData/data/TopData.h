@@ -21,6 +21,7 @@ typedef enum{
     TAOBAO_PARSE_ITEM,
     TAOBAO_PARSE_TRADE,
     TAOBAO_PARSE_TRADE_ORDER,
+    TAOBAO_PARSE_ITEM_VAL,
     TAOBAO_PARSE_END
 }TaobaoPraseState;
 
@@ -60,12 +61,15 @@ typedef enum{
 
 @property(nonatomic,strong)NSString * currentElement;
 
+@property(nonatomic,strong)NSMutableArray * errList;
+
 + (TopData *)getTopData;
 
 //刷新
 -(void)putSession:(NSString *) session;      //
 -(void)refreshItems;    //异步方法
 -(void)refreshTrades;   //异步方法
+-(void)valifiedItems;   //
 
 //获取
 -(NSMutableArray *)getItems;
@@ -79,5 +83,6 @@ typedef enum{
 @protocol TaobaoDataDelegate
 @optional
 -(void) notifyItemRefresh:(BOOL)isFinished withTag:(NSString*) tag;
+-(void) notifyItemValidRefresh:(BOOL)isFinished withTag:(NSString*) tag;
 -(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag;
 @end

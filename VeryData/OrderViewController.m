@@ -204,15 +204,25 @@
 {
     
 }
-
--(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
+-(void) notifyItemValidRefresh:(BOOL)isFinished withTag:(NSString *)tag
 {
+    NSLog(@"%@",tag);
     if(isFinished)
     {
         NSString * str = _tag;
         self.infoLabel.text = @"";
         _tag = @"";
         [self settingPeriodFrom:self.startTime to:self.endTime withTag:str];
+    }
+}
+
+-(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
+{
+    NSLog(@"%@",tag);
+    if(isFinished)
+    {
+        TopData * topData = [TopData getTopData];
+        [topData valifiedItems];
     }
     else {
         self.infoLabel.text = tag;

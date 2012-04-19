@@ -18,12 +18,14 @@ static NSString   * _session = @"";
 -(void)getTradeInfo;
 -(void)notifyItemWithTag:(NSString *)tag;
 -(void)notifyTradeWithTag:(NSString *)tag;
+
+-(void)getItemByIID;
 @end
 
 @implementation TopData
 
 @synthesize delegate = _delegate;
-@synthesize curItem,curTrade,currentElement,curOrder;
+@synthesize curItem,curTrade,currentElement,curOrder,errList;
 
 
 + (TopData *)getTopData {
@@ -98,6 +100,93 @@ static NSString   * _session = @"";
     [myThread start];
 }
 
+-(void)valifiedItems
+{
+    //get missing Items IIDs
+    if(_refreshing)
+    {
+        [self.delegate notifyItemValidRefresh:YES withTag:@"BUSY"];
+        return;
+    }
+    
+    _get_count = 0;
+    _refreshing = YES;
+    
+    FMDatabase * db = [DataBase shareDB];
+	
+    [db open];
+    FMResultSet *rs = [db executeQuery:@"select distinct iid from orders where iid not in (select distinct iid from items)"];
+    
+    NSString * iid;
+    if(self.errList == nil)
+        self.errList = [[NSMutableArray alloc]init];
+    else {
+        [self.errList removeAllObjects];
+    }
+    
+    while ([rs next]) {
+        iid = [rs stringForColumn:@"iid"];
+        
+        [self.errList addObject: iid];
+    }            
+    
+    [db close];
+    //start thread to read data
+
+    //New thread
+    NSThread* myThread = [[NSThread alloc] initWithTarget:self
+                                                 selector:@selector(getItemByIID)
+                                                   object:nil];
+    [myThread start];
+    
+}
+
+-(void)getItemByIID
+{
+    _parseState = TAOBAO_PARSE_START;
+    
+    if (self.curItem == nil) {
+        self.curItem = [[TopItemModel alloc]init];
+    }
+    //chekc error counts
+    if([self.errList count] == 0)
+    {
+        //
+        [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:@"OK" waitUntilDone:NO];
+        _refreshing = NO;
+        return;
+    }
+    
+    //getting iids, 10 per groups
+    NSString * iids = @"";
+    NSString * iid = @"";
+    for(int i=0,k=0;i<[self.errList count] && k<10;i++,k++)
+    {
+        iid = [self.errList objectAtIndex:i];
+        if ([iids isEqualToString: @""])
+            iids = [iids stringByAppendingString:iid];
+        else
+            iids = [iids stringByAppendingFormat:@",%@",iid];
+        
+        [self.errList removeObjectAtIndex:i];
+        i--;
+    }
+
+    NSLog(@"%@",iids);
+    
+    //Get Items
+    NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
+    [params setObject:@"num_iid,title,volume,pic_url,price" forKey:@"fields"];
+    [params setObject:iids forKey:@"num_iids"];
+    [params setObject:@"taobao.items.list.get" forKey:@"method"];
+    
+    NSData *resultData=[Utility getResultData:params];
+    NSXMLParser *xmlParser=[[NSXMLParser alloc] initWithData:resultData];
+    [xmlParser setDelegate:self];
+    [xmlParser parse];      
+
+}
+
 //获取
 -(NSMutableArray *)getItems
 {
@@ -146,14 +235,14 @@ static NSString   * _session = @"";
         trade.createdTime = [rs dateForColumn:@"created"];
         trade.modifiedTime = [rs dateForColumn:@"modified"];
         trade.buyer_nick = [rs stringForColumn:@"buyer"];
-
+        
         trade.receiver_city = [rs stringForColumn:@"receiver_city"];
         trade.receiver_name = [rs stringForColumn:@"receiver_name"];
         trade.discount_fee = [rs doubleForColumn:@"discount_fee"];
         trade.adjust_fee = [rs doubleForColumn:@"adjust_fee"];
         trade.post_fee = [rs doubleForColumn:@"post_fee"];
-
-
+        
+        
         trade.total_fee = [rs doubleForColumn:@"total_fee"];
         trade.payment = [rs doubleForColumn:@"payment"];
         trade.paymentTime = [rs dateForColumn:@"payment_time"];
@@ -233,6 +322,20 @@ static NSString   * _session = @"";
     else 
         [self.delegate notifyTradeRefresh:NO withTag:tag];
      
+}
+
+
+-(void)notifyItemValidWithTag:(NSString *)tag
+{
+    
+    if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
+    {
+        [self.delegate notifyItemValidRefresh:YES withTag:tag];
+        _refreshing = NO;
+    }
+    else 
+        [self.delegate notifyItemValidRefresh:NO withTag:tag];
+    
 }
 
 
@@ -363,6 +466,9 @@ static NSString   * _session = @"";
         _parseState = TAOBAO_PARSE_TRADE_ORDER;
         self.curOrder = [[TopOrderModel alloc]init];
     }
+    else if ([self.currentElement isEqualToString:@"items_list_get_response"]) {
+        _parseState = TAOBAO_PARSE_ITEM_VAL;
+    }
 }
 -(NSDate *) getDateFromString:(NSString*)string
 {
@@ -377,6 +483,7 @@ static NSString   * _session = @"";
 {
     switch (_parseState) {
         case TAOBAO_PARSE_ITEM:
+        case TAOBAO_PARSE_ITEM_VAL:
             //商品列表
             if(![self.currentElement compare:@"num_iid"])
             {
@@ -401,6 +508,9 @@ static NSString   * _session = @"";
             else if(![self.currentElement compare:@"total_results"])
             {
                 _total_count=[string intValue];
+            }
+            else {
+                NSLog(@"msg---%@",string);
             }
             break;
         case TAOBAO_PARSE_TRADE:
@@ -460,9 +570,6 @@ static NSString   * _session = @"";
             else if(![self.currentElement compare:@"modified"])
             {
                 self.curTrade.modifiedTime = [self getDateFromString:string];
-            }
-            else {
-                NSLog(@"msg---%@",string);
             }
             break;
         case TAOBAO_PARSE_TRADE_ORDER:
@@ -535,9 +642,19 @@ static NSString   * _session = @"";
                 //TODO: save item to sqlite
                 [self.curItem save];
                 
+                [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
+            }
+            break;
+        case TAOBAO_PARSE_ITEM_VAL:
+            if([elementName isEqualToString:@"item"])
+            {
+                _get_count++;
+                //TODO: save item to sqlite
+                [self.curItem save];
+                
                 [self.curItem print];
                 
-                [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
+                [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
             }
             break;
             
@@ -586,6 +703,10 @@ static NSString   * _session = @"";
                 [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
             }
             break;
+        case TAOBAO_PARSE_ITEM_VAL:
+            [self performSelector:@selector(getItemByIID)];
+            break;
+            
         case TAOBAO_PARSE_TRADE:
             [AppConstant shareObject].last_fetch = endTime;
             NSLog(@"End is- %@",endTime);
