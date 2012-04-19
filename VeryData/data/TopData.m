@@ -431,7 +431,7 @@ static NSString   * _session = @"";
     
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
     [params setObject:@"taobao.trades.sold.increment.get" forKey:@"method"];
-    [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment,order.refund_status" forKey:@"fields"];
+    [params setObject:@"tid,status,buyer_nick,receiver_name,receiver_city,discount_fee,adjust_fee,post_fee,total_fee,payment,received_payment,pay_time,created,modified,orders.num,orders.num_iid,orders.title,orders.sku_properties_name,orders.oid,orders.status,orders.pic_path,orders.price,orders.adjust_fee,orders.discount_fee,orders.total_fee,orders.payment,orders.refund_status" forKey:@"fields"];
     [params setObject:[[startTime description] substringToIndex:19] forKey:@"start_modified"];
     [params setObject:[[endTime description] substringToIndex:19] forKey:@"end_modified"];
     [params setObject:@"true" forKey:@"use_has_next"];
