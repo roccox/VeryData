@@ -29,23 +29,24 @@
 }
 -(double) getSales
 {
-    double sale;
+    double sale = 0;
     if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
        [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
        [self.status isEqualToString:@"TRADE_FINISHED"]
        )
     {
-        sale = (self.payment - self.post_fee - self.service_fee);
-        
         for (TopOrderModel * order in self.orders) {
-            sale -= order.price * order.refund_num;
+            if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+               [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+               [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
+               [self.status isEqualToString:@"TRADE_FINISHED"]){
+                sale += order.total_fee - order.refund_num * order.total_fee/order.num;
+            }
+            
         }
-        return  sale;
     }
-    else {
-        return 0;
-    }
+    return  sale;
 }
 -(double) getProfit
 {
@@ -55,14 +56,16 @@
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
        [self.status isEqualToString:@"TRADE_FINISHED"]){
         for (TopOrderModel * order in self.orders) {
-            profit += order.import_price * (order.num - order.refund_num);
+            if([order.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+               [order.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+               [order.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
+               [order.status isEqualToString:@"TRADE_FINISHED"]){
+                profit += (order.total_fee - order.refund_num * order.total_fee/order.num) - order.import_price*(order.num-order.refund_num);
+            }
         }
-        profit = [self getSales] - profit;
-        
-        return profit;   
     }
-    else
-        return 0;
+    
+    return profit;   
 }
 
 -(BOOL)save

@@ -312,24 +312,24 @@
         cell.sku.text = [[NSString alloc]initWithFormat:@"%@",order.sku_name];
         cell.price.text = [[NSString alloc]initWithFormat:@"单价:%@",[NSNumber numberWithDouble: order.price]];
         cell.num.text = [[NSString alloc]initWithFormat:@" * %@ - %@",[NSNumber numberWithInt: order.num],[NSNumber numberWithInt: order.refund_num]];
-        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: order.payment]];
+        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: order.total_fee]];
         cell.discount_fee.text = [[NSString alloc]initWithFormat:@"优惠:%@",[NSNumber numberWithDouble: order.discount_fee]];
         cell.adjust_fee.text = [[NSString alloc]initWithFormat:@"调整:%@",[NSNumber numberWithDouble: order.adjust_fee]];
 
-        if([order.refund isEqualToString:@"WAIT_SELLER_AGREE"])
-            cell.status.text = @"买家已经申请退款";
-        else if([order.refund isEqualToString:@"WAIT_BUYER_RETURN_GOODS"])
-            cell.status.text = @"卖家已经同意退款";
-        else if([order.refund isEqualToString:@"WAIT_SELLER_CONFIRM_GOODS"])
-            cell.status.text = @"买家已经退货";
-        else if([order.refund isEqualToString:@"SELLER_REFUSE_BUYER"])
-            cell.status.text = @"卖家拒绝退款";
-        else if([order.refund isEqualToString:@"CLOSED"])
-            cell.status.text = @"退款关闭";
-        else if([order.refund isEqualToString:@"SUCCESS"])
-            cell.status.text = @"退款成功";
+        if([order.status isEqualToString:@"WAIT_BUYER_PAY"])
+            cell.status.text = @"等待买家付款";
+        else if([order.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
+            cell.status.text = @"等待卖家发货";
+        else if([order.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"])
+            cell.status.text = @"等待买家确认收货";
+        else if([order.status isEqualToString:@"TRADE_FINISHED"])
+            cell.status.text = @"交易成功";
+        else if([order.status isEqualToString:@"TRADE_CLOSED"])
+            cell.status.text = @"交易关闭";
+        else if([order.status isEqualToString:@"TRADE_CLOSED_BY_TAOBAO"])
+            cell.status.text = @"交易被淘宝关闭";
         else
-            cell.status.text = @"";
+            cell.status.text = order.status;
         
         return cell;
     }
@@ -396,7 +396,8 @@
     else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
         order = (TopOrderModel *) obj;
         if(val > order.num)
-            val = 0;
+            return;
+        
         order.refund_num = val;
         [order saveRefundNum];
     }
