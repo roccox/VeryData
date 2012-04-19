@@ -220,7 +220,8 @@ static NSString   * _session = @"";
     FMDatabase * db = [DataBase shareDB];
 	
     [db open];
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where payment_time >= ? and payment_time <=?",start,end];
+#if 1    
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where created >= ? and created <=? order by payment_time",start,end];
     
     NSMutableArray * array = [[NSMutableArray alloc]init];
     TopTradeModel * trade;
@@ -232,7 +233,7 @@ static NSString   * _session = @"";
         
         trade.tid = [rs longLongIntForColumn:@"tid"];
         trade.status = [rs stringForColumn:@"status"];
-        trade.createdTime = [rs dateForColumn:@"created"];
+        trade.createdTime = [rs dateForColumn:@"payment_time"];
         trade.modifiedTime = [rs dateForColumn:@"modified"];
         trade.buyer_nick = [rs stringForColumn:@"buyer"];
         
@@ -245,11 +246,44 @@ static NSString   * _session = @"";
         
         trade.total_fee = [rs doubleForColumn:@"total_fee"];
         trade.payment = [rs doubleForColumn:@"payment"];
-        trade.paymentTime = [rs dateForColumn:@"payment_time"];
+        trade.paymentTime = [rs dateForColumn:@"created"];
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
         trade.note = [rs stringForColumn:@"note"];
         
         [array addObject: trade];
+#else
+        FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where payment_time >= ? and payment_time <=? order by payment_time",start,end];
+        
+        NSMutableArray * array = [[NSMutableArray alloc]init];
+        TopTradeModel * trade;
+        NSMutableArray * orders;
+        TopOrderModel * order;
+        
+        while ([rs next]) {
+            trade = [[TopTradeModel alloc]init];
+            
+            trade.tid = [rs longLongIntForColumn:@"tid"];
+            trade.status = [rs stringForColumn:@"status"];
+            trade.createdTime = [rs dateForColumn:@"created"];
+            trade.modifiedTime = [rs dateForColumn:@"modified"];
+            trade.buyer_nick = [rs stringForColumn:@"buyer"];
+            
+            trade.receiver_city = [rs stringForColumn:@"receiver_city"];
+            trade.receiver_name = [rs stringForColumn:@"receiver_name"];
+            trade.discount_fee = [rs doubleForColumn:@"discount_fee"];
+            trade.adjust_fee = [rs doubleForColumn:@"adjust_fee"];
+            trade.post_fee = [rs doubleForColumn:@"post_fee"];
+            
+            
+            trade.total_fee = [rs doubleForColumn:@"total_fee"];
+            trade.payment = [rs doubleForColumn:@"payment"];
+            trade.paymentTime = [rs dateForColumn:@"payment_time"];
+            trade.service_fee = [rs doubleForColumn:@"service_fee"];
+            trade.note = [rs stringForColumn:@"note"];
+            
+            [array addObject: trade];
+        
+#endif
         
         //search orders
         orders = [[NSMutableArray alloc]init];
@@ -669,9 +703,8 @@ static NSString   * _session = @"";
                     order.tid = self.curTrade.tid;
                 }
                 [self.curTrade save];
-                self.curTrade.buyer_nick = @"";
                 
-                [self.curTrade print];
+                self.curTrade.buyer_nick = @"";
 
                 [self.curTrade.orders removeAllObjects];
 
