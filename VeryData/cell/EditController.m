@@ -13,7 +13,7 @@
 @end
 
 @implementation EditController
-@synthesize picker,val,valid,button,superController,popController,refundSwitch;
+@synthesize picker,val,valid,button,superController,popController,titleLabel;
 @synthesize textView,note;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,19 +36,11 @@
     
     self.textView.text = self.note;
     if([self.note hasPrefix:@"REFUND"])
-        [self.refundSwitch setOn:YES animated:NO];
+        self.titleLabel.text = @"请输入退货数量";
     else
-        [self.refundSwitch setOn:NO animated:NO];        
+        self.titleLabel.text = @"请输入瑕疵费";
 }
 
--(IBAction)fundSwitch:(id)sender
-{
-    if(self.refundSwitch.isOn)
-        self.textView.text = @"REFUND-退货";
-    else {
-        self.textView.text = @"";
-    }
-}
 
 - (void)viewDidUnload
 {
@@ -87,8 +79,6 @@
     //close
     
     [self.popController dismissPopoverAnimated:YES];
-    if(self.refundSwitch.isOn)
-        self.textView.text = @"REFUND-退货";
     [self.superController finishedEditPopover:self.val withNote:self.textView.text];
 }
 

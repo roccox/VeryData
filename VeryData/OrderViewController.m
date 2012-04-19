@@ -356,7 +356,7 @@
     }
     else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
         order = [dataList objectAtIndex:indexPath.row];
-        [self showEditPopover:order.refund_num withNote:@""];
+        [self showEditPopover:order.refund_num withNote:@"REFUND-退货"];
     }
 }
 
@@ -395,7 +395,8 @@
     }
     else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
         order = (TopOrderModel *) obj;
-        
+        if(val >= order.num)
+            val = 0;
         order.refund_num = val;
         [order saveRefundNum];
     }
