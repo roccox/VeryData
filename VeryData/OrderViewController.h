@@ -32,7 +32,7 @@
 @property (nonatomic,strong) NSMutableArray * dataList;
 @property (nonatomic,strong) NSMutableArray * tradeList;
 
-@property (nonatomic,strong) TopTradeModel * trade;
+@property (nonatomic,strong) id obj;
 
 @property (nonatomic,strong) IBOutlet UIBarButtonItem * nextBtn;
 

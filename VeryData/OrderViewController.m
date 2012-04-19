@@ -17,7 +17,7 @@
 @implementation OrderViewController
 
 @synthesize tableView,infoView,dataList,tradeList;
-@synthesize startTime,endTime,trade;
+@synthesize startTime,endTime,obj;
 
 @synthesize nextBtn,infoLabel;
 
@@ -311,7 +311,7 @@
         cell.title.text = [[NSString alloc]initWithFormat:@"%@",order.title];
         cell.sku.text = [[NSString alloc]initWithFormat:@"%@",order.sku_name];
         cell.price.text = [[NSString alloc]initWithFormat:@"单价:%@",[NSNumber numberWithDouble: order.price]];
-        cell.num.text = [[NSString alloc]initWithFormat:@" * %@",[NSNumber numberWithInt: order.num]];
+        cell.num.text = [[NSString alloc]initWithFormat:@" * %@ - %@",[NSNumber numberWithInt: order.num],[NSNumber numberWithInt: order.refund_num]];
         cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: order.payment]];
         cell.discount_fee.text = [[NSString alloc]initWithFormat:@"优惠:%@",[NSNumber numberWithDouble: order.discount_fee]];
         cell.adjust_fee.text = [[NSString alloc]initWithFormat:@"调整:%@",[NSNumber numberWithDouble: order.adjust_fee]];
@@ -345,12 +345,18 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id obj = [self.dataList objectAtIndex:indexPath.row];
-    if([obj isKindOfClass: [TopTradeModel class] ]) //if trade
+    TopTradeModel * trade;
+    TopOrderModel * order;
+    self.obj = [self.dataList objectAtIndex:indexPath.row];
+    if([self.obj isKindOfClass: [TopTradeModel class] ]) //if trade
     {        
-        self.trade = [dataList objectAtIndex:indexPath.row];
+        trade = [dataList objectAtIndex:indexPath.row];
     
-        [self showEditPopover:self.trade.service_fee withNote:self.trade.note];
+        [self showEditPopover:trade.service_fee withNote:trade.note];
+    }
+    else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
+        order = [dataList objectAtIndex:indexPath.row];
+        [self showEditPopover:order.refund_num withNote:@""];
     }
 }
 
@@ -377,9 +383,23 @@
 
 -(void)finishedEditPopover:(int)val withNote:(NSString *)note
 {
-    self.trade.service_fee = val;
-    self.trade.note = note;
-    [self.trade saveServiceFee];
+    TopTradeModel * trade;
+    TopOrderModel * order;
+    if([self.obj isKindOfClass: [TopTradeModel class] ]) //if trade
+    {        
+        trade = (TopTradeModel *)obj;
+        
+        trade.service_fee = val;
+        trade.note = note;
+        [trade saveServiceFee];
+    }
+    else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
+        order = (TopOrderModel *) obj;
+        
+        order.refund_num = val;
+        [order saveRefundNum];
+    }
+    
     [self configureView];
 }
 

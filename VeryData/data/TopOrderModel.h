@@ -29,9 +29,11 @@
 @property (nonatomic) double payment;
 @property (nonatomic,strong) NSString * refund;
 
+@property (nonatomic)int refund_num;
 @property (nonatomic) long long tid;
 -(void)print;
 
 -(BOOL)save;
+-(BOOL)saveRefundNum;
 
 @end

@@ -29,12 +29,20 @@
 }
 -(double) getSales
 {
+    double sale;
     if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
        [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
        [self.status isEqualToString:@"TRADE_FINISHED"]
        )
-        return  (self.payment - self.post_fee - self.service_fee);
+    {
+        sale = (self.payment - self.post_fee - self.service_fee);
+        
+        for (TopOrderModel * order in self.orders) {
+            sale -= order.price * order.refund_num;
+        }
+        return  sale;
+    }
     else {
         return 0;
     }
@@ -47,10 +55,9 @@
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
        [self.status isEqualToString:@"TRADE_FINISHED"]){
         for (TopOrderModel * order in self.orders) {
-            profit += order.import_price * order.num;
+            profit += order.import_price * (order.num - order.refund_num);
         }
         profit = [self getSales] - profit;
-        profit -= self.service_fee;
         
         return profit;   
     }

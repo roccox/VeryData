@@ -152,8 +152,8 @@ static NSString   * _session = @"";
     if([self.errList count] == 0)
     {
         //
-        [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:@"OK" waitUntilDone:NO];
         _refreshing = NO;
+        [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:@"OK" waitUntilDone:NO];
         return;
     }
     
@@ -273,10 +273,12 @@ static NSString   * _session = @"";
             order.total_fee = [rs2 doubleForColumn:@"total_fee"];
             order.payment = [rs2 doubleForColumn:@"payment"];
             order.tid = [rs2 longLongIntForColumn:@"tid"];
-            
+
+            order.refund_num = [rs2 intForColumn:@"refund_num"];
+
             [orders addObject: order];
         }
-        //test only
+        
         trade.orders = orders;
     }            
     
@@ -303,8 +305,8 @@ static NSString   * _session = @"";
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
     {
-        [self.delegate notifyItemRefresh:YES withTag:tag];
         _refreshing = NO;
+        [self.delegate notifyItemRefresh:YES withTag:tag];
     }
     else 
         [self.delegate notifyItemRefresh:NO withTag:tag];
@@ -316,8 +318,8 @@ static NSString   * _session = @"";
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"] || [tag isEqualToString:@"SESSION_MISSING"]) 
     {
-        [self.delegate notifyTradeRefresh:YES withTag:tag];
         _refreshing = NO;
+        [self.delegate notifyTradeRefresh:YES withTag:tag];
     }
     else 
         [self.delegate notifyTradeRefresh:NO withTag:tag];
@@ -330,8 +332,8 @@ static NSString   * _session = @"";
     
     if ([tag isEqualToString:@"OK"] || [tag isEqualToString:@"FAIL"]) 
     {
-        [self.delegate notifyItemValidRefresh:YES withTag:tag];
         _refreshing = NO;
+        [self.delegate notifyItemValidRefresh:YES withTag:tag];
     }
     else 
         [self.delegate notifyItemValidRefresh:NO withTag:tag];
@@ -423,8 +425,8 @@ static NSString   * _session = @"";
     //check end
     if(_page_count == -1)
     {
-        [self performSelectorOnMainThread:@selector(notifyTradeWithTag:) withObject:@"OK" waitUntilDone:NO];
         _refreshing = NO;
+        [self performSelectorOnMainThread:@selector(notifyTradeWithTag:) withObject:@"OK" waitUntilDone:NO];
         return;
     }
     //Get Items
@@ -529,7 +531,7 @@ static NSString   * _session = @"";
             }
             else if(![self.currentElement compare:@"buyer_nick"])
             {
-                self.curTrade.buyer_nick = string;
+                self.curTrade.buyer_nick = [self.curTrade.buyer_nick stringByAppendingString:string];
             }
             else if(![self.currentElement compare:@"receiver_name"])
             {
@@ -667,6 +669,7 @@ static NSString   * _session = @"";
                     order.tid = self.curTrade.tid;
                 }
                 [self.curTrade save];
+                self.curTrade.buyer_nick = @"";
                 
                 [self.curTrade print];
 
