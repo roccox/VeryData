@@ -174,7 +174,7 @@
         }
         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                           <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
-                          </TR>",@"总计",[NSNumber numberWithDouble:totalSale] ,[NSNumber numberWithDouble:totalProfit],[NSNumber numberWithDouble:totalRate]];
+                          </TR>",@"总计",[self formatDouble:totalSale] ,[self formatDouble:totalProfit],[self formatDouble:totalRate]];
         report = [report stringByAppendingFormat:str];
 
     }
@@ -355,9 +355,9 @@
         cell.buyer.text = [[NSString alloc]initWithFormat:@"买家:%@",_trade.buyer_nick];
         cell.rec.text = [[NSString alloc]initWithFormat:@"姓名:%@/%@",_trade.receiver_name,_trade.receiver_city];
         cell.note.text = [[NSString alloc]initWithFormat:@"备注:%@",_trade.note];
-        cell.post_fee.text = [[NSString alloc]initWithFormat:@"邮费:%@",[NSNumber numberWithDouble: _trade.post_fee]];
-        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: _trade.payment]];
-        cell.service_fee.text = [[NSString alloc]initWithFormat:@"特别:%@",[NSNumber numberWithDouble: _trade.service_fee]];
+        cell.post_fee.text = [[NSString alloc]initWithFormat:@"邮费:%@",[self formatDouble: _trade.post_fee]];
+        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[self formatDouble: _trade.payment]];
+        cell.service_fee.text = [[NSString alloc]initWithFormat:@"特别:%@",[self formatDouble: _trade.service_fee]];
         
         return cell;
     }
@@ -384,11 +384,11 @@
 
         cell.title.text = [[NSString alloc]initWithFormat:@"%@",order.title];
         cell.sku.text = [[NSString alloc]initWithFormat:@"%@",order.sku_name];
-        cell.price.text = [[NSString alloc]initWithFormat:@"单价:%@",[NSNumber numberWithDouble: order.price]];
+        cell.price.text = [[NSString alloc]initWithFormat:@"单价:%@",[self formatDouble: order.price]];
         cell.num.text = [[NSString alloc]initWithFormat:@" * %@ - %@",[NSNumber numberWithInt: order.num],[NSNumber numberWithInt: order.refund_num]];
-        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[NSNumber numberWithDouble: order.total_fee]];
-        cell.discount_fee.text = [[NSString alloc]initWithFormat:@"优惠:%@",[NSNumber numberWithDouble: order.discount_fee]];
-        cell.adjust_fee.text = [[NSString alloc]initWithFormat:@"调整:%@",[NSNumber numberWithDouble: order.adjust_fee]];
+        cell.payment.text = [[NSString alloc]initWithFormat:@"总价:%@",[self formatDouble: order.total_fee]];
+        cell.discount_fee.text = [[NSString alloc]initWithFormat:@"优惠:%@",[self formatDouble: order.discount_fee]];
+        cell.adjust_fee.text = [[NSString alloc]initWithFormat:@"调整:%@",[self formatDouble: order.adjust_fee]];
 
         if([order.status isEqualToString:@"WAIT_BUYER_PAY"])
             cell.status.text = @"等待买家付款";

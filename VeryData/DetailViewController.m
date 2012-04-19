@@ -7,6 +7,7 @@
 //
 
 #import "DetailViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation DetailViewController
 
@@ -24,7 +25,7 @@
 }
 -(NSString *) formatDouble:(double) val
 {
-    NSString * str = [[NSString alloc]initWithFormat:@"%8.2f",val];
+    NSString * str = [[NSString alloc]initWithFormat:@"%6.2f",val];
     return str;
 }
 
@@ -56,6 +57,8 @@
         UIActivityIndicatorView * cursor = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(260,300,150,150)];
         cursor.backgroundColor = [UIColor blackColor];
         [cursor setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        cursor.layer.cornerRadius = 10;
+        cursor.layer.masksToBounds = YES;
         [cursor startAnimating];
         [self.waitingView addSubview:cursor];
     }
