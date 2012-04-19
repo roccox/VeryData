@@ -10,12 +10,13 @@
 
 #import "OrderViewController.h"
 #import "ClothViewController.h"
+#import "SplashViewController.h"
 
 #import "TopData.h"
 
 @implementation AppDelegate
 
-@synthesize orderController,clothController,statController;
+@synthesize orderController,clothController,statController,splitViewController;
 
 @synthesize dateSelController,sessionController,topSession;
 
@@ -178,7 +179,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
+    SplashViewController * rootController = (SplashViewController *) self.window.rootViewController;
+    
+    splitViewController = [rootController.storyboard instantiateViewControllerWithIdentifier:@"splitCtrl"];
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
 
@@ -194,7 +197,8 @@
     
     return YES;
 }
-							
+
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*

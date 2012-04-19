@@ -36,6 +36,7 @@
 		DD5D10A1153B89CF00B7F0EB /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1098153B89CF00B7F0EB /* FMDatabaseQueue.m */; };
 		DD5D10A3153B89CF00B7F0EB /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D109B153B89CF00B7F0EB /* FMResultSet.m */; };
 		DD5D10A6153B936000B7F0EB /* verydata.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = DD5D10A5153B935F00B7F0EB /* verydata.sqlite */; };
+		DD7A4FF71540606C005CDCE1 /* SplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD7A4FF61540606C005CDCE1 /* SplashViewController.m */; };
 		DD995DEA153EB4B200F9FDE1 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DDB153EB4B200F9FDE1 /* SDImageCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD995DEB153EB4B200F9FDE1 /* SDWebImageDecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DDF153EB4B200F9FDE1 /* SDWebImageDecoder.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD995DEC153EB4B200F9FDE1 /* SDWebImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DE1153EB4B200F9FDE1 /* SDWebImageDownloader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -107,6 +108,8 @@
 		DD5D109A153B89CF00B7F0EB /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		DD5D109B153B89CF00B7F0EB /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		DD5D10A5153B935F00B7F0EB /* verydata.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = verydata.sqlite; sourceTree = "<group>"; };
+		DD7A4FF51540606C005CDCE1 /* SplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashViewController.h; sourceTree = "<group>"; };
+		DD7A4FF61540606C005CDCE1 /* SplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashViewController.m; sourceTree = "<group>"; };
 		DD995DDA153EB4B200F9FDE1 /* SDImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCache.h; sourceTree = "<group>"; };
 		DD995DDB153EB4B200F9FDE1 /* SDImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDImageCache.m; sourceTree = "<group>"; };
 		DD995DDC153EB4B200F9FDE1 /* SDImageCacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDImageCacheDelegate.h; sourceTree = "<group>"; };
@@ -302,6 +305,8 @@
 				DD5D10751538599800B7F0EB /* TopSessionController.h */,
 				DD5D10761538599900B7F0EB /* TopSessionController.m */,
 				DDD272261536DF7100892FDA /* MainStoryboard.storyboard */,
+				DD7A4FF51540606C005CDCE1 /* SplashViewController.h */,
+				DD7A4FF61540606C005CDCE1 /* SplashViewController.m */,
 				DD301583153CF9D700290164 /* res */,
 				DD5D105D1537C5A800B7F0EB /* DateSelController.h */,
 				DD5D105E1537C5A900B7F0EB /* DateSelController.m */,
@@ -432,6 +437,7 @@
 				DD995DEE153EB4B200F9FDE1 /* SDWebImagePrefetcher.m in Sources */,
 				DD995DEF153EB4B200F9FDE1 /* UIImageView+WebCache.m in Sources */,
 				DD995DF5153ECE4000F9FDE1 /* StatViewController.m in Sources */,
+				DD7A4FF71540606C005CDCE1 /* SplashViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
