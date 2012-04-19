@@ -10,7 +10,7 @@
 
 @implementation DetailViewController
 
-@synthesize masterPopoverController;
+@synthesize masterPopoverController,waitingView;
 
 #pragma mark - Managing the detail item
 -(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag
@@ -45,6 +45,27 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+-(void) showWaiting
+{
+    if(self.waitingView == nil)
+    {
+        CGRect frame = [self.view frame];
+        self.waitingView = [[UIView alloc]initWithFrame:frame];
+
+        UIActivityIndicatorView * cursor = [[UIActivityIndicatorView alloc]initWithFrame:CGRectMake(260,300,150,150)];
+        cursor.backgroundColor = [UIColor blackColor];
+        [cursor setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        [cursor startAnimating];
+        [self.waitingView addSubview:cursor];
+    }
+    if([self.waitingView superview] == nil)
+        [self.view addSubview:waitingView];
+}
+-(void) hideWaiting
+{
+    if([self.waitingView superview] != nil)
+        [self.waitingView removeFromSuperview];
+}
 #pragma mark - View lifecycle
 
 /*

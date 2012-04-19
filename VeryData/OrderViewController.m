@@ -197,6 +197,7 @@
 {
     TopData * topData = [TopData getTopData];
     topData.delegate = self;
+    [self showWaiting];
     [topData refreshTrades];
 }
 
@@ -213,6 +214,7 @@
         NSString * str = _tag;
         self.infoLabel.text = @"";
         _tag = @"";
+        [self hideWaiting];
         [self settingPeriodFrom:self.startTime to:self.endTime withTag:str];
     }
 }

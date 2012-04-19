@@ -104,6 +104,7 @@
 {
     TopData * topData = [TopData getTopData];
     topData.delegate = self;
+    [self showWaiting];
     [topData refreshItems];
 }
 
@@ -132,6 +133,8 @@
         for (TopItemModel * _item in self.itemList) {
             [self.dataList addObject:_item];
         }
+        
+        [self hideWaiting];
         //relaod
         [self configureView];
     }

@@ -87,6 +87,9 @@
         self.nextBtn.enabled = YES;
     }
     
+
+    [self showWaiting];
+    
     self.infoLabel.text = @"正在计算数据,请不要动......";
     NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(calculate) object:nil];
     [thread start];
@@ -94,9 +97,9 @@
 
 -(void)calFinished
 {
-    
     self.infoLabel.text = @"计算结束......";
     [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
+    [self hideWaiting];
 
 }
 -(void)calculate
@@ -165,8 +168,6 @@
               </BODY>\
               </HTML>"];
     
-    if(isFirstLoad)
-        isFirstLoad = NO;
 
     [self performSelectorOnMainThread:@selector(calFinished) withObject:nil waitUntilDone:NO];
 }
