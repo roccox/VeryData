@@ -34,22 +34,7 @@
         self.endTime = end;
 
         //get data
-        TopData * topData = [TopData getTopData];
-        tradeList = [topData getTradesFrom:startTime to:endTime];
-        if(self.dataList == nil)
-            self.dataList = [[NSMutableArray alloc]init];
-        else {
-            [self.dataList removeAllObjects];
-        }
-        
-        for (TopTradeModel * _trade in tradeList) {
-            [self.dataList addObject:_trade];
-            for(TopOrderModel * order in _trade.orders){
-                [self.dataList addObject:order];
-            }
-        }
-        // Update the view.
-        [self configureView];
+        [self getData];
     }
     
     if (self.masterPopoverController != nil) {
@@ -58,52 +43,46 @@
     //put data to view
 }
 
-- (void)configureView
+-(void)getData
 {
-    if([_tag isEqualToString:@"ORDER_DAY"])
-    {
-        if(!isFirstLoad)
-        {
-            CGRect frame = CGRectMake(0,44, 703,72);
-            self.infoView.frame = frame;
-        
-            frame = CGRectMake(0,116,703,615);
-            self.tableView.frame = frame;
-        }
-        else {
-            isFirstLoad = NO;
-        }
-    }
-    else if([_tag isEqualToString:@"ORDER_WEEK"])
-    {
-        CGRect frame = CGRectMake(0,44, 703,252);
-        self.infoView.frame = frame;
+    [self showWaiting];
+    
+    NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(calculate) object:nil];
+    [thread start];
+}
 
-        frame = CGRectMake(0,296,703,435);
-        self.tableView.frame = frame;
-    }
-    
-    
-    if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
-        self.nextBtn.enabled = NO;
-    }
+-(void)calculate
+{
+    //get data
+    //get data
+    TopData * topData = [TopData getTopData];
+    tradeList = [topData getTradesFrom:startTime to:endTime];
+    if(self.dataList == nil)
+        self.dataList = [[NSMutableArray alloc]init];
     else {
-        self.nextBtn.enabled = YES;
+        [self.dataList removeAllObjects];
     }
-
+    
+    for (TopTradeModel * _trade in tradeList) {
+        [self.dataList addObject:_trade];
+        for(TopOrderModel * order in _trade.orders){
+            [self.dataList addObject:order];
+        }
+    }
+    
     //calculate report
     double sale = 0;
     double profit = 0;
     double rate = 0;
     
     //generate report
-    NSString * report = @"<HTML> \
-                            <BODY> \
-                            <Table border = 1  bgcolor=#fffff0> \
-                            <TR > \
-                                <TD width=124 align=center>日期</TD><TD width=124 align=right>销售额</TD><TD width=124 align=right>利润额</TD><TD width=124 align=right>利润率</TD> \
-                            </TR>";
-
+    report = @"<HTML> \
+    <BODY> \
+    <Table border = 1  bgcolor=#fffff0> \
+    <TR > \
+    <TD width=124 align=center>日期</TD><TD width=124 align=right>销售额</TD><TD width=124 align=right>利润额</TD><TD width=124 align=right>利润率</TD> \
+    </TR>";
+    
     if([_tag isEqualToString:@"ORDER_DAY"])
     {
         for(TopTradeModel * _trade in tradeList)
@@ -120,9 +99,9 @@
                           <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
                           </TR>",[[self.startTime description] substringToIndex:10],[self formatDouble:sale],[self formatDouble:profit],[self formatDouble:rate]];
         /*
-        NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
-                          <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
-                          </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
+         NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
+         <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
+         </TR>",[[self.startTime description] substringToIndex:10],[NSNumber numberWithDouble:sale] ,[NSNumber numberWithDouble:profit],[NSNumber numberWithDouble:rate]];
          */
         report = [report stringByAppendingString:str];
     }
@@ -158,7 +137,7 @@
                               <TD align=center>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD><TD align=right>%@</TD> \
                               </TR>",[[dateS description] substringToIndex:10],[self formatDouble:sale],[self formatDouble:profit],[self formatDouble:rate]];
             report = [report stringByAppendingString:str];
-        
+            
             //add date
             dateS = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateS];
             dateE = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:dateE];
@@ -176,11 +155,55 @@
                           <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
                           </TR>",@"总计",[self formatDouble:totalSale] ,[self formatDouble:totalProfit],[self formatDouble:totalRate]];
         report = [report stringByAppendingFormat:str];
-
+        
     }
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
-              </HTML>"];
+              </HTML>"];    
+    //back to main thread
+    [self performSelectorOnMainThread:@selector(finishedCal) withObject:nil waitUntilDone:NO];
+}
+
+-(void)finishedCal
+{
+    [self hideWaiting];
+    [self configureView];
+}
+
+- (void)configureView
+{
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        if(!isFirstLoad)
+        {
+            CGRect frame = CGRectMake(0,44, 703,72);
+            self.infoView.frame = frame;
+        
+            frame = CGRectMake(0,116,703,615);
+            self.tableView.frame = frame;
+        }
+        else {
+            isFirstLoad = NO;
+        }
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        CGRect frame = CGRectMake(0,44, 703,252);
+        self.infoView.frame = frame;
+
+        frame = CGRectMake(0,296,703,435);
+        self.tableView.frame = frame;
+    }
+    
+    
+    if ([self.endTime timeIntervalSince1970] > [[[NSDate alloc]initWithTimeIntervalSinceNow:(8*60*60)] timeIntervalSince1970]) {
+        self.nextBtn.enabled = NO;
+    }
+    else {
+        self.nextBtn.enabled = YES;
+    }
+
+
     [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
     // Update the user interface for the detail item.
     [self.tableView reloadData];
@@ -491,24 +514,8 @@
         self.startTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.startTime];
         self.endTime = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.endTime];
     }
-    
-    //get data
-    TopData * topData = [TopData getTopData];
-    tradeList = [topData getTradesFrom:startTime to:endTime];
-    if(self.dataList == nil)
-        self.dataList = [[NSMutableArray alloc]init];
-    else {
-        [self.dataList removeAllObjects];
-    }
-    
-    for (TopTradeModel * _trade in tradeList) {
-        [self.dataList addObject:_trade];
-        for(TopOrderModel * order in _trade.orders){
-            [self.dataList addObject:order];
-        }
-    }
-    
-    [self configureView];
+
+    [self getData];
 }
 
 -(IBAction)goPrevious:(id)sender
@@ -527,23 +534,7 @@
         self.endTime = [[NSDate alloc]initWithTimeInterval:-(7*24*60*60) sinceDate:self.endTime];
     }
     
-    //get data
-    TopData * topData = [TopData getTopData];
-    tradeList = [topData getTradesFrom:startTime to:endTime];
-    if(self.dataList == nil)
-        self.dataList = [[NSMutableArray alloc]init];
-    else {
-        [self.dataList removeAllObjects];
-    }
-    
-    for (TopTradeModel * _trade in tradeList) {
-        [self.dataList addObject:_trade];
-        for(TopOrderModel * order in _trade.orders){
-            [self.dataList addObject:order];
-        }
-    }
-    
-    [self configureView];
+    [self getData];
 }
 
 -(IBAction)goSomeDay:(id)sender

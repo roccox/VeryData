@@ -21,6 +21,7 @@
 
     NSString * _tag;
     BOOL    isFirstLoad;
+    NSString * report;
 }
 
 @property (nonatomic,strong) IBOutlet UITableView * tableView;
@@ -49,4 +50,8 @@
 -(IBAction)notPayTrades:(id)sender;
 -(IBAction)payTrades:(id)sender;
 -(IBAction)closedTrades:(id)sender;
+
+-(void)getData;
+-(void)calculate;
+-(void)finishedCal;
 @end
