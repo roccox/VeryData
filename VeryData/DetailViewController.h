@@ -12,6 +12,7 @@
 
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 @property (strong, nonatomic) UIView * waitingView;
+@property (nonatomic) BOOL isBusy;
 
 -(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag;
 

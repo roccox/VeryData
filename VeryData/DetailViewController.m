@@ -10,7 +10,7 @@
 
 @implementation DetailViewController
 
-@synthesize masterPopoverController,waitingView;
+@synthesize masterPopoverController,waitingView,isBusy;
 
 #pragma mark - Managing the detail item
 -(void)settingPeriodFrom: (NSDate *)start to:(NSDate *) end withTag:(NSString *)tag
@@ -47,6 +47,7 @@
 
 -(void) showWaiting
 {
+    self.isBusy = YES;
     if(self.waitingView == nil)
     {
         CGRect frame = [self.view frame];
@@ -63,6 +64,7 @@
 }
 -(void) hideWaiting
 {
+    self.isBusy = NO;
     if([self.waitingView superview] != nil)
         [self.waitingView removeFromSuperview];
 }
@@ -75,13 +77,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.isBusy = NO;
 }
-*/
+
 
 - (void)viewDidUnload
 {

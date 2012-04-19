@@ -54,6 +54,9 @@
 
     NSLog(@"-------------------");
     
+    if(curDetailCtroller.isBusy)
+        return;
+    
     if([tag hasPrefix:@"ORDER"])        //单日或单周
     {
         detailRootController = orderController;
