@@ -395,7 +395,7 @@
     }
     else if ([self.obj isKindOfClass: [TopOrderModel class] ]) {
         order = (TopOrderModel *) obj;
-        if(val >= order.num)
+        if(val > order.num)
             val = 0;
         order.refund_num = val;
         [order saveRefundNum];
