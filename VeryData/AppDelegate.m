@@ -52,8 +52,6 @@
 
     NSLog(@"%@",from);
     NSLog(@"%@",to);
-
-    NSLog(@"-------------------");
     
     if(curDetailCtroller.isBusy)
         return;

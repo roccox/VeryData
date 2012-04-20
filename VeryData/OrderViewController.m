@@ -121,7 +121,6 @@
             rate = 0;
             for(TopTradeModel * _trade in tradeList)
             {
-                NSLog(@"pay-%@",_trade.createdTime);
                 if(([_trade.createdTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
                    ([_trade.createdTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
                     continue;
@@ -221,6 +220,7 @@
 {
     TopData * topData = [TopData getTopData];
     topData.delegate = self;
+    self.infoLabel.text = @"更新中......";
     [self showWaiting];
     [topData refreshTrades];
 }
@@ -245,7 +245,6 @@
 
 -(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
 {
-    NSLog(@"%@",tag);
     if(isFinished)
     {
         TopData * topData = [TopData getTopData];

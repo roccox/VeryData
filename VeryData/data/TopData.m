@@ -546,9 +546,6 @@ static NSString   * _session = @"";
             {
                 _total_count=[string intValue];
             }
-            else {
-                NSLog(@"msg---%@",string);
-            }
             break;
         case TAOBAO_PARSE_TRADE:
             //Trade信息
@@ -746,7 +743,6 @@ static NSString   * _session = @"";
             
         case TAOBAO_PARSE_TRADE:
             [AppConstant shareObject].last_fetch = endTime;
-            NSLog(@"End is- %@",endTime);
             NSLog(@"last_fetch is- %@",[AppConstant shareObject].last_fetch);
             [[AppConstant shareObject] saveFetchTime];
             [self performSelector:@selector(getTradeInfo)];

@@ -81,7 +81,6 @@
 {
     [self.dataList removeAllObjects];
     for (TopItemModel * _item in self.itemList) {
-        NSLog(@"%f",_item.import_price);
         if(_item.import_price < 0.01 && _item.import_price > -0.01)
             [self.dataList addObject: _item];
     }
@@ -104,6 +103,7 @@
 {
     TopData * topData = [TopData getTopData];
     topData.delegate = self;
+    self.searchField.text = @"更新中...";
     [self showWaiting];
     [topData refreshItems];
 }
@@ -134,10 +134,13 @@
             [self.dataList addObject:_item];
         }
         
+        self.searchField.text = @"";
         [self hideWaiting];
         //relaod
         [self configureView];
     }
+    else
+        self.searchField.text = tag;
 }
 
 -(void) notifyTradeRefresh:(BOOL)isFinished withTag:(NSString*) tag
