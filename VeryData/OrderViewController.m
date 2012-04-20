@@ -19,8 +19,9 @@
 @synthesize tableView,infoView,dataList,tradeList;
 @synthesize startTime,endTime,obj;
 
-@synthesize nextBtn,infoLabel;
+@synthesize nextBtn,infoLabel,searchBtn;
 
+@synthesize calPopController;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -120,9 +121,9 @@
             rate = 0;
             for(TopTradeModel * _trade in tradeList)
             {
-                NSLog(@"pay-%@",_trade.paymentTime);
-                if(([_trade.paymentTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
-                   ([_trade.paymentTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
+                NSLog(@"pay-%@",_trade.createdTime);
+                if(([_trade.createdTime timeIntervalSince1970] < [dateS timeIntervalSince1970]) ||
+                   ([_trade.createdTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
                     continue;
                 
                 sale += [_trade getSales];
@@ -539,7 +540,58 @@
 
 -(IBAction)goSomeDay:(id)sender
 {
+    [self showCal];
+}
+
+-(void)showCal
+{
+    NSDate * date = [[NSDate alloc]initWithTimeInterval:-(8*60*60) sinceDate:self.startTime];
+    KalViewController * calendarController = [[KalViewController alloc]initWithSelectedDate:date];
     
+    calPopController=[[UIPopoverController alloc]initWithContentViewController:calendarController]; 
+    calPopController.delegate = self;
+    
+    calendarController.popController = calPopController;
+    
+    //popover显示的大小 
+    calPopController.popoverContentSize=CGSizeMake(320, 260); 
+    
+    //显示popover，告诉它是为一个矩形框设置popover 
+    
+    [calPopController presentPopoverFromBarButtonItem:searchBtn permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//    [calPopController presentPopoverFromRect:searchBtn. inView:self.view 
+//                     permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES]; 
+}
+
+-(void)hideCal
+{
+    [self.calPopController dismissPopoverAnimated:YES];
+}
+
+- (void)didSelectDate:(KalDate *)date
+{
+    [self hideCal];
+    //
+    NSDate * from;
+    NSDate * to;
+    from = [date NSDate];
+    from = [[NSDate alloc]initWithTimeInterval:(8*60*60) sinceDate:from];
+    if([_tag isEqualToString:@"ORDER_DAY"])
+    {
+        to = [[NSDate alloc]initWithTimeInterval:(24*60*60) sinceDate:from];
+    }
+    else if([_tag isEqualToString:@"ORDER_WEEK"])
+    {
+        from = [DateHelper getFirstTimeOfWeek:from];
+        to = [[NSDate alloc]initWithTimeInterval:(7*24*60*60) sinceDate:self.endTime];
+    }
+    
+    if([from timeIntervalSince1970] < [[NSDate date] timeIntervalSince1970])
+    {
+        self.startTime = from;
+        self.endTime = to;
+        [self getData];
+    }
 }
 
 #pragma mark - View lifecycle

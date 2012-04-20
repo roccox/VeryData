@@ -17,6 +17,10 @@
 #import "SDWebImageDownloaderDelegate.h"
 #import "UIImageView+WebCache.h"
 
+#import "Kal.h"
+#import "KalDate.h"
+#import "AppDelegate.h"
+
 @interface OrderViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
 
     NSString * _tag;
@@ -28,6 +32,7 @@
 @property (nonatomic,strong) IBOutlet UIWebView * infoView;
 @property (nonatomic,strong) IBOutlet UILabel * infoLabel;
 
+@property (nonatomic,strong) UIPopoverController * calPopController;
 
 @property (nonatomic,strong) NSDate * startTime;
 @property (nonatomic,strong) NSDate * endTime;
@@ -38,6 +43,7 @@
 @property (nonatomic,strong) id obj;
 
 @property (nonatomic,strong) IBOutlet UIBarButtonItem * nextBtn;
+@property (nonatomic,strong) IBOutlet UIBarButtonItem * searchBtn;
 
 -(void)showEditPopover:(int) val withNote:(NSString *) note;
 
@@ -54,4 +60,9 @@
 -(void)getData;
 -(void)calculate;
 -(void)finishedCal;
+
+-(void)showCal;
+-(void)hideCal;
+
+- (void)didSelectDate:(KalDate *)date;
 @end

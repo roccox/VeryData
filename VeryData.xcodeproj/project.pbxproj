@@ -45,6 +45,17 @@
 		DD995DEF153EB4B200F9FDE1 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DE9153EB4B200F9FDE1 /* UIImageView+WebCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DD995DF1153EB54500F9FDE1 /* hold.png in Resources */ = {isa = PBXBuildFile; fileRef = DD995DF0153EB54500F9FDE1 /* hold.png */; };
 		DD995DF5153ECE4000F9FDE1 /* StatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */; };
+		DDBB98C515416AD90070D4C1 /* Kal.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DDBB98AD15416AD90070D4C1 /* Kal.bundle */; };
+		DDBB98C615416AD90070D4C1 /* KalDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98B015416AD90070D4C1 /* KalDataSource.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98C715416AD90070D4C1 /* KalDate.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98B215416AD90070D4C1 /* KalDate.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98C815416AD90070D4C1 /* KalGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98B415416AD90070D4C1 /* KalGridView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98C915416AD90070D4C1 /* KalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98B615416AD90070D4C1 /* KalLogic.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CA15416AD90070D4C1 /* KalMonthView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98B815416AD90070D4C1 /* KalMonthView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CB15416AD90070D4C1 /* KalTileView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98BB15416AD90070D4C1 /* KalTileView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CC15416AD90070D4C1 /* KalView.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98BD15416AD90070D4C1 /* KalView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CD15416AD90070D4C1 /* KalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98BF15416AD90070D4C1 /* KalViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CE15416AD90070D4C1 /* NSDateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98C115416AD90070D4C1 /* NSDateAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		DDBB98CF15416AD90070D4C1 /* UIViewAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = DDBB98C315416AD90070D4C1 /* UIViewAdditions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DDD272151536DF7100892FDA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272141536DF7100892FDA /* UIKit.framework */; };
 		DDD272171536DF7100892FDA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272161536DF7100892FDA /* Foundation.framework */; };
 		DDD272191536DF7100892FDA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD272181536DF7100892FDA /* CoreGraphics.framework */; };
@@ -129,6 +140,29 @@
 		DD995DF0153EB54500F9FDE1 /* hold.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hold.png; sourceTree = "<group>"; };
 		DD995DF3153ECE3D00F9FDE1 /* StatViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatViewController.h; sourceTree = "<group>"; };
 		DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatViewController.m; sourceTree = "<group>"; };
+		DDBB98AD15416AD90070D4C1 /* Kal.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Kal.bundle; sourceTree = "<group>"; };
+		DDBB98AE15416AD90070D4C1 /* Kal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kal.h; sourceTree = "<group>"; };
+		DDBB98AF15416AD90070D4C1 /* KalDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDataSource.h; sourceTree = "<group>"; };
+		DDBB98B015416AD90070D4C1 /* KalDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDataSource.m; sourceTree = "<group>"; };
+		DDBB98B115416AD90070D4C1 /* KalDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalDate.h; sourceTree = "<group>"; };
+		DDBB98B215416AD90070D4C1 /* KalDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalDate.m; sourceTree = "<group>"; };
+		DDBB98B315416AD90070D4C1 /* KalGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalGridView.h; sourceTree = "<group>"; };
+		DDBB98B415416AD90070D4C1 /* KalGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalGridView.m; sourceTree = "<group>"; };
+		DDBB98B515416AD90070D4C1 /* KalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalLogic.h; sourceTree = "<group>"; };
+		DDBB98B615416AD90070D4C1 /* KalLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalLogic.m; sourceTree = "<group>"; };
+		DDBB98B715416AD90070D4C1 /* KalMonthView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalMonthView.h; sourceTree = "<group>"; };
+		DDBB98B815416AD90070D4C1 /* KalMonthView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalMonthView.m; sourceTree = "<group>"; };
+		DDBB98B915416AD90070D4C1 /* KalPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalPrivate.h; sourceTree = "<group>"; };
+		DDBB98BA15416AD90070D4C1 /* KalTileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalTileView.h; sourceTree = "<group>"; };
+		DDBB98BB15416AD90070D4C1 /* KalTileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalTileView.m; sourceTree = "<group>"; };
+		DDBB98BC15416AD90070D4C1 /* KalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalView.h; sourceTree = "<group>"; };
+		DDBB98BD15416AD90070D4C1 /* KalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalView.m; sourceTree = "<group>"; };
+		DDBB98BE15416AD90070D4C1 /* KalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KalViewController.h; sourceTree = "<group>"; };
+		DDBB98BF15416AD90070D4C1 /* KalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KalViewController.m; sourceTree = "<group>"; };
+		DDBB98C015416AD90070D4C1 /* NSDateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDateAdditions.h; sourceTree = "<group>"; };
+		DDBB98C115416AD90070D4C1 /* NSDateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDateAdditions.m; sourceTree = "<group>"; };
+		DDBB98C215416AD90070D4C1 /* UIViewAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewAdditions.h; sourceTree = "<group>"; };
+		DDBB98C315416AD90070D4C1 /* UIViewAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewAdditions.m; sourceTree = "<group>"; };
 		DDD272101536DF7100892FDA /* VeryData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VeryData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDD272141536DF7100892FDA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		DDD272161536DF7100892FDA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -217,6 +251,7 @@
 		DD5D108E153B89CE00B7F0EB /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DDBB98AB15416AD90070D4C1 /* kal */,
 				DD995DD9153EB4B100F9FDE1 /* SDWebImage */,
 				DD301573153C53F500290164 /* cell */,
 				DD5D1090153B89CF00B7F0EB /* fmdb */,
@@ -262,6 +297,36 @@
 				DD995DE9153EB4B200F9FDE1 /* UIImageView+WebCache.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		DDBB98AB15416AD90070D4C1 /* kal */ = {
+			isa = PBXGroup;
+			children = (
+				DDBB98AD15416AD90070D4C1 /* Kal.bundle */,
+				DDBB98AE15416AD90070D4C1 /* Kal.h */,
+				DDBB98AF15416AD90070D4C1 /* KalDataSource.h */,
+				DDBB98B015416AD90070D4C1 /* KalDataSource.m */,
+				DDBB98B115416AD90070D4C1 /* KalDate.h */,
+				DDBB98B215416AD90070D4C1 /* KalDate.m */,
+				DDBB98B315416AD90070D4C1 /* KalGridView.h */,
+				DDBB98B415416AD90070D4C1 /* KalGridView.m */,
+				DDBB98B515416AD90070D4C1 /* KalLogic.h */,
+				DDBB98B615416AD90070D4C1 /* KalLogic.m */,
+				DDBB98B715416AD90070D4C1 /* KalMonthView.h */,
+				DDBB98B815416AD90070D4C1 /* KalMonthView.m */,
+				DDBB98B915416AD90070D4C1 /* KalPrivate.h */,
+				DDBB98BA15416AD90070D4C1 /* KalTileView.h */,
+				DDBB98BB15416AD90070D4C1 /* KalTileView.m */,
+				DDBB98BC15416AD90070D4C1 /* KalView.h */,
+				DDBB98BD15416AD90070D4C1 /* KalView.m */,
+				DDBB98BE15416AD90070D4C1 /* KalViewController.h */,
+				DDBB98BF15416AD90070D4C1 /* KalViewController.m */,
+				DDBB98C015416AD90070D4C1 /* NSDateAdditions.h */,
+				DDBB98C115416AD90070D4C1 /* NSDateAdditions.m */,
+				DDBB98C215416AD90070D4C1 /* UIViewAdditions.h */,
+				DDBB98C315416AD90070D4C1 /* UIViewAdditions.m */,
+			);
+			path = kal;
 			sourceTree = "<group>";
 		};
 		DDD272051536DF7000892FDA = {
@@ -395,6 +460,7 @@
 				DD30157F153C637300290164 /* ItemCell.xib in Resources */,
 				DD30158B153D35DF00290164 /* EditController.xib in Resources */,
 				DD995DF1153EB54500F9FDE1 /* hold.png in Resources */,
+				DDBB98C515416AD90070D4C1 /* Kal.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +504,16 @@
 				DD995DEF153EB4B200F9FDE1 /* UIImageView+WebCache.m in Sources */,
 				DD995DF5153ECE4000F9FDE1 /* StatViewController.m in Sources */,
 				DD7A4FF71540606C005CDCE1 /* SplashViewController.m in Sources */,
+				DDBB98C615416AD90070D4C1 /* KalDataSource.m in Sources */,
+				DDBB98C715416AD90070D4C1 /* KalDate.m in Sources */,
+				DDBB98C815416AD90070D4C1 /* KalGridView.m in Sources */,
+				DDBB98C915416AD90070D4C1 /* KalLogic.m in Sources */,
+				DDBB98CA15416AD90070D4C1 /* KalMonthView.m in Sources */,
+				DDBB98CB15416AD90070D4C1 /* KalTileView.m in Sources */,
+				DDBB98CC15416AD90070D4C1 /* KalView.m in Sources */,
+				DDBB98CD15416AD90070D4C1 /* KalViewController.m in Sources */,
+				DDBB98CE15416AD90070D4C1 /* NSDateAdditions.m in Sources */,
+				DDBB98CF15416AD90070D4C1 /* UIViewAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

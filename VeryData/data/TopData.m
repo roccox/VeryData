@@ -220,8 +220,9 @@ static NSString   * _session = @"";
     FMDatabase * db = [DataBase shareDB];
 	
     [db open];
+    //按照拍下时间计算,按照付款时间排序
 #if 1    
-    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where created >= ? and created <=? order by payment_time",start,end];
+    FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where created >= ? and created <=? order by payment_time desc",start,end];
     
     NSMutableArray * array = [[NSMutableArray alloc]init];
     TopTradeModel * trade;
@@ -233,7 +234,7 @@ static NSString   * _session = @"";
         
         trade.tid = [rs longLongIntForColumn:@"tid"];
         trade.status = [rs stringForColumn:@"status"];
-        trade.createdTime = [rs dateForColumn:@"payment_time"];
+        trade.createdTime = [rs dateForColumn:@"created"];
         trade.modifiedTime = [rs dateForColumn:@"modified"];
         trade.buyer_nick = [rs stringForColumn:@"buyer"];
         
@@ -246,7 +247,7 @@ static NSString   * _session = @"";
         
         trade.total_fee = [rs doubleForColumn:@"total_fee"];
         trade.payment = [rs doubleForColumn:@"payment"];
-        trade.paymentTime = [rs dateForColumn:@"created"];
+        trade.paymentTime = [rs dateForColumn:@"payment_time"];
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
         trade.note = [rs stringForColumn:@"note"];
         
