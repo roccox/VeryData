@@ -24,17 +24,35 @@
     return self;
 }
 
--(IBAction)going:(id)sender
+-(void)startMonitor
 {
-    NSLog(@"%@",self.passField.text);
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self selector:@selector(passInput) name:UITextFieldTextDidChangeNotification  object:self.passField];
+}
+
+-(void)passInput
+{
     if([self.passField.text isEqualToString:@"hoo"])
     {
-        AppDelegate * delegate = [UIApplication sharedApplication].delegate;
+        [self endMonitor];
+        self.passField.text = @"";
+        AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        delegate.splashController = self;
         delegate.window.rootViewController = delegate.splitViewController;
     }
-    else
-        self.passField.text = @"";
 }
+
+-(void)endMonitor
+{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center removeObserver:self name:UITextFieldTextDidChangeNotification object:self.passField];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{   
+    [self startMonitor];
+}
+
 
 - (void)viewDidLoad
 {

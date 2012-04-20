@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SplashViewController : UIViewController
+@interface SplashViewController : UIViewController<UITextFieldDelegate>{
+    
+}
 
 @property (strong,nonatomic) IBOutlet UITextField * passField;
 
--(IBAction)going:(id)sender;
+-(void)startMonitor;
+-(void)endMonitor;
+
+-(void)passInput;
 @end
