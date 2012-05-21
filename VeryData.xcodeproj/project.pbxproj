@@ -69,6 +69,7 @@
 		DDE6B3941569ED0A007C2CF4 /* IPadAppIcon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3921569ED0A007C2CF4 /* IPadAppIcon@2X.png */; };
 		DDE6B3961569EE5D007C2CF4 /* IPadAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3951569EE5C007C2CF4 /* IPadAppIcon.png */; };
 		DDE6B3981569EE68007C2CF4 /* IPadAppIcon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3971569EE68007C2CF4 /* IPadAppIcon@2X.png */; };
+		DDE6B39B1569F799007C2CF4 /* SentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE6B39A1569F799007C2CF4 /* SentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +187,8 @@
 		DDE6B3921569ED0A007C2CF4 /* IPadAppIcon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IPadAppIcon@2X.png"; sourceTree = "<group>"; };
 		DDE6B3951569EE5C007C2CF4 /* IPadAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IPadAppIcon.png; sourceTree = "<group>"; };
 		DDE6B3971569EE68007C2CF4 /* IPadAppIcon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IPadAppIcon@2X.png"; sourceTree = "<group>"; };
+		DDE6B3991569F798007C2CF4 /* SentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SentViewController.h; sourceTree = "<group>"; };
+		DDE6B39A1569F799007C2CF4 /* SentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -399,6 +402,8 @@
 				DD995DF3153ECE3D00F9FDE1 /* StatViewController.h */,
 				DD995DF4153ECE3E00F9FDE1 /* StatViewController.m */,
 				DDD2721B1536DF7100892FDA /* Supporting Files */,
+				DDE6B3991569F798007C2CF4 /* SentViewController.h */,
+				DDE6B39A1569F799007C2CF4 /* SentViewController.m */,
 			);
 			path = VeryData;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				DDBB98CD15416AD90070D4C1 /* KalViewController.m in Sources */,
 				DDBB98CE15416AD90070D4C1 /* NSDateAdditions.m in Sources */,
 				DDBB98CF15416AD90070D4C1 /* UIViewAdditions.m in Sources */,
+				DDE6B39B1569F799007C2CF4 /* SentViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

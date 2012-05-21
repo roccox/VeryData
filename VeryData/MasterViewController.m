@@ -109,6 +109,11 @@
 			stringURL = @"CLOTH_ALL";
 		}
 	}
+	else if (section==3){
+		if (row==0) {
+			stringURL = @"DELIVERY_ALL";
+		}
+	}
 	
     AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
         

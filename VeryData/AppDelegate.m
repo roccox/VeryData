@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 
-@synthesize orderController,clothController,statController,splitViewController,splashController;
+@synthesize orderController,clothController,statController,splitViewController,splashController,sentViewController;
 
 @synthesize dateSelController,sessionController,topSession;
 
@@ -88,6 +88,11 @@
     else if([tag hasPrefix:@"CLOTH"])   //商品
     {
         detailRootController = clothController;
+    }
+    else if ([tag hasPrefix:@"DELIVERY"]) {
+        detailRootController = sentViewController;
+        to = [[NSDate alloc]initWithTimeIntervalSinceNow:8*60*60];
+        from = [[NSDate alloc]initWithTimeInterval:(-7*24*60*60) sinceDate:from];
     }
     DetailViewController* detailController = detailRootController.topViewController;
 
@@ -193,6 +198,7 @@
 
     statController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"statCtrl"];
     
+    sentViewController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"sentCtrl"];
     return YES;
 }
 

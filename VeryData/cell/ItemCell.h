@@ -13,6 +13,7 @@
 @property (nonatomic,strong) IBOutlet UIImageView * image;
 @property (nonatomic,strong) IBOutlet UILabel * title;
 @property (nonatomic,strong) IBOutlet UILabel * price;
+@property (nonatomic,strong) IBOutlet UILabel * sku;
 @property (nonatomic,strong) IBOutlet UILabel * volume;
 @property (nonatomic,strong) IBOutlet UILabel * import_price;
 

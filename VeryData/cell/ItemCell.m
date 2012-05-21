@@ -9,7 +9,7 @@
 #import "ItemCell.h"
 
 @implementation ItemCell
-@synthesize title,image,price,volume,import_price;
+@synthesize title,image,price,volume,import_price,sku;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {

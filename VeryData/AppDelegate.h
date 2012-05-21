@@ -15,6 +15,7 @@
 #import "TopData.h"
 #import "DateHelper.h"
 #import "SplashViewController.h"
+#import "SentViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,TaobaoDataDelegate>
 {
@@ -27,6 +28,8 @@
 @property (strong, nonatomic) UINavigationController * orderController;
 @property (strong, nonatomic) UINavigationController * clothController;
 @property (strong, nonatomic) UINavigationController * statController;
+@property(strong,nonatomic) UINavigationController * sentViewController;
+
 @property (strong, nonatomic) SplashViewController * splashController;
 
 @property(strong,nonatomic) DateSelController * dateSelController;
