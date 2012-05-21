@@ -43,8 +43,8 @@
                [self.status isEqualToString:@"TRADE_FINISHED"]){
                 sale += order.total_fee - order.refund_num * order.total_fee/order.num;
             }
-            
         }
+        sale -= self.service_fee;
     }
     return  sale;
 }
@@ -63,6 +63,7 @@
                 profit += (order.total_fee - order.refund_num * order.total_fee/order.num) - order.import_price*(order.num-order.refund_num);
             }
         }
+        profit -= self.service_fee;
     }
     
     return profit;   
