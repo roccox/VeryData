@@ -65,6 +65,10 @@
 		DDD272281536DF7100892FDA /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDD272261536DF7100892FDA /* MainStoryboard.storyboard */; };
 		DDD2722B1536DF7100892FDA /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722A1536DF7100892FDA /* MasterViewController.m */; };
 		DDD2722E1536DF7100892FDA /* OrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DDD2722D1536DF7100892FDA /* OrderViewController.m */; };
+		DDE6B3931569ED0A007C2CF4 /* IPadAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3911569ED0A007C2CF4 /* IPadAppIcon.png */; };
+		DDE6B3941569ED0A007C2CF4 /* IPadAppIcon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3921569ED0A007C2CF4 /* IPadAppIcon@2X.png */; };
+		DDE6B3961569EE5D007C2CF4 /* IPadAppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3951569EE5C007C2CF4 /* IPadAppIcon.png */; };
+		DDE6B3981569EE68007C2CF4 /* IPadAppIcon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = DDE6B3971569EE68007C2CF4 /* IPadAppIcon@2X.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +182,10 @@
 		DDD2722A1536DF7100892FDA /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		DDD2722C1536DF7100892FDA /* OrderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderViewController.h; sourceTree = "<group>"; };
 		DDD2722D1536DF7100892FDA /* OrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OrderViewController.m; sourceTree = "<group>"; };
+		DDE6B3911569ED0A007C2CF4 /* IPadAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IPadAppIcon.png; sourceTree = "<group>"; };
+		DDE6B3921569ED0A007C2CF4 /* IPadAppIcon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IPadAppIcon@2X.png"; sourceTree = "<group>"; };
+		DDE6B3951569EE5C007C2CF4 /* IPadAppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IPadAppIcon.png; sourceTree = "<group>"; };
+		DDE6B3971569EE68007C2CF4 /* IPadAppIcon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "IPadAppIcon@2X.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +228,8 @@
 		DD301583153CF9D700290164 /* res */ = {
 			isa = PBXGroup;
 			children = (
+				DDE6B3911569ED0A007C2CF4 /* IPadAppIcon.png */,
+				DDE6B3921569ED0A007C2CF4 /* IPadAppIcon@2X.png */,
 				DD995DF0153EB54500F9FDE1 /* hold.png */,
 			);
 			path = res;
@@ -332,6 +342,8 @@
 		DDD272051536DF7000892FDA = {
 			isa = PBXGroup;
 			children = (
+				DDE6B3971569EE68007C2CF4 /* IPadAppIcon@2X.png */,
+				DDE6B3951569EE5C007C2CF4 /* IPadAppIcon.png */,
 				DDD2721A1536DF7100892FDA /* VeryData */,
 				DDD272131536DF7100892FDA /* Frameworks */,
 				DDD272111536DF7100892FDA /* Products */,
@@ -461,6 +473,10 @@
 				DD30158B153D35DF00290164 /* EditController.xib in Resources */,
 				DD995DF1153EB54500F9FDE1 /* hold.png in Resources */,
 				DDBB98C515416AD90070D4C1 /* Kal.bundle in Resources */,
+				DDE6B3931569ED0A007C2CF4 /* IPadAppIcon.png in Resources */,
+				DDE6B3941569ED0A007C2CF4 /* IPadAppIcon@2X.png in Resources */,
+				DDE6B3961569EE5D007C2CF4 /* IPadAppIcon.png in Resources */,
+				DDE6B3981569EE68007C2CF4 /* IPadAppIcon@2X.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

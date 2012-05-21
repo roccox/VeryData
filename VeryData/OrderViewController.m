@@ -206,7 +206,8 @@
 
     [self.infoView loadHTMLString:report baseURL:[[NSURL alloc]initWithString: @"http://localhost/"]];
     // Update the user interface for the detail item.
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
+    [self allTrades:self];
 
 }
 
@@ -258,38 +259,52 @@
 
 -(IBAction)allTrades:(id)sender
 {
+    int tradeCount = 0;
+    int itemCount = 0;
     [self.dataList removeAllObjects];
     
     for (TopTradeModel * _trade in tradeList) {
         [self.dataList addObject:_trade];
+        tradeCount++;
+
         for(TopOrderModel * order in _trade.orders){
             [self.dataList addObject:order];
+            itemCount += order.num;
         }
     }
 
     [self.tableView reloadData];
+    self.infoLabel.text = [[NSString alloc]initWithFormat:@"全:%d单%d件",tradeCount,itemCount];
 }
 
 -(IBAction)notPayTrades:(id)sender
 {
+    int tradeCount = 0;
+    int itemCount = 0;
+    double notPaySale = 0;
     [self.dataList removeAllObjects];
     
     for (TopTradeModel * _trade in tradeList) {
         if([_trade.status isEqualToString:@"WAIT_BUYER_PAY"])
         {
             [self.dataList addObject:_trade];
-            
+            tradeCount++;
             for(TopOrderModel * order in _trade.orders){
                 [self.dataList addObject:order];
+                itemCount += order.num;
+                notPaySale += order.total_fee;
             }
         }
     }
     
     [self.tableView reloadData];    
+    self.infoLabel.text = [[NSString alloc]initWithFormat:@"未:%d单%d件%4.2f元",tradeCount,itemCount,notPaySale];
 }
 
 -(IBAction)payTrades:(id)sender
 {
+    int tradeCount = 0;
+    int itemCount = 0;
     [self.dataList removeAllObjects];
     
     for (TopTradeModel * _trade in tradeList) {
@@ -298,18 +313,23 @@
            [_trade.status isEqualToString:@"TRADE_FINISHED"])
         {
             [self.dataList addObject:_trade];
+            tradeCount++;
             
             for(TopOrderModel * order in _trade.orders){
                 [self.dataList addObject:order];
+                itemCount += order.num;
             }
         }
     }
     
     [self.tableView reloadData];    
+    self.infoLabel.text = [[NSString alloc]initWithFormat:@"卖:%d单%d件",tradeCount,itemCount];
 }
 
 -(IBAction)closedTrades:(id)sender
 {
+    int tradeCount = 0;
+    int itemCount = 0;
     [self.dataList removeAllObjects];
     
     for (TopTradeModel * _trade in tradeList) {
@@ -317,14 +337,17 @@
            [_trade.status isEqualToString:@"TRADE_CLOSED"])
         {
             [self.dataList addObject:_trade];
+            tradeCount++;
             
             for(TopOrderModel * order in _trade.orders){
                 [self.dataList addObject:order];
+                itemCount += order.num;
             }
         }
     }
     
     [self.tableView reloadData];    
+    self.infoLabel.text = [[NSString alloc]initWithFormat:@"关:%d单%d件",tradeCount,itemCount];
 }
 
 #pragma mark - table view
@@ -358,7 +381,10 @@
         //start to 
         _trade = (TopTradeModel *)obj;
         cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买:%@",[[_trade.createdTime description] substringToIndex:19]];
-        cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款:%@",[[_trade.paymentTime description] substringToIndex:19]];
+        if([_trade.paymentTime timeIntervalSince1970] < [_trade.createdTime timeIntervalSince1970])
+            cell.paymentTime.text = @"未付款";
+        else
+            cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款:%@",[[_trade.paymentTime description] substringToIndex:19]];
         if([_trade.status isEqualToString:@"WAIT_BUYER_PAY"])
             cell.status.text = @"等待买家付款";
         else if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
