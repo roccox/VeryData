@@ -76,6 +76,8 @@ typedef enum{
 
 -(NSMutableArray *)getTradesFrom:(NSDate *)start to:(NSDate *)end;
 
+-(NSMutableArray *)getUnSentTrades;
+
 
 //inner
 @end

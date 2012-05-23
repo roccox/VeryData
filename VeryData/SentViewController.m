@@ -74,9 +74,10 @@
     else {
         [self.itemList removeAllObjects];
     }
-    
+
     //get trade and orders
-    NSMutableArray * tradeList = [topData getTradesFrom:self.startTime to:self.endTime];
+//    NSMutableArray * tradeList = [topData getTradesFrom:self.startTime to:self.endTime];
+    NSMutableArray * tradeList = [topData getUnSentTrades];
     
     for (TopTradeModel * _trade in tradeList) {
         if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
