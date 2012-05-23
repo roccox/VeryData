@@ -308,9 +308,7 @@
     [self.dataList removeAllObjects];
     
     for (TopTradeModel * _trade in tradeList) {
-        if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
-           [_trade.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
-           [_trade.status isEqualToString:@"TRADE_FINISHED"])
+        if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
         {
             [self.dataList addObject:_trade];
             tradeCount++;
@@ -326,6 +324,28 @@
     self.infoLabel.text = [[NSString alloc]initWithFormat:@"卖:%d单%d件",tradeCount,itemCount];
 }
 
+-(IBAction)sentTrades:(id)sender
+{
+    int tradeCount = 0;
+    int itemCount = 0;
+    [self.dataList removeAllObjects];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        if([_trade.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"])
+        {
+            [self.dataList addObject:_trade];
+            tradeCount++;
+            
+            for(TopOrderModel * order in _trade.orders){
+                [self.dataList addObject:order];
+                itemCount += order.num;
+            }
+        }
+    }
+    
+    [self.tableView reloadData];    
+    self.infoLabel.text = [[NSString alloc]initWithFormat:@"发:%d单%d件",tradeCount,itemCount];
+}
 -(IBAction)closedTrades:(id)sender
 {
     int tradeCount = 0;

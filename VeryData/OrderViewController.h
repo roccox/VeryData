@@ -55,6 +55,7 @@
 -(IBAction)allTrades:(id)sender;
 -(IBAction)notPayTrades:(id)sender;
 -(IBAction)payTrades:(id)sender;
+-(IBAction)sentTrades:(id)sender;
 -(IBAction)closedTrades:(id)sender;
 
 -(void)getData;

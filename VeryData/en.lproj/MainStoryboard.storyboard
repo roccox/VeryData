@@ -237,7 +237,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TmP-Of-RUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="PHm-iQ-DKB" customClass="OrderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYT-Mb-OmP">
-                        <rect key="frame" x="0.0" y="64" width="703" height="704"/>
+                        <rect key="frame" x="0.0" y="64" width="703" height="660"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="l1P-z3-Ckc">
@@ -264,17 +264,22 @@
                                             <action selector="allTrades:" destination="PHm-iQ-DKB" id="ana-KD-gzJ"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="未付款" id="9eD-nN-hgn">
+                                    <barButtonItem title="未款" id="9eD-nN-hgn">
                                         <connections>
                                             <action selector="notPayTrades:" destination="PHm-iQ-DKB" id="2oc-PG-kW5"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="已付款" id="nsk-ge-iJq">
+                                    <barButtonItem title="已款" id="nsk-ge-iJq">
                                         <connections>
                                             <action selector="payTrades:" destination="PHm-iQ-DKB" id="Idf-BX-uxT"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem title="已关闭" id="nK3-YT-M8u">
+                                    <barButtonItem title="已发" id="LVT-DK-SAZ">
+                                        <connections>
+                                            <action selector="sentTrades:" destination="PHm-iQ-DKB" id="xyK-M9-FHY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="关闭" id="nK3-YT-M8u">
                                         <connections>
                                             <action selector="closedTrades:" destination="PHm-iQ-DKB" id="iOp-MZ-Lyh"/>
                                         </connections>
@@ -288,7 +293,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="yfz-17-rOG">
-                                <rect key="frame" x="0.0" y="116" width="703" height="588"/>
+                                <rect key="frame" x="0.0" y="116" width="703" height="544"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -323,7 +328,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="hrY-HG-N4C"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="oYK-MU-zUg"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="infoLabel" destination="9eQ-0r-f4f" id="h6L-mk-cMV"/>
                         <outlet property="infoView" destination="nqG-nX-M2d" id="jZz-qJ-5y6"/>

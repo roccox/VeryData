@@ -452,15 +452,17 @@ static NSString   * _session = @"";
         self.curTrade.orders = [[NSMutableArray alloc]init];
     }
 
-    NSString * page_no = [[NSString alloc]initWithFormat:@"%d",_page_count];
     
     //get startTime and endTime, 
     [self prepareTradeParam];
-    
+
+    NSString * page_no = [[NSString alloc]initWithFormat:@"%d",_page_count];
+
     //check end
     if(_page_count == -1)
     {
         _refreshing = NO;
+        _page_count = 1;
         [self performSelectorOnMainThread:@selector(notifyTradeWithTag:) withObject:@"OK" waitUntilDone:NO];
         return;
     }
@@ -474,7 +476,7 @@ static NSString   * _session = @"";
     [params setObject:@"true" forKey:@"use_has_next"];
     [params setObject:page_no  forKey:@"page_no"];
 
-
+    
     [params setObject:_session forKey:@"session"];
     
     NSData *resultData=[Utility getResultData:params];
