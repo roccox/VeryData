@@ -696,6 +696,8 @@ static NSString   * _session = @"";
             if([elementName isEqualToString:@"trade"])
             {
                 _get_count++;
+                if(self.curTrade.paymentTime == nil)
+                    self.curTrade.paymentTime = [[NSDate alloc]initWithTimeInterval:0 sinceDate:self.curTrade.createdTime];
                 //TODO: save to sqlite
                 for (TopOrderModel * order in self.curTrade.orders) {
                     order.tid = self.curTrade.tid;
@@ -703,6 +705,7 @@ static NSString   * _session = @"";
                 [self.curTrade save];
                 
                 self.curTrade.buyer_nick = @"";
+                self.curTrade.paymentTime = nil;
 
                 [self.curTrade.orders removeAllObjects];
 

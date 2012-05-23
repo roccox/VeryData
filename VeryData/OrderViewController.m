@@ -381,7 +381,7 @@
         //start to 
         _trade = (TopTradeModel *)obj;
         cell.createdTime.text = [[NSString alloc]initWithFormat:@"购买:%@",[[_trade.createdTime description] substringToIndex:19]];
-        if([_trade.paymentTime timeIntervalSince1970] < [_trade.createdTime timeIntervalSince1970])
+        if([_trade.paymentTime timeIntervalSince1970] <= [_trade.createdTime timeIntervalSince1970])
             cell.paymentTime.text = @"未付款";
         else
             cell.paymentTime.text = [[NSString alloc]initWithFormat:@"付款:%@",[[_trade.paymentTime description] substringToIndex:19]];
