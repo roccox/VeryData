@@ -30,4 +30,7 @@
 @property (nonatomic,strong) NSMutableArray * dataList;
 @property (nonatomic,strong) NSMutableArray * itemList;
 
+@property (nonatomic,strong) NSDate * startTime;
+@property (nonatomic,strong) NSDate * endTime;
+
 @end

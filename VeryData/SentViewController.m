@@ -11,11 +11,13 @@
 
 @interface SentViewController ()
 - (void)configureView;
+- (void)calculate;
+-(void)calFinished;
 @end
 
 @implementation SentViewController
 
-@synthesize popController,tableView,dataList,itemList,infoLabel;
+@synthesize popController,tableView,dataList,itemList,infoLabel,startTime,endTime;
 
 @synthesize masterPopoverController = _masterPopoverController;
 
@@ -34,76 +36,14 @@
     if (1) {
 //        _tag = tag;
         
-        //get data
-        TopData * topData = [TopData getTopData];
-        if(self.dataList == nil)
-            self.dataList = [[NSMutableArray alloc]init];
-        else {
-            [self.dataList removeAllObjects];
-        }
-        if(self.itemList == nil)
-            self.itemList = [[NSMutableArray alloc]init];
-        else {
-            [self.itemList removeAllObjects];
-        }
-        
-        //get trade and orders
-        NSMutableArray * tradeList = [topData getTradesFrom:start to:end];
-        
-        for (TopTradeModel * _trade in tradeList) {
-            if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
-                for(TopOrderModel * order in _trade.orders){
-                    [self.dataList addObject:order];
-                }
-        }
-        //convert to items
-        TopOrderModel * order;
-        TopItemModel * item;
-        BOOL found = NO;
-        for(int i=0;i<[dataList count];i++)
-        {
-            found = NO;
-            order = (TopOrderModel *) [dataList objectAtIndex:i];
-            for (TopItemModel * _item in itemList) {
-                if(order.num_iid == _item.num_iid && [order.sku_name isEqualToString:_item.note])
-                {
-                    _item.volume += order.num;
-                    [dataList removeObjectAtIndex:i];
-                    i--;
-                    found = YES;
-                }
-            }
-            
-            //not found
-            if(!found)
-            {
-                item = [[TopItemModel alloc]init];
-                item.num_iid = order.num_iid;
-                item.title = order.title;
-                item.volume = order.num;
-                item.price = order.price;
-                item.import_price = order.import_price;
-                item.pic_url = order.pic_url;
-                item.note = order.sku_name;
-            [itemList addObject:item];
-            }
-        }
-        
-        //re-order items
-        TopItemModel * item2;
-        for(int i=0;i<[itemList count];i++)
-        {
-            item = (TopItemModel *) [itemList objectAtIndex:i];
-            for (int j=i+2;j<[itemList count];j++){
-                item2 = (TopItemModel *) [itemList objectAtIndex:j];
-                if(item.num_iid == item2.num_iid)
-                {
-                    [itemList exchangeObjectAtIndex:i+1 withObjectAtIndex:j];
-                    break;  //break 
-                }
-            }
-        }
 
+        self.startTime = start;
+        self.endTime = end;
+        [self showWaiting];
+        
+        self.infoLabel.text = @"正在计算数据,请不要动......";
+        NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(calculate) object:nil];
+        [thread start];
         // Update the view.
         [self configureView];
     }
@@ -113,6 +53,87 @@
     }        
 }
 
+-(void)calFinished
+{
+    [self hideWaiting];    
+    self.infoLabel.text = @"计算结束......";
+    [self configureView];
+}
+
+-(void)calculate
+{
+    //get data
+    TopData * topData = [TopData getTopData];
+    if(self.dataList == nil)
+        self.dataList = [[NSMutableArray alloc]init];
+    else {
+        [self.dataList removeAllObjects];
+    }
+    if(self.itemList == nil)
+        self.itemList = [[NSMutableArray alloc]init];
+    else {
+        [self.itemList removeAllObjects];
+    }
+    
+    //get trade and orders
+    NSMutableArray * tradeList = [topData getTradesFrom:self.startTime to:self.endTime];
+    
+    for (TopTradeModel * _trade in tradeList) {
+        if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
+            for(TopOrderModel * order in _trade.orders){
+                [self.dataList addObject:order];
+            }
+    }
+    //convert to items
+    TopOrderModel * order;
+    TopItemModel * item;
+    BOOL found = NO;
+    for(int i=0;i<[dataList count];i++)
+    {
+        found = NO;
+        order = (TopOrderModel *) [dataList objectAtIndex:i];
+        for (TopItemModel * _item in itemList) {
+            if(order.num_iid == _item.num_iid && [order.sku_name isEqualToString:_item.note])
+            {
+                _item.volume += order.num;
+                [dataList removeObjectAtIndex:i];
+                i--;
+                found = YES;
+            }
+        }
+        
+        //not found
+        if(!found)
+        {
+            item = [[TopItemModel alloc]init];
+            item.num_iid = order.num_iid;
+            item.title = order.title;
+            item.volume = order.num;
+            item.price = order.price;
+            item.import_price = order.import_price;
+            item.pic_url = order.pic_url;
+            item.note = order.sku_name;
+            [itemList addObject:item];
+        }
+    }
+    
+    //re-order items
+    TopItemModel * item2;
+    for(int i=0;i<[itemList count];i++)
+    {
+        item = (TopItemModel *) [itemList objectAtIndex:i];
+        for (int j=i+2;j<[itemList count];j++){
+            item2 = (TopItemModel *) [itemList objectAtIndex:j];
+            if(item.num_iid == item2.num_iid)
+            {
+                [itemList exchangeObjectAtIndex:i+1 withObjectAtIndex:j];
+                break;  //break 
+            }
+        }
+    }
+
+    [self performSelectorOnMainThread:@selector(calFinished) withObject:nil waitUntilDone:NO];
+}
 - (void)configureView
 {
     // Update the user interface for the detail item.
