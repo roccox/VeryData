@@ -24,12 +24,13 @@
 
 + (NSDate *) getFirstTimeOfWeek:(NSDate *) date
 {
+    NSDate * transDate = [[NSDate alloc]initWithTimeInterval:-(8*60*60) sinceDate:date];
     NSCalendar *gregorian = [[NSCalendar alloc]
                              initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSDate *beginningOfWeek = nil;
     [gregorian rangeOfUnit:NSWeekCalendarUnit startDate:&beginningOfWeek
-                            interval:NULL forDate: date];
+                            interval:NULL forDate: transDate];
     
     beginningOfWeek = [[NSDate alloc]initWithTimeInterval:(8*60*60) sinceDate:beginningOfWeek];
     
