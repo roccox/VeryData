@@ -219,6 +219,10 @@
     
 }
 
+-(IBAction)reCal:(id)sender
+{
+    [self configureView];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -284,7 +284,7 @@
                                             <action selector="closedTrades:" destination="PHm-iQ-DKB" id="iOp-MZ-Lyh"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="210" style="plain" systemItem="fixedSpace" id="hqV-7R-HKd"/>
+                                    <barButtonItem width="198" style="plain" systemItem="fixedSpace" id="hqV-7R-HKd"/>
                                     <barButtonItem title="Update" id="qfa-4M-9jP">
                                         <connections>
                                             <action selector="updateData:" destination="PHm-iQ-DKB" id="1U9-Yd-Fph"/>
@@ -318,7 +318,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="9eQ-0r-f4f">
-                                <rect key="frame" x="425" y="7" width="216" height="28"/>
+                                <rect key="frame" x="436" y="7" width="190" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -627,6 +627,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <action selector="goNext:" destination="DRy-EM-dmy" id="vu5-aM-ymY"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem width="455" style="plain" systemItem="fixedSpace" id="LJX-32-sfa"/>
+                                    <barButtonItem title="重新计算" id="p94-Tl-SHI">
+                                        <connections>
+                                            <action selector="reCal:" destination="DRy-EM-dmy" id="Z4z-C0-Kpb"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WMK-b4-9bB">
@@ -730,6 +736,84 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="491" y="3638"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ClothViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClothViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshData:"/>
+                <relationship kind="action" name="showAllItems:"/>
+                <relationship kind="action" name="showSearchedItems:"/>
+                <relationship kind="action" name="showZeroItems:"/>
+                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DateSelController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateSelController.h"/>
+            <relationships>
+                <relationship kind="action" name="hideDateSel:"/>
+                <relationship kind="action" name="selectedDate:"/>
+                <relationship kind="outlet" name="endDate" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="startDate" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="OrderViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="allTrades:"/>
+                <relationship kind="action" name="closedTrades:"/>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="action" name="notPayTrades:"/>
+                <relationship kind="action" name="payTrades:"/>
+                <relationship kind="action" name="sentTrades:"/>
+                <relationship kind="action" name="updateData:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SentViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="passField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="StatViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="action" name="reCal:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TopSessionController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopSessionController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
