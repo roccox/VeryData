@@ -82,7 +82,8 @@
     for (TopTradeModel * _trade in tradeList) {
         if([_trade.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
             for(TopOrderModel * order in _trade.orders){
-                [self.dataList addObject:order];
+                if([order.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"])
+                    [self.dataList addObject:order];
             }
     }
     //convert to items

@@ -37,10 +37,10 @@
        )
     {
         for (TopOrderModel * order in self.orders) {
-            if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
-               [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
-               [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
-               [self.status isEqualToString:@"TRADE_FINISHED"]){
+            if([order.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
+               [order.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
+               [order.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
+               [order.status isEqualToString:@"TRADE_FINISHED"]){
                 sale += order.total_fee - order.refund_num * order.total_fee/order.num;
             }
         }
