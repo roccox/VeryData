@@ -295,7 +295,7 @@ static NSString   * _session = @"";
     [db open];
     //按照拍下时间计算,按照付款时间排序
 #if 1
-    FMResultSet *rs = [db executeQuery:@"select * from Trades where status = 'WAIT_BUYER_CONFIRM_GOODS' order by payment_time"];
+    FMResultSet *rs = [db executeQuery:@"select * from Trades where status = 'WAIT_BUYER_CONFIRM_GOODS' order by payment_time desc"];
     
     NSMutableArray * array = [[NSMutableArray alloc]init];
     TopTradeModel * trade;

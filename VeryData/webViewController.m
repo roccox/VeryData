@@ -106,12 +106,13 @@
     double totalRate = 0;
     
     //generate report
-    report = @"<HTML> \
+    NSString * header = @"<HTML> \
     <BODY> \
     <Table border = 1  bgcolor=#fffff0> \
     <TR > \
     <TD width=124 align=center>日期</TD><TD width=124 align=right>待确认金额</TD></TR>";
-
+    
+    report = @"";
     
         self.tradeList = [topData getUnConfirmedTrades];
         double money = 0;
@@ -135,7 +136,7 @@
             {
                 day = NULL;
                 str = [[NSString alloc]initWithFormat:@"<TR> \
-                                  <TD align=center color=#0000ff>%@</TD><TD align=right color=#0000ff>%@</TD> \
+                                  <TD align=center><font color=#0000ff>%@</font></TD><TD align=right><font color=#0000ff>%@</font></TD> \
                                   </TR>",@"=======",[self formatDouble:money]];
                 report = [report stringByAppendingString:str];
                 
@@ -155,7 +156,9 @@
     NSString * str = [[NSString alloc]initWithFormat:@"<TR> \
                       <TD align=center color=#ff0000><font color=#ff0000>%@</font></TD><TD align=right color=#ff0000><font color=#ff0000>%@</font></TD> \
                       </TR>",@"总计",[self formatDouble:totalMoney]];
-    report = [report stringByAppendingFormat:str];
+    
+    header = [header stringByAppendingFormat:str];
+    report = [header stringByAppendingFormat:report];
     report = [report stringByAppendingString:@"</Table> \
               </BODY>\
               </HTML>"];
