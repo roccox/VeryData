@@ -16,6 +16,7 @@
 #import "DateHelper.h"
 #import "SplashViewController.h"
 #import "SentViewController.h"
+#import "webViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,TaobaoDataDelegate>
 {
@@ -35,6 +36,8 @@
 @property(strong,nonatomic) DateSelController * dateSelController;
 
 @property(strong,nonatomic) TopSessionController * sessionController;
+
+@property(strong,nonatomic) UINavigationController * webController;
 
 @property(strong,nonatomic) NSString * topSession;
 

@@ -288,6 +288,81 @@ static NSString   * _session = @"";
     return array;
 }
 
+-(NSMutableArray *)getUnConfirmedTrades
+{
+    FMDatabase * db = [DataBase shareDB];
+	
+    [db open];
+    //按照拍下时间计算,按照付款时间排序
+#if 1
+    FMResultSet *rs = [db executeQuery:@"select * from Trades where status = 'WAIT_BUYER_CONFIRM_GOODS' order by payment_time"];
+    
+    NSMutableArray * array = [[NSMutableArray alloc]init];
+    TopTradeModel * trade;
+    NSMutableArray * orders;
+    TopOrderModel * order;
+    
+    while ([rs next]) {
+        trade = [[TopTradeModel alloc]init];
+        
+        trade.tid = [rs longLongIntForColumn:@"tid"];
+        trade.status = [rs stringForColumn:@"status"];
+        trade.createdTime = [rs dateForColumn:@"created"];
+        trade.modifiedTime = [rs dateForColumn:@"modified"];
+        trade.buyer_nick = [rs stringForColumn:@"buyer"];
+        
+        trade.receiver_city = [rs stringForColumn:@"receiver_city"];
+        trade.receiver_name = [rs stringForColumn:@"receiver_name"];
+        trade.discount_fee = [rs doubleForColumn:@"discount_fee"];
+        trade.adjust_fee = [rs doubleForColumn:@"adjust_fee"];
+        trade.post_fee = [rs doubleForColumn:@"post_fee"];
+        
+        
+        trade.total_fee = [rs doubleForColumn:@"total_fee"];
+        trade.payment = [rs doubleForColumn:@"payment"];
+        trade.paymentTime = [rs dateForColumn:@"payment_time"];
+        trade.service_fee = [rs doubleForColumn:@"service_fee"];
+        trade.note = [rs stringForColumn:@"note"];
+        
+        [array addObject: trade];
+#endif
+            
+            //search orders
+            orders = [[NSMutableArray alloc]init];
+            FMResultSet *rs2 = [db executeQuery:@"select a.*, b.import_price from orders as a , items as b where a.tid = ? and b.iid = a.iid",[NSNumber numberWithLongLong: trade.tid]];
+            while ([rs2 next]) {
+                order = [[TopOrderModel alloc]init];
+                
+                order.oid = [rs2 longLongIntForColumn:@"oid"];
+                order.num = [rs2 intForColumn:@"num"];
+                order.num_iid = [rs2 longLongIntForColumn:@"iid"];
+                order.title = [rs2 stringForColumn:@"title"];
+                order.sku_name = [rs2 stringForColumn:@"sku"];
+                
+                order.pic_url = [rs2 stringForColumn:@"pic_url"];
+                order.price = [rs2 doubleForColumn:@"price"];
+                order.import_price = [rs2 doubleForColumn:@"import_price"];
+                order.status = [rs2 stringForColumn:@"status"];
+                order.discount_fee = [rs2 doubleForColumn:@"discount_fee"];
+                order.adjust_fee = [rs2 doubleForColumn:@"adjust_fee"];
+                
+                order.total_fee = [rs2 doubleForColumn:@"total_fee"];
+                order.payment = [rs2 doubleForColumn:@"payment"];
+                order.tid = [rs2 longLongIntForColumn:@"tid"];
+                
+                order.refund_num = [rs2 intForColumn:@"refund_num"];
+                
+                [orders addObject: order];
+            }
+            
+            trade.orders = orders;
+        }            
+        
+        [db close];
+        return array;
+    }
+    
+
 
 -(NSMutableArray *)getTradesFrom:(NSDate *)start to:(NSDate *)end
 {

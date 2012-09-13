@@ -17,6 +17,7 @@
 		DD301586153D0C2C00290164 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301585153D0C2A00290164 /* DateHelper.m */; };
 		DD30158A153D35DF00290164 /* EditController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD301588153D35D900290164 /* EditController.m */; };
 		DD30158B153D35DF00290164 /* EditController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DD301589153D35DC00290164 /* EditController.xib */; };
+		DD42D3471601FE6200B842EB /* webViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD42D3461601FE6200B842EB /* webViewController.m */; };
 		DD5D102D1537100F00B7F0EB /* ClothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D102C1537100E00B7F0EB /* ClothViewController.m */; };
 		DD5D1038153726CF00B7F0EB /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D1037153726CF00B7F0EB /* DetailViewController.m */; };
 		DD5D105F1537C5A900B7F0EB /* DateSelController.m in Sources */ = {isa = PBXBuildFile; fileRef = DD5D105E1537C5A900B7F0EB /* DateSelController.m */; };
@@ -89,6 +90,8 @@
 		DD301587153D35D700290164 /* EditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditController.h; sourceTree = "<group>"; };
 		DD301588153D35D900290164 /* EditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditController.m; sourceTree = "<group>"; };
 		DD301589153D35DC00290164 /* EditController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditController.xib; sourceTree = "<group>"; };
+		DD42D3451601FE6200B842EB /* webViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = webViewController.h; sourceTree = "<group>"; };
+		DD42D3461601FE6200B842EB /* webViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = webViewController.m; sourceTree = "<group>"; };
 		DD5D102B1537100E00B7F0EB /* ClothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClothViewController.h; sourceTree = "<group>"; };
 		DD5D102C1537100E00B7F0EB /* ClothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClothViewController.m; sourceTree = "<group>"; };
 		DD5D1036153726CF00B7F0EB /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
@@ -404,6 +407,8 @@
 				DDD2721B1536DF7100892FDA /* Supporting Files */,
 				DDE6B3991569F798007C2CF4 /* SentViewController.h */,
 				DDE6B39A1569F799007C2CF4 /* SentViewController.m */,
+				DD42D3451601FE6200B842EB /* webViewController.h */,
+				DD42D3461601FE6200B842EB /* webViewController.m */,
 			);
 			path = VeryData;
 			sourceTree = "<group>";
@@ -536,6 +541,7 @@
 				DDBB98CE15416AD90070D4C1 /* NSDateAdditions.m in Sources */,
 				DDBB98CF15416AD90070D4C1 /* UIViewAdditions.m in Sources */,
 				DDE6B39B1569F799007C2CF4 /* SentViewController.m in Sources */,
+				DD42D3471601FE6200B842EB /* webViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

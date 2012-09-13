@@ -114,6 +114,11 @@
 			stringURL = @"DELIVERY_ALL";
 		}
 	}
+    else if (section==4){
+        if(row==0) {
+            stringURL = @"MONEY_MINE";
+        }
+    }
 	
     AppDelegate * delegate = [[UIApplication sharedApplication] delegate];
         

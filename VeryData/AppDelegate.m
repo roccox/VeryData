@@ -16,7 +16,7 @@
 
 @implementation AppDelegate
 
-@synthesize orderController,clothController,statController,splitViewController,splashController,sentViewController;
+@synthesize orderController,clothController,statController,splitViewController,splashController,sentViewController,webController;
 
 @synthesize dateSelController,sessionController,topSession;
 
@@ -93,6 +93,9 @@
         detailRootController = sentViewController;
         to = [[NSDate alloc]initWithTimeIntervalSinceNow:8*60*60];
         from = [[NSDate alloc]initWithTimeInterval:(-7*24*60*60) sinceDate:from];
+    }
+    else if([tag hasPrefix:@"MONEY_MINE"]) {
+        detailRootController = webController;
     }
     DetailViewController* detailController = detailRootController.topViewController;
 
@@ -199,6 +202,8 @@
     statController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"statCtrl"];
     
     sentViewController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"sentCtrl"];
+    
+    webController = [splitViewController.storyboard instantiateViewControllerWithIdentifier:@"webCtrl"];
     return YES;
 }
 

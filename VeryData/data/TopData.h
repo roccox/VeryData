@@ -78,6 +78,7 @@ typedef enum{
 
 -(NSMutableArray *)getUnSentTrades;
 
+-(NSMutableArray *)getUnConfirmedTrades;
 
 //inner
 @end
