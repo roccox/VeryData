@@ -44,9 +44,9 @@ static AppConstant * single = nil;
         result = [db executeUpdate: @"UPDATE Constant SET last_fetch = ?, session = ?, session_time = ?, name = ? where id = 0",
                   self.last_fetch,
                   self.session,
-                  self.name,
-                  self.session_time
-                  ]; 
+                  self.session_time,
+                  self.name
+                  ];
     }
     
     [db close];
