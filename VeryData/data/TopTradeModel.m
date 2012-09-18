@@ -69,7 +69,7 @@
 {
     double profit = 0;
     
-    if(self.profit >= 1)
+    if(self.profit >= 1 || self.profit < -1)
         return NO;
     
     if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
