@@ -32,17 +32,19 @@ static AppConstant * single = nil;
     
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Constant (last_fetch,id,session,session_time) VALUES (?,0,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Constant (last_fetch,id,session,session_time,name) VALUES (?,0,?,?,?)",
                   self.last_fetch,
                   self.session,
-                  self.session_time
+                  self.session_time,
+                  self.name
                   ];    
     }
     else            //update
     {
-        result = [db executeUpdate: @"UPDATE Constant SET last_fetch = ?, session = ?, session_time = ? where id = 0",
+        result = [db executeUpdate: @"UPDATE Constant SET last_fetch = ?, session = ?, session_time = ?, name = ? where id = 0",
                   self.last_fetch,
                   self.session,
+                  self.name,
                   self.session_time
                   ]; 
     }
@@ -106,7 +108,8 @@ static AppConstant * single = nil;
         {
             single.last_fetch = [db dateForQuery:@"Select last_fetch from Constant where id = 0"]; 
             single.session = [db stringForQuery:@"Select session from Constant where id = 0"]; 
-            single.session_time = [db dateForQuery:@"Select session_time from Constant where id = 0"]; 
+            single.session_time = [db dateForQuery:@"Select session_time from Constant where id = 0"];
+            single.name = [db stringForQuery:@"Select name from Constant where id = 0"];
             [db close];
         }
     }

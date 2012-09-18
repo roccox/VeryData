@@ -250,6 +250,9 @@ static NSString   * _session = @"";
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
         trade.note = [rs stringForColumn:@"note"];
         
+        trade.sales = [rs doubleForColumn:@"sales"];
+        trade.profit = [rs doubleForColumn:@"profit"];
+        
         [array addObject: trade];
 #endif
             
@@ -323,7 +326,10 @@ static NSString   * _session = @"";
         trade.paymentTime = [rs dateForColumn:@"payment_time"];
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
         trade.note = [rs stringForColumn:@"note"];
-        
+
+        trade.sales = [rs doubleForColumn:@"sales"];
+        trade.profit = [rs doubleForColumn:@"profit"];
+
         [array addObject: trade];
 #endif
             
@@ -399,7 +405,10 @@ static NSString   * _session = @"";
         trade.paymentTime = [rs dateForColumn:@"payment_time"];
         trade.service_fee = [rs doubleForColumn:@"service_fee"];
         trade.note = [rs stringForColumn:@"note"];
-        
+
+        trade.sales = [rs doubleForColumn:@"sales"];
+        trade.profit = [rs doubleForColumn:@"profit"];
+
         [array addObject: trade];
 #else
         FMResultSet *rs = [db executeQuery:@"SELECT * FROM Trades where payment_time >= ? and payment_time <=? order by payment_time",start,end];

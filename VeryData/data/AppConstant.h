@@ -14,6 +14,7 @@
 @property(nonatomic,strong) NSDate * last_fetch;
 @property(nonatomic,strong) NSString * session;
 @property(nonatomic,strong) NSDate * session_time;
+@property(nonatomic,strong) NSString * name;
 
 -(void)print;
 -(BOOL)save;

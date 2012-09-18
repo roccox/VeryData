@@ -27,6 +27,10 @@
 @property (nonatomic) double post_fee;
 @property (nonatomic) double total_fee;
 @property (nonatomic) double payment;
+
+@property (nonatomic) double sales;
+@property (nonatomic) double profit;
+
 @property (nonatomic,strong) NSDate * paymentTime;
 
 @property (nonatomic) double service_fee;
@@ -38,6 +42,8 @@
 -(void)print;
 -(BOOL)save;
 -(BOOL)saveServiceFee;
--(double) getSales;
--(double) getProfit;
+-(BOOL)saveCache;
+-(BOOL) getSales;
+-(BOOL) getProfit;
+-(void) getSaleAndProfit;
 @end

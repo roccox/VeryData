@@ -131,8 +131,9 @@
         rate = 0;
         for(TopTradeModel * _trade in self.tradeList)
         {
-            sale += [_trade getSales];
-            profit += [_trade getProfit];
+            [_trade getSaleAndProfit];
+            sale += _trade.sales;
+            profit += _trade.profit;
         }
         if(sale == 0)
             rate = 0;

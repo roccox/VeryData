@@ -88,8 +88,9 @@
     {
         for(TopTradeModel * _trade in tradeList)
         {
-            sale += [_trade getSales];
-            profit += [_trade getProfit];
+            [_trade getSaleAndProfit];
+            sale += _trade.sales;
+            profit += _trade.profit;
         }
         if(sale == 0)
             rate = 0;
@@ -125,8 +126,9 @@
                    ([_trade.createdTime timeIntervalSince1970] > [dateE timeIntervalSince1970]))
                     continue;
                 
-                sale += [_trade getSales];
-                profit += [_trade getProfit];
+                [_trade getSaleAndProfit];
+                sale += _trade.sales;
+                profit += _trade.profit;
             }
             if(sale == 0)
                 rate = 0;

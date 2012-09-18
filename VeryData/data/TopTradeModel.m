@@ -27,9 +27,23 @@
     }
     
 }
--(double) getSales
+
+-(void) getSaleAndProfit
+{
+    BOOL resultS = NO, resultP = NO;
+    resultS = [self getSales];
+    resultP = [self getProfit];
+    if(resultS || resultP)
+        [self saveCache];
+}
+
+-(BOOL) getSales
 {
     double sale = 0;
+    
+    if(self.sales >= 1)
+        return NO;
+    
     if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
        [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
@@ -45,12 +59,19 @@
             }
         }
         sale -= self.service_fee;
+        self.sales = sale;
+        return YES;
     }
-    return  sale;
+    else
+        return NO;
 }
--(double) getProfit
+-(BOOL) getProfit
 {
     double profit = 0;
+    
+    if(self.profit >= 1)
+        return NO;
+    
     if([self.status isEqualToString:@"WAIT_SELLER_SEND_GOODS"] ||
        [self.status isEqualToString:@"WAIT_BUYER_CONFIRM_GOODS"] ||
        [self.status isEqualToString:@"TRADE_BUYER_SIGNED"] ||
@@ -64,9 +85,12 @@
             }
         }
         profit -= self.service_fee;
+        self.profit = profit;
+        
+        return YES;
     }
-    
-    return profit;   
+    else
+        return NO;
 }
 
 -(BOOL)save
@@ -82,7 +106,7 @@
     
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Trades (tid, status, created, modified, buyer,              receiver_city,receiver_name,discount_fee,adjust_fee,post_fee,total_fee,payment,payment_time,sales,profit) VALUES (?,?,?,?,?,  ?,?,?,?,?,  ?,?,?,?,?)",
                   [NSNumber numberWithLongLong: self.tid], 
                   self.status,
                   self.createdTime,
@@ -98,12 +122,14 @@
 
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
-                  self.paymentTime
-                  ];    
+                  self.paymentTime,
+                  [NSNumber numberWithDouble: 0.0],
+                  [NSNumber numberWithDouble: 0.0]
+                  ];
     }
     else            //update
     {        
-        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=? WHERE tid = ?",
+        result = [db executeUpdate: @"UPDATE Trades SET status=?, created=?, modified=?, buyer=?,              receiver_city=?,receiver_name=?,discount_fee=?,adjust_fee=?,post_fee=?,total_fee=?,payment=?,payment_time=?,sales=?,profit=? WHERE tid = ?",
                   self.status,
                   self.createdTime,
                   self.modifiedTime,
@@ -119,6 +145,9 @@
                   [NSNumber numberWithDouble: self.total_fee],
                   [NSNumber numberWithDouble: self.payment],
                   self.paymentTime,
+                  [NSNumber numberWithDouble: 0.0],
+                  [NSNumber numberWithDouble: 0.0],
+                  
                   [NSNumber numberWithLongLong: self.tid]
                   ];  
     }
@@ -163,6 +192,38 @@
     
     if(!result)
         NSLog(@"Trade Service Fee Save Error!");
+    
+	return result;
+}
+
+-(BOOL)saveCache
+{
+    BOOL result = NO;
+    //check exist
+    FMDatabase * db = [DataBase shareDB];
+	int count = 0;
+	
+    [db open];
+    count = [db intForQuery:@"SELECT COUNT(*) FROM Trades where tid = ?",[NSNumber numberWithLongLong:self.tid]];
+    
+    
+    if(count == 0)  //new
+    {
+        NSLog(@"Save Trade cache error - no record");
+    }
+    else            //update
+    {
+        result = [db executeUpdate: @"UPDATE Trades SET sales=?,profit=? WHERE tid = ?",
+                  [NSNumber numberWithDouble: self.sales],
+                  [NSNumber numberWithDouble: self.profit],
+                  [NSNumber numberWithLongLong: self.tid]
+                  ];
+    }
+    
+    [db close];
+    
+    if(!result)
+        NSLog(@"Trade cache Save Error!");
     
 	return result;
 }
