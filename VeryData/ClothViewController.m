@@ -11,6 +11,9 @@
 
 @interface ClothViewController ()
 - (void)configureView;
+- (void) sortByNum;
+- (void) sortByMoney;
+- (void) sortFinished;
 @end
 
 @implementation ClothViewController
@@ -99,6 +102,86 @@
     [self configureView];
 }
 
+-(IBAction)showStockByNum:(id)sender
+{
+    self.searchField.text = @"更新中...";
+    [self showWaiting];
+ 
+    NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(sortByNum) object:nil];
+    [thread start];
+
+}
+
+-(IBAction)showStockByMoney:(id)sender
+{
+    self.searchField.text = @"更新中...";
+    [self showWaiting];
+    
+    NSThread * thread = [[NSThread alloc]initWithTarget:self selector:@selector(sortByMoney) object:nil];
+    [thread start];
+}
+
+- (void) sortByNum
+{
+    [self.dataList removeAllObjects];
+
+    TopItemModel * max;
+    TopItemModel * _item;
+    _stock = 0;
+
+    for(int i=0;i<self.itemList.count;i++)
+    {
+        max = (TopItemModel * )self.itemList[i];
+        for (int j=i+1;j<self.itemList.count;j++) {
+            _item = (TopItemModel * )self.itemList[j];
+            if(max.num < _item.num)
+            {
+                self.itemList[i] = _item;
+                self.itemList[j] = max;
+                max = _item;
+            }
+        }
+        _stock += max.num * max.import_price;
+        [self.dataList addObject:max];
+    }
+    
+    [self performSelectorOnMainThread:@selector(sortFinished) withObject:nil waitUntilDone:NO];
+}
+
+- (void) sortByMoney
+{
+    [self.dataList removeAllObjects];
+    
+    TopItemModel * max;
+    TopItemModel * _item;
+    _stock = 0;
+    
+    for(int i=0;i<self.itemList.count;i++)
+    {
+        max = (TopItemModel * )self.itemList[i];
+        for (int j=i+1;j<self.itemList.count;j++) {
+            _item = (TopItemModel * )self.itemList[j];
+            if(max.num * max.import_price < _item.num * _item.import_price)
+            {
+                self.itemList[i] = _item;
+                self.itemList[j] = max;
+                max = _item;
+            }
+        }
+        _stock += max.num * max.import_price;
+        [self.dataList addObject:max];
+    }
+    
+    [self performSelectorOnMainThread:@selector(sortFinished) withObject:nil waitUntilDone:NO];
+}
+
+- (void) sortFinished
+{
+    [self hideWaiting];
+    [self configureView];
+    self.searchField.text = [[NSString alloc]initWithFormat:@"库存总计:%@",[NSNumber numberWithInt: _stock]];
+}
+
 -(IBAction)refreshData:(id)sender
 {
     TopData * topData = [TopData getTopData];
@@ -177,6 +260,8 @@
         cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: _item.price]];
         cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: _item.import_price]];
         cell.volume.text = [[NSString alloc]initWithFormat:@"最近卖出:%@",[NSNumber numberWithInt: _item.volume]];
+        cell.num.text = [[NSString alloc]initWithFormat:@"库存数量:%@",[NSNumber numberWithInt: _item.num]];
+        cell.stock.text = [[NSString alloc]initWithFormat:@"库存金额:%@",[NSNumber numberWithInt: _item.num * _item.import_price]];
         
         return cell;
     }
@@ -228,6 +313,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _stock = 0;
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }

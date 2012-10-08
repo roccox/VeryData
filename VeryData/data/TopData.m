@@ -20,6 +20,7 @@ static NSString   * _session = @"";
 -(void)notifyTradeWithTag:(NSString *)tag;
 
 -(void)getItemByIID;
+-(void)refineItems;
 @end
 
 @implementation TopData
@@ -51,6 +52,7 @@ static NSString   * _session = @"";
     _total_count = 0;
     
     //New thread
+    _isRereshItem = YES;
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
                                                  selector:@selector(getItemInfo:)
                                                    object:nil];
@@ -92,6 +94,8 @@ static NSString   * _session = @"";
     _page_count = 1;
     
     _has_next = NO;
+
+    _isRereshItem = NO;
 
     //New thread
     NSThread* myThread = [[NSThread alloc] initWithTarget:self
@@ -141,6 +145,34 @@ static NSString   * _session = @"";
     
 }
 
+
+-(void)refineItems
+{
+    //get missing Items IIDs
+    FMDatabase * db = [DataBase shareDB];
+	
+    [db open];
+    FMResultSet *rs = [db executeQuery:@"select distinct iid from items"];
+    
+    NSString * iid;
+    if(self.errList == nil)
+        self.errList = [[NSMutableArray alloc]init];
+    else {
+        [self.errList removeAllObjects];
+    }
+    
+    while ([rs next]) {
+        iid = [rs stringForColumn:@"iid"];
+        
+        [self.errList addObject: iid];
+    }
+    
+    [db close];
+
+    [self getItemByIID];
+    
+}
+
 -(void)getItemByIID
 {
     _parseState = TAOBAO_PARSE_START;
@@ -153,7 +185,10 @@ static NSString   * _session = @"";
     {
         //
         _refreshing = NO;
-        [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:@"OK" waitUntilDone:NO];
+        if(_isRereshItem)
+            [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+        else
+            [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:@"OK" waitUntilDone:NO];
         return;
     }
     
@@ -176,7 +211,7 @@ static NSString   * _session = @"";
     
     //Get Items
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
-    [params setObject:@"num_iid,title,volume,pic_url,price" forKey:@"fields"];
+    [params setObject:@"num_iid,title,num,pic_url,price" forKey:@"fields"];
     [params setObject:iids forKey:@"num_iids"];
     [params setObject:@"taobao.items.list.get" forKey:@"method"];
     
@@ -205,6 +240,7 @@ static NSString   * _session = @"";
         item.pic_url = [rs stringForColumn:@"pic_url"];
         item.price = [rs doubleForColumn:@"price"];
         item.volume = [rs intForColumn:@"volume"];
+        item.num = [rs intForColumn:@"num"];
         item.import_price = [rs doubleForColumn:@"import_price"];
             
         [array addObject: item];
@@ -550,7 +586,7 @@ static NSString   * _session = @"";
 
     //Get Items
     NSMutableDictionary *params=[[NSMutableDictionary alloc] init];
-    [params setObject:@"num_iid,title,volume,pic_url,price" forKey:@"fields"];
+    [params setObject:@"num_iid,title,volume,num,pic_url,price" forKey:@"fields"];
     [params setObject:@"podees" forKey:@"nicks"];
     [params setObject:@"volume:desc" forKey:@"order_by"];
     [params setObject:page_no  forKey:@"page_no"];
@@ -693,6 +729,10 @@ static NSString   * _session = @"";
             else if(![self.currentElement compare:@"volume"])
             {
                 self.curItem.volume = [string intValue];
+            }
+            else if(![self.currentElement compare:@"num"])
+            {
+                self.curItem.num = [string intValue];
             }
             else if(![self.currentElement compare:@"pic_url"])
             {
@@ -844,11 +884,12 @@ static NSString   * _session = @"";
             {
                 _get_count++;
                 //TODO: save item to sqlite
-                [self.curItem save];
+                [self.curItem saveWithoutVolume];
                 
-                [self.curItem print];
-                
-                [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
+                if(_isRereshItem)
+                    [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
+                else
+                    [self performSelectorOnMainThread:@selector(notifyItemValidWithTag:) withObject:[[NSString alloc]initWithFormat:@"已获取 %d 件商品",_get_count] waitUntilDone:NO];
             }
             break;
             
@@ -897,7 +938,8 @@ static NSString   * _session = @"";
             else    
             {
                 //End
-                [self performSelectorOnMainThread:@selector(notifyItemWithTag:) withObject:@"OK" waitUntilDone:NO];
+                _get_count = 0;
+                [self refineItems];
             }
             break;
         case TAOBAO_PARSE_ITEM_VAL:

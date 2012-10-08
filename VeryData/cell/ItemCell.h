@@ -15,6 +15,8 @@
 @property (nonatomic,strong) IBOutlet UILabel * price;
 @property (nonatomic,strong) IBOutlet UILabel * sku;
 @property (nonatomic,strong) IBOutlet UILabel * volume;
+@property (nonatomic,strong) IBOutlet UILabel * num;
+@property (nonatomic,strong) IBOutlet UILabel * stock;
 @property (nonatomic,strong) IBOutlet UILabel * import_price;
 
 @end

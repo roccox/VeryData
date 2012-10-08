@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
+// Rock:商品管理
+
 #import <UIKit/UIKit.h>
 #import "TopData.h"
 #import "EditController.h"
@@ -19,7 +21,7 @@
 @interface ClothViewController : DetailViewController <UISplitViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,UIPopoverControllerDelegate,TaobaoDataDelegate>{
     
     NSString * _tag;
-
+    int _stock;
 }
 
 @property (nonatomic,strong) IBOutlet UITextField * searchField;
@@ -39,5 +41,9 @@
 -(IBAction)showZeroItems:(id)sender;
 -(IBAction)showSearchedItems:(id)sender;
 -(IBAction)refreshData:(id)sender;
+
+-(IBAction)showStockByNum:(id)sender;
+-(IBAction)showStockByMoney:(id)sender;
+
 
 @end

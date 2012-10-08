@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
+// Rock: 父类
+
 #import <UIKit/UIKit.h>
 
 @interface DetailViewController : UIViewController

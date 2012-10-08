@@ -51,6 +51,7 @@ typedef enum{
     NSDate *        startTime;
     NSDate *        endTime;
     BOOL            _has_next;
+    BOOL            _isRereshItem;
     
 }
 

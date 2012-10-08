@@ -10,7 +10,7 @@
 
 @implementation TopItemModel
 
-@synthesize num_iid,title,pic_url,price,volume,import_price,note;
+@synthesize num_iid,title,pic_url,price,volume,num,import_price,note;
 
 
 -(void)print
@@ -32,21 +32,23 @@
 
     if(count == 0)  //new
     {
-        result = [db executeUpdate: @"INSERT INTO Items (iid, title, pic_url, price, volume) VALUES (?,?,?,?,?)",
+        result = [db executeUpdate: @"INSERT INTO Items (iid, title, pic_url, price, volume,num) VALUES (?,?,?,?,?,?)",
                         [NSNumber numberWithLongLong: self.num_iid], 
                         self.title, 
                         self.pic_url,
                         [NSNumber numberWithDouble: self.price],
-                        [NSNumber numberWithInt: self.volume]
-                  ];    
+                        [NSNumber numberWithInt: self.volume],
+                        [NSNumber numberWithInt: self.num]
+                  ];
     }
     else            //update
     {
-        result = [db executeUpdate: @"UPDATE Items SET title = ?, pic_url = ?, price = ?, volume = ? WHERE iid = ?",
+        result = [db executeUpdate: @"UPDATE Items SET title = ?, pic_url = ?, price = ?, volume = ?, num = ? WHERE iid = ?",
                   self.title, 
                   self.pic_url,
                   [NSNumber numberWithDouble: self.price],
                   [NSNumber numberWithInt: self.volume],
+                  [NSNumber numberWithInt: self.num],
                   [NSNumber numberWithLongLong: self.num_iid]
                   ]; 
     }
@@ -58,6 +60,47 @@
     
 	return result;
 }
+
+-(BOOL)saveWithoutVolume
+{
+    BOOL result = NO;
+    //check exist
+    FMDatabase * db = [DataBase shareDB];
+	int count = 0;
+	
+    [db open];
+    count = [db intForQuery:@"SELECT COUNT(*) FROM Items where iid = ?",[NSNumber numberWithLongLong:self.num_iid]];
+    
+    
+    if(count == 0)  //new
+    {
+        result = [db executeUpdate: @"INSERT INTO Items (iid, title, pic_url, price,num) VALUES (?,?,?,?,?)",
+                  [NSNumber numberWithLongLong: self.num_iid],
+                  self.title,
+                  self.pic_url,
+                  [NSNumber numberWithDouble: self.price],
+                  [NSNumber numberWithInt: self.num]
+                  ];
+    }
+    else            //update
+    {
+        result = [db executeUpdate: @"UPDATE Items SET title = ?, pic_url = ?, price = ?, num = ? WHERE iid = ?",
+                  self.title,
+                  self.pic_url,
+                  [NSNumber numberWithDouble: self.price],
+                  [NSNumber numberWithInt: self.num],
+                  [NSNumber numberWithLongLong: self.num_iid]
+                  ];
+    }
+    
+    [db close];
+    
+    if(!result)
+        NSLog(@"Item Save Error!");
+    
+	return result;
+}
+
 
 -(BOOL)saveImportPrice
 {

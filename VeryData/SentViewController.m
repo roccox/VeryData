@@ -181,6 +181,8 @@
         cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: _item.price]];
         cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: _item.import_price]];
         cell.volume.text = [[NSString alloc]initWithFormat:@"数量:%@",[NSNumber numberWithInt: _item.volume]];
+        cell.num.text = @"";
+        cell.stock.text = @"";
         
         return cell;
     }

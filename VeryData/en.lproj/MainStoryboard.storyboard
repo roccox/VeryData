@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2549" systemVersion="12B19" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="SZX-0p-vd9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="SZX-0p-vd9">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1498"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="14">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="13" sceneMemberID="firstResponder"/>
                 <navigationController id="3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="6">
                         <autoresizingMask key="autoresizingMask"/>
@@ -16,13 +15,13 @@
                         <segue destination="19" kind="relationship" relationship="rootViewController" id="25"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="13" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="432" y="-178"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="18">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
                 <splitViewController storyboardIdentifier="splitCtrl" id="5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mZ4-8L-neT"/>
@@ -33,13 +32,13 @@
                         <segue destination="42" kind="relationship" relationship="detailViewController" id="53"/>
                     </connections>
                 </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-703" y="-190"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="24">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
                 <tableViewController storyboardIdentifier="" title="Master" clearsSelectionOnViewWillAppear="NO" id="19" customClass="MasterViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="20">
                         <rect key="frame" x="0.0" y="64" width="320" height="704"/>
@@ -208,13 +207,13 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="统计设定" id="39"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="843" y="-179"/>
         </scene>
         <!--Splash View Controller-->
         <scene sceneID="mGn-oJ-Pxc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MJs-Qu-oA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="SZX-0p-vd9" customClass="SplashViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dq1-9i-jm3">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -234,13 +233,13 @@
                         <outlet property="passField" destination="pml-4N-OPh" id="2mZ-LA-UyU"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MJs-Qu-oA0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2060" y="314"/>
         </scene>
         <!--Web Controller-->
         <scene sceneID="qOs-Yj-3np">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XO4-bi-ceH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="" id="gXZ-um-2aB" customClass="WebController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JWh-wK-4Hf">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
@@ -260,13 +259,13 @@
                         <outlet property="webView" destination="fdH-yJ-yBo" id="UTM-wn-Fye"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XO4-bi-ceH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="491" y="4711"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="50">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="49" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="42" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="43">
                         <autoresizingMask key="autoresizingMask"/>
@@ -275,13 +274,13 @@
                         <segue destination="PHm-iQ-DKB" kind="relationship" relationship="rootViewController" id="7GS-yT-Wya"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="49" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-366" y="686"/>
         </scene>
         <!--Order View Controller-->
         <scene sceneID="Nq0-kh-Owi">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TmP-Of-RUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="PHm-iQ-DKB" customClass="OrderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYT-Mb-OmP">
                         <rect key="frame" x="0.0" y="64" width="703" height="660"/>
@@ -388,13 +387,13 @@
                         <outlet property="tableView" destination="yfz-17-rOG" id="Uwb-0v-2LI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TmP-Of-RUY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="451" y="667"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="V1z-NZ-zBq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-eC-cRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="clothCtrl" id="c09-C9-Sze" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="gR3-WW-5cc">
                         <autoresizingMask key="autoresizingMask"/>
@@ -403,13 +402,13 @@
                         <segue destination="Grr-8R-LZt" kind="relationship" relationship="rootViewController" id="Efy-Yg-4HR"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wTl-eC-cRV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-667" y="1562"/>
         </scene>
         <!--Date Sel Controller-->
         <scene sceneID="WqH-6T-EKx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A5S-6t-C4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="dateSelCtrl" id="Xad-JZ-wP0" customClass="DateSelController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PC1-Zo-KU2">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -512,13 +511,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="startDate" destination="a5w-Sf-nDu" id="1Oj-s5-qHa"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="A5S-6t-C4P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1585" y="519"/>
         </scene>
         <!--Cloth View Controller-->
         <scene sceneID="uAt-Tg-htf">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xfA-PJ-rSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Grr-8R-LZt" customClass="ClothViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S04-Cf-huz">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
@@ -537,16 +536,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <action selector="showZeroItems:" destination="Grr-8R-LZt" id="ZEY-zP-hda"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="ZAv-MV-uYH"/>
                                             <barButtonItem title="全部商品" id="nal-r5-zDe">
                                                 <connections>
                                                     <action selector="showAllItems:" destination="Grr-8R-LZt" id="Xhs-4G-McK"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem width="151" style="plain" systemItem="fixedSpace" id="7O7-mk-0JA"/>
+                                            <barButtonItem title="库存数量" id="ad7-uW-QZO">
+                                                <connections>
+                                                    <action selector="showStockByNum:" destination="Grr-8R-LZt" id="e2k-MR-rHX"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="库存金额" id="XJz-T1-xPR">
+                                                <connections>
+                                                    <action selector="showStockByMoney:" destination="Grr-8R-LZt" id="dQP-30-f5m"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem width="39" style="plain" systemItem="fixedSpace" id="7O7-mk-0JA"/>
                                             <barButtonItem style="plain" id="vMR-4I-d5Y">
                                                 <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入需要商品的关键字" minimumFontSize="17" id="54P-ub-0uN">
-                                                    <rect key="frame" x="368" y="7" width="175" height="31"/>
+                                                    <rect key="frame" x="370" y="7" width="175" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -598,13 +606,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="tableView" destination="QRT-13-Pka" id="zXb-K3-ep8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xfA-PJ-rSV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="499" y="1562"/>
         </scene>
         <!--Top Session Controller-->
         <scene sceneID="Neu-Sj-jBb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dyd-Dz-dGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="sessionCtrl" id="jLJ-x8-e71" customClass="TopSessionController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mWD-WQ-KFh">
                         <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
@@ -623,13 +631,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="webView" destination="Zv1-Ia-rBE" id="uYZ-0J-gTj"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dyd-Dz-dGI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1573" y="1687"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nCB-c2-Ccx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="diS-n6-4Jk" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="statCtrl" id="9km-mv-985" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="RL7-Et-l8O">
                         <autoresizingMask key="autoresizingMask"/>
@@ -638,13 +646,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <segue destination="DRy-EM-dmy" kind="relationship" relationship="rootViewController" id="6ms-jZ-Qmc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="diS-n6-4Jk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-687" y="2678"/>
         </scene>
         <!--Stat View Controller-->
         <scene sceneID="jnH-Yy-C1i">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pXe-iP-saW" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="DRy-EM-dmy" customClass="StatViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i6q-Ih-v3P">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
@@ -700,13 +708,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="nextBtn" destination="USf-m0-YAo" id="KAB-w2-gSg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pXe-iP-saW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="506" y="2687"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rCO-Hm-4KP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FRx-j4-FLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="sentCtrl" id="I84-sk-reQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="TKQ-gj-prR">
                         <autoresizingMask key="autoresizingMask"/>
@@ -715,13 +723,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <segue destination="V3l-Oa-Zr6" kind="relationship" relationship="rootViewController" id="6Zf-E9-4dz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FRx-j4-FLC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-687" y="3670"/>
         </scene>
         <!--Sent View Controller-->
         <scene sceneID="Xpg-el-iME">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1KA-ZF-ZVt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="V3l-Oa-Zr6" customClass="SentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CQQ-eD-ryg">
                         <rect key="frame" x="0.0" y="64" width="1024" height="704"/>
@@ -779,13 +787,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="tableView" destination="tm1-UW-Y9o" id="Yzb-63-DPg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1KA-ZF-ZVt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="491" y="3638"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ykD-zw-jm5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cnJ-WU-qJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="webCtrl" id="khU-b0-7Ac" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="CWZ-kS-qsO">
@@ -797,95 +805,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <segue destination="gXZ-um-2aB" kind="relationship" relationship="rootViewController" id="PBs-yb-5fs"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cnJ-WU-qJx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-709" y="4711"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ClothViewController" superclassName="DetailViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClothViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="refreshData:"/>
-                <relationship kind="action" name="showAllItems:"/>
-                <relationship kind="action" name="showSearchedItems:"/>
-                <relationship kind="action" name="showZeroItems:"/>
-                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="DateSelController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateSelController.h"/>
-            <relationships>
-                <relationship kind="action" name="hideDateSel:"/>
-                <relationship kind="action" name="selectedDate:"/>
-                <relationship kind="outlet" name="endDate" candidateClass="UIDatePicker"/>
-                <relationship kind="outlet" name="startDate" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
-        </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
-        </class>
-        <class className="OrderViewController" superclassName="DetailViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="allTrades:"/>
-                <relationship kind="action" name="closedTrades:"/>
-                <relationship kind="action" name="goNext:"/>
-                <relationship kind="action" name="goPrevious:"/>
-                <relationship kind="action" name="goSomeDay:"/>
-                <relationship kind="action" name="notPayTrades:"/>
-                <relationship kind="action" name="payTrades:"/>
-                <relationship kind="action" name="sentTrades:"/>
-                <relationship kind="action" name="updateData:"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="searchBtn" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SentViewController" superclassName="DetailViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SplashViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="passField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="StatViewController" superclassName="DetailViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goNext:"/>
-                <relationship kind="action" name="goPrevious:"/>
-                <relationship kind="action" name="goSomeDay:"/>
-                <relationship kind="action" name="reCal:"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="TopSessionController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopSessionController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="WebController" superclassName="DetailViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebController.h"/>
-            <relationships>
-                <relationship kind="action" name="reCal"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
