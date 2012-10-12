@@ -22,6 +22,7 @@
     
     NSString * _tag;
     int _stock;
+    int _sort;
 }
 
 @property (nonatomic,strong) IBOutlet UITextField * searchField;
@@ -44,6 +45,8 @@
 
 -(IBAction)showStockByNum:(id)sender;
 -(IBAction)showStockByMoney:(id)sender;
+
+-(IBAction)adjustSortOrder:(id)sender;
 
 
 @end

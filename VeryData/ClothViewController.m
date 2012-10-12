@@ -141,8 +141,11 @@
                 max = _item;
             }
         }
-        _stock += max.num * max.import_price;
-        [self.dataList addObject:max];
+        if(max.num != 0)
+        {
+            _stock += max.num * max.import_price;
+            [self.dataList addObject:max];
+        }
     }
     
     [self performSelectorOnMainThread:@selector(sortFinished) withObject:nil waitUntilDone:NO];
@@ -168,12 +171,22 @@
                 max = _item;
             }
         }
-        _stock += max.num * max.import_price;
-        [self.dataList addObject:max];
+        if(max.num != 0)
+        {
+            _stock += max.num * max.import_price;
+            [self.dataList addObject:max];
+        }
     }
     
     [self performSelectorOnMainThread:@selector(sortFinished) withObject:nil waitUntilDone:NO];
 }
+
+-(IBAction)adjustSortOrder:(id)sender
+{
+    _sort *= -1;
+    [self configureView];
+}
+
 
 - (void) sortFinished
 {
@@ -238,6 +251,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString * itemID = @"itemCellID";
     TopItemModel *  _item = [self.dataList objectAtIndex:indexPath.row];
+    if(_sort < 0)
+        _item = [self.dataList objectAtIndex:([self.dataList count] - indexPath.row - 1)];
     
     {
         ItemCell * cell = (ItemCell *)[self.tableView dequeueReusableCellWithIdentifier:itemID];
@@ -314,6 +329,7 @@
 {
     [super viewDidLoad];
     _stock = 0;
+    _sort = 1;
 	// Do any additional setup after loading the view, typically from a nib.
     [self configureView];
 }

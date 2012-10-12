@@ -551,10 +551,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <action selector="showStockByMoney:" destination="Grr-8R-LZt" id="dQP-30-f5m"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem width="39" style="plain" systemItem="fixedSpace" id="7O7-mk-0JA"/>
+                                            <barButtonItem title="反序" id="qFY-ye-FVP">
+                                                <connections>
+                                                    <action selector="adjustSortOrder:" destination="Grr-8R-LZt" id="kFc-gs-5CW"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <barButtonItem style="plain" id="vMR-4I-d5Y">
                                                 <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入需要商品的关键字" minimumFontSize="17" id="54P-ub-0uN">
-                                                    <rect key="frame" x="370" y="7" width="175" height="31"/>
+                                                    <rect key="frame" x="385" y="7" width="175" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -565,7 +569,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <action selector="showSearchedItems:" destination="Grr-8R-LZt" id="1cY-sS-Pvr"/>
                                                 </connections>
                                             </barButtonItem>
-                                            <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="KDY-Ne-aGL"/>
                                             <barButtonItem title="更新商品" id="lK0-C2-4ih">
                                                 <connections>
                                                     <action selector="refreshData:" destination="Grr-8R-LZt" id="RhW-VS-OcF"/>
