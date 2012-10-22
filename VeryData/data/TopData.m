@@ -152,6 +152,13 @@ static NSString   * _session = @"";
     FMDatabase * db = [DataBase shareDB];
 	
     [db open];
+    //clear stock number
+    BOOL result = [db executeUpdate:@"update items set num = 0"];
+    if(result)
+        NSLog(@"ok -- update stock num");
+    else
+        NSLog(@"error -- update stock num");
+    
     FMResultSet *rs = [db executeQuery:@"select distinct iid from items"];
     
     NSString * iid;
