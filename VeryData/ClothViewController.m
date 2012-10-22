@@ -289,6 +289,9 @@
 {
     self.item = [dataList objectAtIndex:indexPath.row];
 
+    if(_sort < 0)
+        self.item = [self.dataList objectAtIndex:([self.dataList count] - indexPath.row - 1)];
+
     [self showEditPopover:self.item.import_price withNote:self.item.note];
 }
 
