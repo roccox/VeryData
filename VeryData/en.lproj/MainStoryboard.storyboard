@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="SZX-0p-vd9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="5">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -813,6 +813,94 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <point key="canvasLocation" x="-709" y="4711"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ClothViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClothViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="adjustSortOrder:"/>
+                <relationship kind="action" name="refreshData:"/>
+                <relationship kind="action" name="showAllItems:"/>
+                <relationship kind="action" name="showSearchedItems:"/>
+                <relationship kind="action" name="showStockByMoney:"/>
+                <relationship kind="action" name="showStockByNum:"/>
+                <relationship kind="action" name="showZeroItems:"/>
+                <relationship kind="outlet" name="searchField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="DateSelController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DateSelController.h"/>
+            <relationships>
+                <relationship kind="action" name="hideDateSel:"/>
+                <relationship kind="action" name="selectedDate:"/>
+                <relationship kind="outlet" name="endDate" candidateClass="UIDatePicker"/>
+                <relationship kind="outlet" name="startDate" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="DetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+        </class>
+        <class className="MasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        </class>
+        <class className="OrderViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OrderViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="allTrades:"/>
+                <relationship kind="action" name="closedTrades:"/>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="action" name="notPayTrades:"/>
+                <relationship kind="action" name="payTrades:"/>
+                <relationship kind="action" name="sentTrades:"/>
+                <relationship kind="action" name="updateData:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="searchBtn" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SentViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SplashViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SplashViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="passField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="StatViewController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StatViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goNext:"/>
+                <relationship kind="action" name="goPrevious:"/>
+                <relationship kind="action" name="goSomeDay:"/>
+                <relationship kind="action" name="reCal:"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="infoView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="nextBtn" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="TopSessionController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopSessionController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="WebController" superclassName="DetailViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WebController.h"/>
+            <relationships>
+                <relationship kind="action" name="reCal"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
