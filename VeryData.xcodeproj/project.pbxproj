@@ -619,10 +619,12 @@
 		DDD272321536DF7100892FDA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeryData/VeryData-Prefix.pch";
 				INFOPLIST_FILE = "VeryData/VeryData-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -630,10 +632,14 @@
 		DDD272331536DF7100892FDA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Peng Jin";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VeryData/VeryData-Prefix.pch";
 				INFOPLIST_FILE = "VeryData/VeryData-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F2185A8C-BC5E-40E6-B739-316A10FE91A6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
