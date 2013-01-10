@@ -115,6 +115,7 @@
             item.import_price = order.import_price;
             item.pic_url = order.pic_url;
             item.note = order.sku_name;
+            item.num = order.stock_num; //stock
             [itemList addObject:item];
         }
     }
@@ -181,9 +182,10 @@
         cell.price.text = [[NSString alloc]initWithFormat:@"价格:%@",[NSNumber numberWithDouble: _item.price]];
         cell.import_price.text = [[NSString alloc]initWithFormat:@"进价:%@",[NSNumber numberWithDouble: _item.import_price]];
         cell.volume.text = [[NSString alloc]initWithFormat:@"数量:%@",[NSNumber numberWithInt: _item.volume]];
-        cell.num.text = @"";
+        cell.volume.textColor = [UIColor redColor];
+        cell.num.text = [[NSString alloc]initWithFormat:@"库存数量:%@",[NSNumber numberWithInt: _item.num]];
         cell.stock.text = @"";
-        
+
         return cell;
     }
 }

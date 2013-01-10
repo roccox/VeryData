@@ -301,7 +301,7 @@ static NSString   * _session = @"";
             
         //search orders
         orders = [[NSMutableArray alloc]init];
-        FMResultSet *rs2 = [db executeQuery:@"select a.*, b.import_price from orders as a , items as b where a.status='WAIT_SELLER_SEND_GOODS' and a.tid = ? and b.iid = a.iid",[NSNumber numberWithLongLong: trade.tid]];
+        FMResultSet *rs2 = [db executeQuery:@"select a.*, b.import_price, b.num as stock from orders as a , items as b where a.status='WAIT_SELLER_SEND_GOODS' and a.tid = ? and b.iid = a.iid",[NSNumber numberWithLongLong: trade.tid]];
         while ([rs2 next]) {
             order = [[TopOrderModel alloc]init];
                 
@@ -323,6 +323,8 @@ static NSString   * _session = @"";
             order.tid = [rs2 longLongIntForColumn:@"tid"];
                 
             order.refund_num = [rs2 intForColumn:@"refund_num"];
+            
+            order.stock_num = [rs2 intForColumn:@"stock"];
                 
             [orders addObject: order];
         }

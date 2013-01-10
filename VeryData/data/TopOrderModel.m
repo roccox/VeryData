@@ -11,7 +11,7 @@
 @implementation TopOrderModel
 
 @synthesize oid,num,num_iid,title,sku_name,pic_url,price,import_price, status;
-@synthesize discount_fee,adjust_fee,total_fee,payment,tid,refund,refund_num;
+@synthesize discount_fee,adjust_fee,total_fee,payment,tid,refund,refund_num,stock_num;
 
 -(void)print
 {

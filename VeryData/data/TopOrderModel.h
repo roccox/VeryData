@@ -31,6 +31,8 @@
 
 @property (nonatomic)int refund_num;
 @property (nonatomic) long long tid;
+
+@property (nonatomic)int stock_num; //for cache only, don't save it .
 -(void)print;
 
 -(BOOL)save;
