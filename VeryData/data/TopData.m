@@ -64,7 +64,7 @@ static NSString   * _session = @"";
     //check session
     AppConstant * constant = [AppConstant shareObject];
     if ([constant.session length] < 10 ||
-        [constant.session_time timeIntervalSinceNow] < -(10*24*60*60) ) 
+        [constant.session_time timeIntervalSinceNow] < -(300*24*60*60) )    // adjust to 300 days
     {
         //need to get session
         _refreshing = NO;
